@@ -1,7 +1,11 @@
 <div class="document">
         <div class="title">Liran Sharir</div>
-        <div class="title">{{ $ctrl.content }}</div>
-        
+        <div class="search-container">
+            <input class="search" type="search" ng-model="query" placeholder="filter by year or description" aria-label="filter resume"/>
+            <div class="tags">
+                <span ng-if="tag.length !== 0" class="tag" ng-repeat="tag in $ctrl.tags track by $id(tag)">{{tag}}</span>
+            </div>
+        </div>
         <div class="contact">
             <span class="value">972-545222302</span>
         </div>
@@ -13,14 +17,9 @@
             I enjoy creating, learning and teaching new web technologies.
         </div>
 
-        <div class="subject">
-            <div class="subject-title">
-                Work Experience
-            </div>
-            <div class="subject-content">
-                <div class="subject-bullet">
-                    Trax Image Recognition
-                </div>
-            </div>
-        </div>
+        <category 
+            category="category"
+            subjects="$ctrl.data.subjectsByType[category.type]"
+            ng-repeat="category in $ctrl.data.categories track by $index">
+        </category>
     </div>

@@ -51,3 +51,26 @@
 .subject-bullet {
     margin-left: 2rem;
 }
+
+.search-container {
+    text-align: center;
+
+    input[type="search"].search {
+        border: none;
+        padding: 1rem;
+        font-size: 1rem;
+        box-shadow: none;
+        outline: none;
+    }
+
+    .tags { 
+        margin: 1rem;
+    }
+
+    .tag {
+        margin: 0.5rem;
+        padding: 0.25rem 0.5rem;
+        background: palegreen;
+
+    }
+}

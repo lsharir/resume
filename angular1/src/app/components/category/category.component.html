@@ -1,0 +1,10 @@
+<div>
+    <div ng-if="results" class="subject-title">
+        {{$ctrl.category.title}}
+    </div>
+
+    <subject 
+        subject="subject"
+        ng-repeat="subject in $ctrl.subjects as results track by $index">
+    </subject>
+</div>
