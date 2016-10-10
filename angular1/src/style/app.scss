@@ -1,6 +1,8 @@
+@import '_constants';
+
 * {
-    font-family: 'Lato';
-    color: #333;
+    font-family: $font-family;
+    color: $color-primary;
 }
 
 .document {
@@ -21,7 +23,7 @@
     font-style: italic;
     font-size: 1rem;
     text-align: center;
-    color: #555;
+    color: $color-secondary;
 }
 
 .contact {
@@ -40,18 +42,6 @@
 .contact > .value {
 }
 
-.subject {
-    margin: 1rem;
-}
-
-.subject-title {
-    font-weight: 700;
-}
-
-.subject-bullet {
-    margin-left: 2rem;
-}
-
 .search-container {
     text-align: center;
 
@@ -60,6 +50,7 @@
         padding: 1rem;
         font-size: 1rem;
         box-shadow: none;
+        min-width: 16rem;
         outline: none;
     }
 

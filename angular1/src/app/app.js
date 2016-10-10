@@ -76,6 +76,7 @@ class AppCtrl {
 
 import { category } from './components/category/category.component.js';
 import { subject } from './components/subject/subject.component.js';
+import { subjectYears } from './filters/subjectYears.filter.js';
 
 const MODULE_NAME = 'resume';
 
@@ -84,6 +85,7 @@ angular.module(MODULE_NAME, [])
   .controller('AppCtrl', AppCtrl)
   .component('category', category)
   .component('subject', subject)
+  .filter('subjectYears', subjectYears)
   ;
 
 export default MODULE_NAME;
