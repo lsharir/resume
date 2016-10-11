@@ -44,6 +44,7 @@
 
 .search-container {
     background: white;
+    cursor: text;
 }
 
 .input-wrapper {
@@ -53,7 +54,7 @@
     }
 }
 
-input[type="search"].search {
+input[type="text"].search {
     border: none;
     box-shadow: none;
     background: transparent;

@@ -5,6 +5,6 @@
     cursor: pointer;
 
     &.inactive {
-        opacity: 0.5;
+        background: rgba(0,0,0,0.125);
     }
 }

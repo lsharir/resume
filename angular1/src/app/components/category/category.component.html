@@ -5,6 +5,6 @@
 
     <subject 
         subject="subject"
-        ng-repeat="subject in $ctrl.subjects as results track by $index">
+        ng-repeat="subject in $ctrl.subjects as results track by $id(subject)">
     </subject>
 </div>

@@ -12,7 +12,7 @@
                     <input
                     id="search"
                     class="search"
-                    type="search"
+                    type="text"
                     ng-model="query"
                     ng-keyup="$ctrl.inputKeyUp($event)"
                     aria-label="filter resume"/>
@@ -23,7 +23,8 @@
             </div>
         </div>
         <div class="tags-wrapper">
-            <tag text="tag.text" active="tag.active" ng-repeat="tag in $ctrl.defaultTags track by $index" ng-click="tag.active = !tag.active"></tag>
+            <span>e.g. </span>
+            <tag text="tag.text" active="tag.active" ng-repeat="tag in $ctrl.defaultTags track by $index" ng-click="$ctrl.toggleDefault(tag)"></tag>
         </div>
         <div class="contact">
             <span class="value">972-545222302</span>
@@ -39,6 +40,6 @@
         <category
             category="category"
             subjects="$ctrl.data.subjectsByType[category.type]"
-            ng-repeat="category in $ctrl.data.categories track by $index">
+            ng-repeat="category in $ctrl.data.categories track by $id(category)">
         </category>
     </div>
