@@ -11,13 +11,14 @@ $subject-movement: 10px;
 $maximal-subject-height: 131px;
 $maximal-category-title-height: 27px;
 
-$tag-margin: 1rem 0.25rem;
+$tag-margin: 0.25rem;
 $tag-padding: 0.25rem 0.5rem;
 
 .tag-appearance {
     margin: $tag-margin;
     background: $tag-bg;
     padding: $tag-padding;
+    display: inline-block;
     font-size: 1rem;
     border-radius: 1rem;
     position: relative;

@@ -15,9 +15,10 @@
                     type="text"
                     ng-model="query"
                     ng-keyup="$ctrl.inputKeyUp($event)"
+                    ng-style="{ 'width': query.length * 0.7 + 'rem'}"
                     aria-label="filter resume"/>
                 
-                    <span class="fake-tag" ng-show="query.length !== 0" ng-bind="query"></span>
+                    <span class="fake-tag" ng-if="query.length !== 0" ng-bind="query"></span>
                 </span>
                 
             </div>

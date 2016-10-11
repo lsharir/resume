@@ -50,6 +50,8 @@
 
 .input-wrapper {
     position: relative;
+    display: inline-block;
+    margin: 0.5rem 0rem;
     &:first-child {
         margin-left: 0.25rem;
     }
@@ -61,6 +63,8 @@ input[type="text"].search {
     background: transparent;
     outline: none;
     font-size: 1rem;
+    min-width: 3rem;
+    margin: 0;
     padding: $tag-padding;
     z-index: 2;
 }
@@ -70,6 +74,7 @@ input[type="text"].search {
     margin: 0;
     position: absolute;
     opacity: 0.5;
+    top: 0;
     left: 0;
     pointer-events: none;
 }
