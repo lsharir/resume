@@ -6,7 +6,7 @@
                     text="tag"
                     active="true"
                     ng-repeat="tag in $ctrl.selectedTags track by $id(tag, $index)"
-                    ng-click="$ctrl.selectedTags.splice($index, 1)"
+                    ng-click="$ctrl.removeSelectedTag($index)"
                 ></tag>
                 <span class="input-wrapper">
                     <input

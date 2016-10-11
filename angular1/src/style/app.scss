@@ -14,8 +14,9 @@
 
 .title {
     text-align: center;
-    font-weight: 200;
-    font-size: 2rem;
+    font-weight: 300;
+    font-family: $font-sans;
+    font-size: 3rem;
     margin-bottom: 1rem;
 }
 
@@ -75,4 +76,43 @@ input[type="text"].search {
 
 .tags-wrapper {
     padding: 0.5rem;
+    margin: 0.5rem;
+}
+
+.subject-animation {
+    transition: all 1s ease-in-out;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-sizing:border-box;
+
+    &.ng-leave.ng-leave-active,
+    &.ng-move,
+    &.ng-enter {
+        opacity:0;
+        max-height: 0;
+
+        &:nth-child(odd) {
+            left: $subject-movement;
+        }
+
+        &:nth-child(even) {
+            right: $subject-movement;
+        }
+    }
+
+    &.ng-leave,
+    &.ng-move.ng-move-active,
+    &.ng-enter.ng-enter-active {
+        opacity:1;
+        max-height: $maximal-subject-height;
+
+        &:nth-child(odd) {
+            left: 0;
+        }
+
+        &:nth-child(even) {
+            right: 0;
+        }
+    }
 }

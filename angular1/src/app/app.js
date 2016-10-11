@@ -32,10 +32,14 @@ class AppCtrl {
 			{ text: 'experience', active: false }
 		];
 
+		sift.indexSubjects(this.rawSubjects);
+		sift.indexCategories(this.rawCategories);
+		this.rawSubjectsByType = sift.subjectsByType(this.rawSubjects);
+
 		$scope.query = '';
 
 		$scope.$watch('query', function (newValue) {
-			let tags = sift.getTags(newValue, ctrl.selectedTags, ctrl.defaultTags);
+			let tags = ctrl.getTags(newValue);
 			ctrl.filterResume(tags);
 		});
 	}
@@ -73,9 +77,18 @@ class AppCtrl {
 		document.getElementById('search').focus();
 	}
 
+	getTags(textQuery) {
+		return this.sift.getTags(textQuery, this.selectedTags, this.defaultTags);
+	}
+
 	toggleDefault(tag) {
 		tag.active = !tag.active;
-		this.filterResume(this.sift.getTags(undefined, this.selectedTags, this.defaultTags));
+		this.filterResume(this.getTags(this.$scope.query));
+	}
+
+	removeSelectedTag(index) {
+		this.selectedTags.splice(index, 1);
+		this.filterResume(this.getTags(this.$scope.query));
 	}
 
 	filterResume(tags) {
@@ -90,15 +103,27 @@ class AppCtrl {
 		;
 
 		this.rawCategories.forEach(category => {
+			let categoryMatch = this.sift.categoryTagMatch(category, regularTags);
 			newData.categories.push(category);
-		});
 
-		this.rawSubjects.forEach(subject => {
-			if (this.sift.inYear(subject, years, yearsLength)) {
-				this.sift.addSubjectByType(newData.subjectsByType, subject);
-				newData.subjects.push(subject);
+			if (true) {
+				this.rawSubjectsByType[category.type].forEach(subject => {
+					let subjectMatch = true;
+
+					subjectMatch = (subjectMatch
+						&& this.sift.subjectTagMatch(subject, regularTags)
+						|| categoryMatch)
+						&& this.sift.inYear(subject, years, yearsLength);
+
+					if (subjectMatch) {
+						this.sift.addSubjectByType(newData.subjectsByType, subject);
+						newData.subjects.push(subject); //TODO this may be unnecessary
+					}
+				});
 			}
 		});
+
+		
 
 		this.data = newData;
 	};

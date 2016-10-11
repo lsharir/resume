@@ -5,7 +5,8 @@ export class SiftService {
 
     getTags(text, tags, defaults) {
         let textTags = text !== undefined ? text.split(' ') : [],
-            validatedTags = [];
+            validatedTags = [],
+            uniqueTags = [];
 
         textTags.forEach(tag => {
             if (this.validateTag(tag)) {
@@ -21,7 +22,13 @@ export class SiftService {
 
         tags = validatedTags.concat(tags);
 
-        return tags;
+        tags.forEach(tag => {
+            if (uniqueTags.indexOf(tag) === -1) {
+                uniqueTags.push(tag);
+            }
+        });
+
+        return uniqueTags;
     }
 
     validateTag(tag) {
@@ -73,5 +80,51 @@ export class SiftService {
         }
 
         subjectsByTypeArray[subject.type].push(subject);
+    }
+
+    indexCategories(categories) {
+        categories.forEach(category => {
+            category.words = category.title + ' ' + category.tags.join(' ');
+        });
+    }
+
+    indexSubjects(subjects) {
+        subjects.forEach(subject => {
+            subject.words = subject.title + ' ' +
+                subject.description.join(' ') + ' ' +
+                subject.tags.join(' ');
+        });
+    }
+
+    subjectsByType(subjects) {
+        let subjectsByType = [];
+
+        subjects.forEach(subject => {
+            this.addSubjectByType(subjectsByType, subject);
+        });
+
+        return subjectsByType;
+    }
+
+    categoryTagMatch(category, tags) {
+        // tags here are only keywords, not years
+        let match = true;
+
+        tags.forEach(tag => {
+            match = match && (category.words.search(tag) !== -1);
+        });
+
+        return match;
+    }
+
+    subjectTagMatch(subject, tags) {
+        // tags here are only keywords, not years
+        let match = true;
+
+        tags.forEach(tag => {
+            match = match && (subject.words.search(tag) !== -1);
+        });
+
+        return match;
     }
 }
