@@ -24,7 +24,7 @@ export class SiftService {
 
         tags.forEach(tag => {
             if (uniqueTags.indexOf(tag) === -1) {
-                uniqueTags.push(tag);
+                uniqueTags.push(tag.toLowerCase());
             }
         });
 
@@ -85,6 +85,7 @@ export class SiftService {
     indexCategories(categories) {
         categories.forEach(category => {
             category.words = category.title + ' ' + category.tags.join(' ');
+            category.words = category.words.toLowerCase();
         });
     }
 
@@ -93,6 +94,7 @@ export class SiftService {
             subject.words = subject.title + ' ' +
                 subject.description.join(' ') + ' ' +
                 subject.tags.join(' ');
+            subject.words = subject.words.toLowerCase();
         });
     }
 

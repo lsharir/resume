@@ -69,7 +69,7 @@ class AppCtrl {
 
 		if (e.keyCode === 8 && this.$scope.query.length === 0) {
 			this.selectedTags.splice(this.selectedTags.length - 1, 1);
-			this.filterResume(this.selectedTags);
+			this.filterResume(this.getTags());
 		}
 	}
 

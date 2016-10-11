@@ -75,7 +75,12 @@ module.exports = (function makeWebpackConfig() {
         config.plugins.push(
             new webpack.NoErrorsPlugin(),
             new webpack.optimize.DedupePlugin(),
-            new webpack.optimize.UglifyJsPlugin(),
+            new webpack.optimize.UglifyJsPlugin({
+                mangle: false,
+                compressor: {
+                    warnings: false
+                }
+            }),
             new CopyWebpackPlugin([{
                 from: __dirname + '/src/public'
             }])
