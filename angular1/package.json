@@ -8,7 +8,8 @@
   "private": true,
   "author": "Liran Sharir",
   "dependencies": {
-    "angular": "1.5.8"
+    "angular": "1.5.8",
+    "angular-animate": "1.5.8"
   },
   "devDependencies": {
     "autoprefixer": "^6.0.3",

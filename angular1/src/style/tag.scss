@@ -1,0 +1,10 @@
+@import '_constants';
+
+.tag {
+    @extend .tag-appearance;
+    cursor: pointer;
+
+    &.inactive {
+        opacity: 0.5;
+    }
+}

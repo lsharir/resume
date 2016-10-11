@@ -1,10 +1,29 @@
 <div class="document">
         <div class="title">Liran Sharir</div>
         <div class="search-container">
-            <input class="search" type="search" ng-model="query" placeholder="filter by year or description" aria-label="filter resume"/>
-            <div class="tags">
-                <span ng-if="tag.length !== 0" class="tag" ng-repeat="tag in $ctrl.tags track by $id(tag)">{{tag}}</span>
+            <div class="tags-wrapper" ng-click="$ctrl.focusOnInput()">
+                <tag 
+                    text="tag"
+                    active="true"
+                    ng-repeat="tag in $ctrl.selectedTags track by $id(tag, $index)"
+                    ng-click="$ctrl.selectedTags.splice($index, 1)"
+                ></tag>
+                <span class="input-wrapper">
+                    <input
+                    id="search"
+                    class="search"
+                    type="search"
+                    ng-model="query"
+                    ng-keyup="$ctrl.inputKeyUp($event)"
+                    aria-label="filter resume"/>
+                
+                    <span class="fake-tag" ng-show="query.length !== 0" ng-bind="query"></span>
+                </span>
+                
             </div>
+        </div>
+        <div class="tags-wrapper">
+            <tag text="tag.text" active="tag.active" ng-repeat="tag in $ctrl.defaultTags track by $index" ng-click="tag.active = !tag.active"></tag>
         </div>
         <div class="contact">
             <span class="value">972-545222302</span>
@@ -17,7 +36,7 @@
             I enjoy creating, learning and teaching new web technologies.
         </div>
 
-        <category 
+        <category
             category="category"
             subjects="$ctrl.data.subjectsByType[category.type]"
             ng-repeat="category in $ctrl.data.categories track by $index">

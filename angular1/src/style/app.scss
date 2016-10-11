@@ -43,25 +43,35 @@
 }
 
 .search-container {
-    text-align: center;
+    background: white;
+}
 
-    input[type="search"].search {
-        border: none;
-        padding: 1rem;
-        font-size: 1rem;
-        box-shadow: none;
-        min-width: 16rem;
-        outline: none;
+.input-wrapper {
+    position: relative;
+    &:first-child {
+        margin-left: 0.25rem;
     }
+}
 
-    .tags { 
-        margin: 1rem;
-    }
+input[type="search"].search {
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    outline: none;
+    font-size: 1rem;
+    padding: $tag-padding;
+    z-index: 2;
+}
 
-    .tag {
-        margin: 0.5rem;
-        padding: 0.25rem 0.5rem;
-        background: palegreen;
+.fake-tag {
+    @extend .tag-appearance;
+    margin: 0;
+    position: absolute;
+    opacity: 0.5;
+    left: 0;
+    pointer-events: none;
+}
 
-    }
+.tags-wrapper {
+    padding: 0.5rem;
 }

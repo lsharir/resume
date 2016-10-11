@@ -2,4 +2,17 @@
 $color-secondary: #666;
 $color-primary: #333;
 
+$tag-bg: #73d2ff;
+
 $font-family: 'Noto Serif';
+
+$tag-margin: 1rem 0.25rem;
+$tag-padding: 0.25rem 0.5rem;
+
+.tag-appearance {
+    margin: $tag-margin;
+    background: $tag-bg;
+    padding: $tag-padding;
+    font-size: 1rem;
+    border-radius: 0.125rem;
+}
