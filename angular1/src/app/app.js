@@ -39,7 +39,18 @@ class AppCtrl {
 		$scope.query = '';
 
 		$scope.$watch('query', function (newValue) {
-			let tags = ctrl.getTags(newValue);
+			let writtenTags = ctrl.$scope.query.split(' '),
+				tags;
+
+			if (Array.isArray(writtenTags) && writtenTags.length > 0) {
+				for (let i = 0; i < writtenTags.length - 1; i++) {
+					ctrl.addTag(writtenTags[i]);
+				}
+
+				ctrl.$scope.query = writtenTags[writtenTags.length - 1];
+			}
+
+			tags = ctrl.getTags(ctrl.$scope.query);
 			ctrl.filterResume(tags);
 		});
 	}
@@ -59,7 +70,7 @@ class AppCtrl {
 	}
 
 	inputKeyUp(e) {
-		if (e.keyCode === 32 || e.keyCode === 13) {
+		if (e.keyCode === 13) {
 			let tags = this.$scope.query.split(' ');
 			tags.forEach(tag => {
 				this.addTag(tag);
