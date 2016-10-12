@@ -1,0 +1,16 @@
+@import '_constants';
+
+.contact-button {
+    cursor: pointer;
+    color: $color-primary;
+    transition: color 0.2s ease-in-out;
+    will-change: color;
+
+    &:hover {
+        color: $color-secondary;
+    }
+
+    &.toggled {
+        color: $tag-bg;
+    }
+}
