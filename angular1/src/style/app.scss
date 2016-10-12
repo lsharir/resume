@@ -97,7 +97,7 @@ input[type="text"].search {
 
     &.ng-enter-prepare, &.ng-move-prepare, &.ng-enter, &.ng-move {
         transition: max-height 1s ease-in-out, 
-        opacity 1s cubic-bezier(1,0,.5,.5);
+                    opacity 1s cubic-bezier(1,0,.5,.5);
     }
 
     &.ng-leave {

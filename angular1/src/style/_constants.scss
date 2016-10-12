@@ -4,12 +4,17 @@ $color-primary: #333;
 
 $tag-bg: #73d2ff;
 
-$font-family: 'Noto Serif';
+$font-family: 'Open Sans';
 $font-sans: 'Lato';
 
-$subject-movement: 10px;
-$maximal-subject-height: 131px;
-$maximal-category-title-height: 27px;
+$category-title-font-size: 1.5rem;
+$maximal-category-title-height: 33px; // This is checked manually
+
+$subtext-size: 1rem;
+$hint-size: 0.75rem;
+$header-size: 1rem;
+
+$maximal-subject-height: 156px; // This is checked manually
 
 $tag-margin: 0.25rem;
 $tag-padding: 0.25rem 0.5rem;

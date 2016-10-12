@@ -7,24 +7,26 @@
     justify-content: space-between;
 
     .subject-years {
-        font-size: 0.75rem;
+        font-size: $hint-size;
         white-space: nowrap;
         color: $color-secondary;
     }
 
     .subject-title {
         margin: 0.5rem;
+        font-size: $header-size;
+        font-weight: 700;
     }
 }
 
 .subject-description-wrapper {
     margin: 0.25rem 0.5rem;
-    font-size: 0.75rem;
+    font-size: $subtext-size;
 }
 
 .subject-links-wrapper {
     margin: 0.5rem;
-    font-size: 0.75rem;
+    font-size: $subtext-size;
     a.subject-link {
         margin: 0.25rem;
         color: $color-secondary;

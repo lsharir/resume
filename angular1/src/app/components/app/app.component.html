@@ -1,5 +1,10 @@
 <div class="document">
     <div class="title">Liran Sharir</div>
+    
+    <div class="intro">
+        I enjoy creating, learning and teaching new web technologies.
+    </div>
+
     <div class="search-container">
         <div class="tags-wrapper" ng-click="$ctrl.focusOnInput()">
             <tag text="tag" active="true" ng-repeat="tag in $ctrl.selectedTags track by $id(tag, $index)" ng-click="$ctrl.removeSelectedTag($index)"></tag>
@@ -27,10 +32,6 @@
             ng-repeat="tag in $ctrl.defaultTags track by $index" 
             ng-click="$ctrl.toggleDefault(tag)">
         </tag>
-    </div>
-
-    <div class="intro">
-        I enjoy creating, learning and teaching new web technologies.
     </div>
 
     <category 
