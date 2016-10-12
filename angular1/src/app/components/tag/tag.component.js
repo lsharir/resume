@@ -9,6 +9,6 @@ export const tag = {
     }
 }
 
-function tagCtrl() {
-
+class tagCtrl {
+    constructor () {}
 }

@@ -1,6 +1,6 @@
 <div class="subject-header">
     <span class="subject-title">
-        {{ $ctrl.subject.title }}
+        {{:: $ctrl.subject.title }}
     </span>
     <span class="subject-years">
         {{:: $ctrl.subject | subjectYears }}
@@ -9,12 +9,12 @@
 
 <div class="subject-description-wrapper">
     <div class="subject-description" ng-repeat="line in $ctrl.subject.description track by $index">
-        {{ line }}
+        {{:: line }}
     </div>
 </div>
 
 <div class="subject-links-wrapper" ng-if="$ctrl.subject.links">
-    <a class="subject-link" ng-repeat="link in $ctrl.subject.links track by $index" data-ng-href="{{link.href}}">
-        {{ link.title }}
+    <a class="subject-link" ng-repeat="link in $ctrl.subject.links track by $index" data-ng-href="{{:: link.href}}">
+        {{:: link.title }}
     </a>
 </div>

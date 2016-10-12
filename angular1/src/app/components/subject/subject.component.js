@@ -8,6 +8,6 @@ export const subject = {
     }
 }
 
-function subjectCtrl() {
-
+class subjectCtrl {
+    constructor () {}
 }

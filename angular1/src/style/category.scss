@@ -23,7 +23,7 @@ $category-title-margin: 0.5rem 0;
                     margin 1s ease-in-out;
     }
 
-    &.ng-enter, &.ng-leave-active.ng-leave {
+    &.ng-enter-prepare, &.ng-enter, &.ng-leave-active.ng-leave {
         opacity:0;
         max-height: 0;
         margin: 0;

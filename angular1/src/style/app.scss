@@ -95,7 +95,7 @@ input[type="text"].search {
     box-sizing:border-box;
     max-height: $maximal-subject-height;
 
-    &.ng-enter, &.ng-move {
+    &.ng-enter-prepare, &.ng-move-prepare, &.ng-enter, &.ng-move {
         transition: max-height 1s ease-in-out, 
         opacity 1s cubic-bezier(1,0,.5,.5);
     }
@@ -107,8 +107,10 @@ input[type="text"].search {
 
     &.ng-leave.ng-leave-active,
     &.ng-move,
-    &.ng-enter {
-        opacity:0;
+    &.ng-enter,
+    &.ng-enter-prepare,
+    &.ng-move-prepare {
+        opacity: 0;
         max-height: 0;
     }
 

@@ -3,8 +3,8 @@ export class SiftService {
 
     }
 
-    getTags(text, tags, defaults) {
-        let textTags = text !== undefined ? text.split(' ') : [],
+    getTags(textQuery, tags, defaults) {
+        let textTags = textQuery !== undefined ? textQuery.split(' ') : [],
             validatedTags = [],
             uniqueTags = [];
 
@@ -20,7 +20,7 @@ export class SiftService {
             }
         });
 
-        tags = validatedTags.concat(tags);
+        tags = tags.concat(validatedTags);
 
         tags.forEach(tag => {
             if (uniqueTags.indexOf(tag) === -1) {
@@ -32,6 +32,7 @@ export class SiftService {
     }
 
     validateTag(tag) {
+        // tags do not contain spaces
         return tag.length !== 0 && tag.indexOf(' ') === -1;
     }
 
