@@ -82,6 +82,7 @@ input[type="text"].search {
     position: relative;
     display: flex;
     flex-direction: column;
+    will-change: max-height, opacity;
     box-sizing:border-box;
         max-height: $maximal-subject-height;
 
@@ -91,13 +92,7 @@ input[type="text"].search {
         opacity:0;
         max-height: 0;
 
-        &:nth-child(odd) {
-            left: $subject-movement;
-        }
-
-        &:nth-child(even) {
-            right: $subject-movement;
-        }
+    
     }
 
     &.ng-leave,
@@ -106,12 +101,6 @@ input[type="text"].search {
         opacity:1;
         max-height: $maximal-subject-height;
 
-        &:nth-child(odd) {
-            left: 0;
-        }
-
-        &:nth-child(even) {
-            right: 0;
-        }
+        
     }
 }

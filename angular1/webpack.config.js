@@ -1,20 +1,27 @@
 'use strict';
 
 // webpack config borrowed from https://github.com/preboot/angular-webpack
-var webpack = require('webpack');
-var autoprefixer = require('autoprefixer');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
-
-var ENV = process.env.npm_lifecycle_event;
-var isProd = ENV === 'build';
+var webpack = require('webpack'),
+    path = require('path'),
+    autoprefixer = require('autoprefixer'),
+    HtmlWebpackPlugin = require('html-webpack-plugin'),
+    ExtractTextPlugin = require('extract-text-webpack-plugin'),
+    CopyWebpackPlugin = require('copy-webpack-plugin'),
+    ENV = process.env.npm_lifecycle_event,
+    isProd = ENV === 'build';
 
 module.exports = (function makeWebpackConfig() {
     var config = {};
 
     config.entry = {
         app: './src/app/app.js'
+    };
+
+    config.resolve = {
+        root : [
+            path.resolve('./src'),
+            path.resolve('../shared')
+        ]
     };
 
     config.output = {

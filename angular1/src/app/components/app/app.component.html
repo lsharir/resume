@@ -9,8 +9,8 @@
                     class="search"
                     type="text"
                     ng-model="query"
-                    ng-keyup="$ctrl.inputKeyUp($event)"
-                    ng-style="{ 'width': query.length * 0.7 + 'rem'}"
+                    ng-keydown="$ctrl.inputKeyDown($event)"
+                    ng-style="{ 'width': $ctrl.inputWidth }"
                     ng-trim="false"
                     aria-label="filter resume"/>
                 
