@@ -2,7 +2,7 @@
     <div class="title">Liran Sharir</div>
 
     <div class="intro">
-        I enjoy creating, learning and teaching new web technologies.
+        I enjoy creating, learning and teaching new web technologies
     </div>
 
     <div class="page-spanner">
@@ -44,7 +44,18 @@
     </category>
 
     <div class="contact">
-        <i class="material-icons">phone</i>
-        <i class="material-icons">email</i>
+        <contact
+            ng-click="$ctrl.contactToggle(cMethod)"
+            contact-method="cMethod"
+            ng-repeat="cMethod in $ctrl.contactMethods track by $id(cMethod)">
+        </contact>
+    </div>
+
+    <div class="contact-data-wrapper" ng-class="{ 'minimized' : contactResults.length === 0 }">
+        <span 
+            class="contact-data"
+            ng-repeat="cMethod in $ctrl.contactMethods | filter : $ctrl.contactMethodFilter as contactResults track by $id(cMethod)">
+            {{:: cMethod.data }}
+        </span>
     </div>
 </div>

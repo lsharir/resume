@@ -14,6 +14,7 @@ class AppCtrl {
 		this.$scope = $scope;
 		this.sift = SiftService;
 
+		this.contactMethods = require('methods.js');
 		this.rawSubjects = require('subjects.js');
 		this.rawCategories = require('categories.js');
         sift.indexSubjects(this.rawSubjects);
@@ -126,6 +127,22 @@ class AppCtrl {
             });
 		});
 
+		this.contactMethods.forEach(contactMethod => {
+			if (regularTags.indexOf(contactMethod.icon) !== -1) {
+				contactMethod.filtered = true;
+			} else {
+				contactMethod.filtered = false;
+			}
+		})
+
 		this.data = filtered;
-	};
+	}
+
+	contactToggle(cMethod) {
+		cMethod.toggled = !cMethod.toggled;
+	}
+
+	contactMethodFilter(cMethod) {
+		return cMethod.toggled || cMethod.filtered;
+	}
 }

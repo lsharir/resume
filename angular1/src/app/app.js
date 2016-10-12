@@ -6,6 +6,8 @@ import { app } from './components/app/app.component.js';
 import { category } from './components/category/category.component.js';
 import { subject } from './components/subject/subject.component.js';
 import { tag } from './components/tag/tag.component.js';
+import { contact } from './components/contact/contact.component.js';
+
 import { subjectYears } from './filters/subjectYears.filter.js';
 import { SiftService } from './services/sift.service.js';
 
@@ -16,6 +18,7 @@ angular.module(MODULE_NAME, [require('angular-animate')])
 	.component('category', category)
 	.component('subject', subject)
 	.component('tag', tag)
+	.component('contact', contact)
 	.filter('subjectYears', subjectYears)
 	.service('SiftService', SiftService)
 	;
