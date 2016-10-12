@@ -24,6 +24,7 @@
     "node-libs-browser": "^1.0.0",
     "node-sass": "^3.10.1",
     "null-loader": "^0.1.1",
+    "path": "^0.12.7",
     "postcss-loader": "^0.9.1",
     "raw-loader": "^0.5.1",
     "rimraf": "^2.5.1",

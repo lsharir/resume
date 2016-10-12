@@ -40,6 +40,16 @@
 .search-container {
     background: white;
     cursor: text;
+    border: 1px solid #ddd;
+    position: relative;
+
+    .search-placeholder {
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin: 1rem;
+        color: #ddd;
+    }
 }
 
 .input-wrapper {
@@ -78,26 +88,30 @@ input[type="text"].search {
 }
 
 .subject-animation {
-    transition: all 1s ease-in-out;
     position: relative;
     display: flex;
     flex-direction: column;
+    will-change: max-height, opacity;
     box-sizing:border-box;
-        max-height: $maximal-subject-height;
+    max-height: $maximal-subject-height;
+
+    &.ng-enter-prepare, &.ng-move-prepare, &.ng-enter, &.ng-move {
+        transition: max-height 1s ease-in-out, 
+        opacity 1s cubic-bezier(1,0,.5,.5);
+    }
+
+    &.ng-leave {
+        transition: max-height 1s ease-in-out, 
+                    opacity 0.25s ease-in-out;
+    }
 
     &.ng-leave.ng-leave-active,
     &.ng-move,
-    &.ng-enter {
-        opacity:0;
+    &.ng-enter,
+    &.ng-enter-prepare,
+    &.ng-move-prepare {
+        opacity: 0;
         max-height: 0;
-
-        &:nth-child(odd) {
-            left: $subject-movement;
-        }
-
-        &:nth-child(even) {
-            right: $subject-movement;
-        }
     }
 
     &.ng-leave,
@@ -105,13 +119,5 @@ input[type="text"].search {
     &.ng-enter.ng-enter-active {
         opacity:1;
         max-height: $maximal-subject-height;
-
-        &:nth-child(odd) {
-            left: 0;
-        }
-
-        &:nth-child(even) {
-            right: 0;
-        }
     }
 }

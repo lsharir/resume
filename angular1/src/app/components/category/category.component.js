@@ -9,6 +9,6 @@ export const category = {
     }
 }
 
-function categoryCtrl() {
-
+class categoryCtrl {
+    constructor () {}
 }
