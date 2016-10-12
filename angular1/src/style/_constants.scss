@@ -14,9 +14,11 @@ $subtext-size: 1rem;
 $hint-size: 0.75rem;
 $header-size: 1rem;
 
-$maximal-subject-height: 156px; // This is checked manually
+$maximal-subject-height: 222px; // This is checked manually
 
-$tag-margin: 0.25rem;
+$tag-margin-top-bottom: 0.25rem;
+$tag-margin-left-right: 0.125rem;
+$tag-margin: $tag-margin-top-bottom $tag-margin-left-right;
 $tag-padding: 0.25rem 0.5rem;
 
 .tag-appearance {
@@ -28,6 +30,7 @@ $tag-padding: 0.25rem 0.5rem;
     border-radius: 1rem;
     position: relative;
     user-select: none;
+    -webkit-tap-highlight-color: transparent;
 
     &:after {
         font-size: 0.5rem;

@@ -21,3 +21,10 @@ angular.module(MODULE_NAME, [require('angular-animate')])
 	;
 
 export default MODULE_NAME;
+
+if ('addEventListener' in document) {
+    document.addEventListener('DOMContentLoaded', () => {
+		let FastClick = require('fastclick');
+        FastClick.attach(document.body);
+    }, false);
+}

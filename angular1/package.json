@@ -9,7 +9,8 @@
   "author": "Liran Sharir",
   "dependencies": {
     "angular": "1.5.8",
-    "angular-animate": "1.5.8"
+    "angular-animate": "1.5.8",
+    "fastclick": "^1.0.6"
   },
   "devDependencies": {
     "autoprefixer": "^6.0.3",

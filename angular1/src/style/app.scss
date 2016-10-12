@@ -5,11 +5,31 @@
     color: $color-primary;
 }
 
+html {
+    background: whitesmoke;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    text-align:center;
+}
+
 .document {
     margin: 1rem;
+    display:inline-block;
+    text-align:initial;
+    max-width: 62.5rem;
     padding: 2rem;
-    background: ghostwhite;
+    background: #f7f9fb;
     box-shadow: 0 0 10px 0px rgba(0,0,0,0.25);
+}
+
+@media (max-width: 37.5rem) { // for devices with narrow screens (600px with font-size: 16px)
+  .document {
+    margin: 0.5rem;
+    padding: 1rem;
+  }
 }
 
 .title {
@@ -18,6 +38,13 @@
     font-family: $font-sans;
     font-size: 3rem;
     margin-bottom: 1rem;
+}
+
+.page-spanner {
+    line-height: 0;
+    opacity: 0;
+    z-index: -1;
+    pointer-events: none;
 }
 
 .intro {
@@ -37,6 +64,8 @@
     }
 }
 
+$search-container-size: $tag-margin-top-bottom;
+
 .search-container {
     background: white;
     cursor: text;
@@ -47,7 +76,7 @@
         position: absolute;
         right: 0;
         top: 0;
-        margin: 1rem;
+        margin: (2*$tag-margin-top-bottom + 2*$tag-margin-left-right);
         color: #ddd;
     }
 }
@@ -55,9 +84,9 @@
 .input-wrapper {
     position: relative;
     display: inline-block;
-    margin: 0.5rem 0rem;
+    margin: $search-container-size 0;
     &:first-child {
-        margin-left: 0.25rem;
+        margin-left: $tag-margin-left-right;
     }
 }
 

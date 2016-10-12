@@ -1,5 +1,7 @@
 @import '_constants';
 
+$subject-displacement: 0rem;
+
 .subject-header {
     display: flex;
     flex-direction: row;
@@ -13,19 +15,19 @@
     }
 
     .subject-title {
-        margin: 0.5rem;
+        margin: 0.5rem $subject-displacement;
         font-size: $header-size;
         font-weight: 700;
     }
 }
 
 .subject-description-wrapper {
-    margin: 0.25rem 0.5rem;
+    margin: 0.25rem $subject-displacement;
     font-size: $subtext-size;
 }
 
 .subject-links-wrapper {
-    margin: 0.5rem;
+    margin: 0.5rem $subject-displacement;
     font-size: $subtext-size;
     a.subject-link {
         margin: 0.25rem;

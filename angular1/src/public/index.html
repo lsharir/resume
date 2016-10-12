@@ -4,15 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Liran Sharir</title>
-    <link href="https://fonts.googleapis.com/css?family=Lato:300|Open+Sans:300,400,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <base href="/">
 </head>
+
+<style>
+    #loader {
+        position: fixed;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: whitesmoke;
+        transition: opacity 0.3s ease-out;
+    }
+</style>
+<div id="loader"></div>
+
+<!-- ###### actual content ###### -->
 
 <body>
     <app></app>
 </body>
 
+<link href="https://fonts.googleapis.com/css?family=Lato:300|Open+Sans:300,400,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+
+<!-- ###### actual content ###### -->
+
+<script>
+window.addEventListener('load', function() {
+    var loader = document.getElementById('loader');
+    loader.style.opacity = 0;
+    setTimeout(function () {
+        loader.remove();
+    }, 300)
+});
+</script>
 </html>
