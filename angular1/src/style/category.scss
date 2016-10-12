@@ -9,13 +9,18 @@ $category-title-margin: 0.5rem 0;
 }
 
 .category-title {
+    will-change: opacity, max-height, margin;
 
     &.ng-enter {
-        transition: all 0.5s ease-in-out 0s;
+        transition: opacity 1s cubic-bezier(1,0,.5,.5),
+                    max-height 1s ease-in-out,
+                    margin 1s ease-in-out;
     }
 
     &.ng-leave {
-        transition: all 1s ease-out 0.5s;
+        transition: opacity 0.25s ease-in-out,
+                    max-height 1s ease-in-out,
+                    margin 1s ease-in-out;
     }
 
     &.ng-enter, &.ng-leave-active.ng-leave {

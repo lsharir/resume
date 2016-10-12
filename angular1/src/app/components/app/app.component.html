@@ -16,19 +16,27 @@
                 
                     <span class="fake-tag" ng-if="query.length !== 0" ng-bind="query"></span>
             </span>
-
         </div>
+        <span class="search-placeholder material-icons" ng-if="query.length === 0 && $ctrl.selectedTags.length === 0">search</span>
     </div>
     <div class="tags-wrapper">
         <span>e.g. </span>
-        <tag text="tag.text" active="tag.active" ng-repeat="tag in $ctrl.defaultTags track by $index" ng-click="$ctrl.toggleDefault(tag)"></tag>
+        <tag 
+            text="tag.text" 
+            active="tag.active" 
+            ng-repeat="tag in $ctrl.defaultTags track by $index" 
+            ng-click="$ctrl.toggleDefault(tag)">
+        </tag>
     </div>
 
     <div class="intro">
         I enjoy creating, learning and teaching new web technologies.
     </div>
 
-    <category category="category" subjects="$ctrl.data.subjectsByType[category.type]" ng-repeat="category in $ctrl.data.categories track by $id(category)">
+    <category 
+        category="category" 
+        subjects="$ctrl.data.subjectsByType[category.type]" 
+        ng-repeat="category in $ctrl.data.categories track by $id(category)">
     </category>
 
     <div class="contact">
