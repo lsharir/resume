@@ -11,9 +11,15 @@ import { contact } from './components/contact/contact.component.js';
 import { subjectYears } from './filters/subjectYears.filter.js';
 import { SiftService } from './services/sift.service.js';
 
+import { appConfig } from './config/app.config.js';
+
 const MODULE_NAME = 'resume';
 
-angular.module(MODULE_NAME, [require('angular-animate')])
+angular.module(MODULE_NAME, [
+		require('angular-animate'),
+		require('angulartics'),
+		require('angulartics-google-analytics')
+	])
 	.directive('app', app)
 	.component('category', category)
 	.component('subject', subject)
@@ -21,6 +27,7 @@ angular.module(MODULE_NAME, [require('angular-animate')])
 	.component('contact', contact)
 	.filter('subjectYears', subjectYears)
 	.service('SiftService', SiftService)
+	.config(appConfig)
 	;
 
 export default MODULE_NAME;

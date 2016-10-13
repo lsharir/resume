@@ -7,12 +7,14 @@ export function app () {
 }
 
 class AppCtrl {
-	constructor($scope, SiftService) {
+	constructor($scope, SiftService, $analytics, $timeout) {
 		let ctrl = this,
 			sift = SiftService;
 
 		this.$scope = $scope;
 		this.sift = SiftService;
+		this.$analytics = $analytics;
+		this.$timeout = $timeout;
 
 		this.contactMethods = require('methods.js');
 		this.rawSubjects = require('subjects.js');
@@ -32,6 +34,8 @@ class AppCtrl {
 		};
 
 		$scope.query = '';
+		this.debouncedAnalyticsDuration = 1000;
+		this.debouncedAnalyticsRunning = undefined;
 
 		$scope.$watch('query', () => {
 			let writtenTags = this.$scope.query.split(' '),
@@ -47,16 +51,35 @@ class AppCtrl {
 				this.$scope.query = writtenTags[writtenTags.length - 1];
 			}
 
+			this.debouncedAnalytics();
 			this.filterResume();
 		});
 
         this.focusOnInput();
 	}
 
+	debouncedAnalytics () {
+		if (!this.debouncedAnalyticsStatus(1)) { // if timeout has not ended debounce it
+			this.$timeout.cancel(this.debouncedAnalyticsRunning);
+			this.debouncedAnalyticsRunning = this.$timeout(() => {
+				if (this.$scope.query.length > 2) {
+					this.$analytics.eventTrack('tag-live', { category : 'live', label: this.$scope.query });
+				}
+				delete this.debouncedAnalyticsRunning;
+			}, this.debouncedAnalyticsDuration, false);
+		}
+	}
+
+	debouncedAnalyticsStatus(status) {
+		return this.debouncedAnalyticsRunning
+				&& this.debouncedAnalyticsRunning.$$state.status === status;
+	}
+
 	addTag(tag) {
         // do not add empty or existing tags
 		if (tag.length !== 0 && this.selectedTags.indexOf(tag) === -1) {
             this.selectedTags.push(tag);
+			this.$analytics.eventTrack('tag-added', { category : 'tags', label: tag });
 		}
 	}
 
@@ -92,6 +115,9 @@ class AppCtrl {
 
 	toggleDefault(tag) {
 		tag.active = !tag.active;
+		if (tag.active) {
+			this.$analytics.eventTrack('default-tag-added', { category : 'tags', label: tag.text });
+		}
 		this.filterResume();
 	}
 
@@ -140,6 +166,9 @@ class AppCtrl {
 
 	contactToggle(cMethod) {
 		cMethod.toggled = !cMethod.toggled;
+		if (cMethod.toggled) {
+			this.$analytics.eventTrack('contact-method', { category : 'contact', label: cMethod.icon });
+		}
 	}
 
 	contactMethodFilter(cMethod) {
