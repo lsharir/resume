@@ -51,7 +51,7 @@
         </contact>
     </div>
 
-    <div class="contact-data-wrapper" ng-class="{ 'minimized' : contactResults.length === 0 }">
+    <div class="contact-data-wrapper count-{{contactResults.length}}" ng-class="{ 'minimized' : contactResults.length === 0 }">
         <span 
             class="contact-data"
             ng-repeat="cMethod in $ctrl.contactMethods | filter : $ctrl.contactMethodFilter as contactResults track by $id(cMethod)">

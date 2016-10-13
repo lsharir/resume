@@ -151,14 +151,20 @@ input[type="text"].search {
     }
 }
 
+@media (max-width: 23.75rem) {
+    .contact-data-wrapper.count-2 {
+        max-height: 6.75rem;
+    }
+}
+
 .contact-data-wrapper {
     text-align: center;
     transition: max-height 1s ease-in-out;
     will-change: max-height;
-    max-height: 54px;
+    max-height: 3.375rem;
 
     &.minimized {
-        max-height: 0px;
+        max-height: 0;
     }
 
     .contact-data {
