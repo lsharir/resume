@@ -16,6 +16,16 @@ class AppCtrl {
 		this.$analytics = $analytics;
 		this.$timeout = $timeout;
 
+		this.desktop = !(navigator.userAgent.match(/Android/i)
+						|| navigator.userAgent.match(/webOS/i)
+						|| navigator.userAgent.match(/iPhone/i)
+						|| navigator.userAgent.match(/iPad/i)
+						|| navigator.userAgent.match(/iPod/i)
+						|| navigator.userAgent.match(/BlackBerry/i)
+						|| navigator.userAgent.match(/Windows Phone/i));
+
+		console.log(this.desktop);
+
 		this.contactMethods = require('methods.js');
 		this.rawSubjects = require('subjects.js');
 		this.rawCategories = require('categories.js');
@@ -32,6 +42,7 @@ class AppCtrl {
 			categories: [],
 			subjectsByType: []
 		};
+		this.resultsExist = true;
 
 		$scope.query = '';
 		this.debouncedAnalyticsDuration = 1000;
@@ -134,7 +145,8 @@ class AppCtrl {
 			filtered = {
 				categories: [],
 				subjectsByType: []
-			}
+			},
+			resultsExist = false
 		;
 
 		this.rawCategories.forEach(category => {
@@ -149,6 +161,7 @@ class AppCtrl {
 
                 if (subjectMatch) {
                     this.sift.addSubjectByType(filtered.subjectsByType, subject);
+					resultsExist = true;
                 }
             });
 		});
@@ -156,12 +169,14 @@ class AppCtrl {
 		this.contactMethods.forEach(contactMethod => {
 			if (regularTags.indexOf(contactMethod.icon) !== -1) {
 				contactMethod.filtered = true;
+				resultsExist = true;
 			} else {
 				contactMethod.filtered = false;
 			}
 		})
 
 		this.data = filtered;
+		this.resultsExist = resultsExist;
 	}
 
 	contactToggle(cMethod) {
@@ -173,5 +188,9 @@ class AppCtrl {
 
 	contactMethodFilter(cMethod) {
 		return cMethod.toggled || cMethod.filtered;
+	}
+
+	printDocument() {
+		window.print();
 	}
 }

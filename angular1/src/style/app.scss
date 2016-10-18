@@ -6,7 +6,7 @@
 }
 
 html {
-    background: whitesmoke;
+    background: $bg-back;
 }
 
 body {
@@ -15,21 +15,29 @@ body {
     text-align:center;
 }
 
+.print-only {
+    display: none;
+}
+
+@media print {
+    .print-never {
+        display: none !important;
+    }
+
+    .print-only {
+        display: inherit;
+    }
+}
+
 .document {
     margin: 1rem;
     display:inline-block;
     text-align:initial;
     max-width: 62.5rem;
+    position: relative;
     padding: 2rem;
-    background: #f7f9fb;
-    box-shadow: 0 0 10px 0px rgba(0,0,0,0.25);
-}
-
-@media (max-width: 37.5rem) { // for devices with narrow screens (600px with font-size: 16px)
-  .document {
-    margin: 0.5rem;
-    padding: 1rem;
-  }
+    background: $bg-paper;
+    box-shadow: 0 2.5px 12.5px -2.5px rgba(0, 0, 0, 0.5);
 }
 
 .title {
@@ -38,6 +46,36 @@ body {
     font-family: $font-sans;
     font-size: 3rem;
     margin-bottom: 1rem;
+}
+
+.print-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 2rem;
+    transition: opacity $duration-short ease-out;
+    will-change: opacity;
+    opacity: 0.25;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 37.5rem) { // for devices with narrow screens (600px with font-size: 16px)
+  .document {
+    margin: 0.5rem;
+    padding: 1rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+
+  .print-button { 
+      padding: 1rem;
+  }
 }
 
 .page-spanner {
@@ -68,6 +106,8 @@ $search-container-size: $tag-margin-top-bottom;
 
 .search-container {
     background: white;
+    transition: border-color $duration-short ease-out;
+    will-change: border-color;
     cursor: text;
     border: 1px solid #ddd;
     position: relative;
@@ -77,7 +117,15 @@ $search-container-size: $tag-margin-top-bottom;
         right: 0;
         top: 0;
         margin: (2*$tag-margin-top-bottom + 2*$tag-margin-left-right);
-        color: #ddd;
+        color: #aaa;
+    }
+
+    &.focused {
+        border-color: $tag-bg-1;
+    }
+
+    &:hover:not(.focused) {
+        border-color: #aaa;
     }
 }
 
@@ -88,6 +136,10 @@ $search-container-size: $tag-margin-top-bottom;
     &:first-child {
         margin-left: $tag-margin-left-right;
     }
+    &:not(:first-child) {
+        margin-left: -$tag-margin-left-right;
+    }
+
 }
 
 input[type="text"].search {
@@ -106,14 +158,21 @@ input[type="text"].search {
     @extend .tag-appearance;
     margin: 0;
     position: absolute;
-    opacity: 0.5;
     top: 0;
     left: 0;
     pointer-events: none;
+    
+    &.ng-leave, &.ng-leave-prepare { // This is to prevent the lingering of the fake-tag due to existing transitions
+        transition: none;
+    }
 }
 
 .tags-wrapper {
     padding: 0.25rem;
+}
+
+.tags-examples {
+    text-align: center;
 }
 
 .subject-animation {
@@ -154,6 +213,44 @@ input[type="text"].search {
 @media (max-width: 23.75rem) {
     .contact-data-wrapper.count-2 {
         max-height: 6.75rem;
+    }
+}
+
+.no-results {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: $maximal-no-results-height;
+    margin: 1rem 1rem;
+    font-size: 1rem;
+    color: $color-secondary;
+    font-style: italic;
+
+    &.ng-enter-prepare, &.ng-enter {
+        transition: max-height 1s ease-in-out 2s,
+                    margin 1s ease-in-out 2s,
+                    opacity 1s cubic-bezier(1,0,.5,.5) 2s;
+    }
+
+    &.ng-leave {
+        transition: max-height 1s ease-in-out, 
+                    margin 1s ease-in-out,
+                    opacity 0.25s ease-in-out;
+    }
+
+    &.ng-leave.ng-leave-active,
+    &.ng-enter,
+    &.ng-enter-prepare {
+        opacity: 0;
+        max-height: 0;
+        margin: 0 1rem;
+    }
+
+    &.ng-leave,
+    &.ng-enter.ng-enter-active {
+        opacity: 1;
+        margin: 1rem 1rem;
+        max-height: $maximal-no-results-height;
     }
 }
 

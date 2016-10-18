@@ -1,3 +1,3 @@
 module.exports = (function () {
-    return ['2016','angular2','experience'];
+    return ['angular2','2016','experience'];
 })();

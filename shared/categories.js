@@ -28,13 +28,13 @@ module.exports = (function () {
 
     categories.push({
         type: 5,
-        title: 'Hobbies',
+        title: 'Leisure Pursuits',
         tags: ['hobby', 'hobbies', 'recreational', 'activities', 'activity']
     });
 
     categories.push({
         type: 6,
-        title: 'Projects',
+        title: 'Notable Projects',
         tags: ['project', 'projects', 'work', 'experience', ,'application', 'applications']
     });
     return categories;

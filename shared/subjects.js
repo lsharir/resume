@@ -128,8 +128,6 @@ module.exports = (function () {
 
     subjects.push({
         type: 5,
-        start: 2000,
-        end: thisYear,
         title: 'Aviation enthusiast',
         description: [
             'Assembled and fly remote control models of both helicopters and airplanes'
@@ -139,8 +137,6 @@ module.exports = (function () {
 
     subjects.push({
         type: 5,
-        start: 1988,
-        end: thisYear,
         title: 'Film enthusiast',
         description: [
             'Video recording and editing of nonprofessional short films (Adobe Premiere, After Effects)'

@@ -17,6 +17,10 @@ module.exports = (function makeWebpackConfig() {
         app: './src/app/app.js'
     };
 
+    if (isProd) {
+        config.entry.ga = './src/ga.js';
+    }
+
     config.resolve = {
         root : [
             path.resolve('./src'),

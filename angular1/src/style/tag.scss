@@ -5,6 +5,6 @@
     cursor: pointer;
 
     &.inactive {
-        background: rgba(0,0,0,0.125);
+        background: $tag-inactive;
     }
 }

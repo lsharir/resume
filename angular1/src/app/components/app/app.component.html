@@ -1,15 +1,21 @@
 <div class="document">
-    <div class="title">Liran Sharir</div>
+    <i class="material-icons print-button print-never"
+        ng-if="::$ctrl.desktop"
+        ng-click="$ctrl.printDocument()">print</i>
+
+    <div class="title" ng-click="$ctrl.prepareForPrint()">Liran Sharir</div>
+
+    <print-contact-details contact-details="$ctrl.contactMethods"></print-contact-details>
 
     <div class="intro">
         I enjoy creating, learning and teaching new web technologies
     </div>
 
-    <div class="page-spanner">
+    <div class="page-spanner print-never">
         W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W 
     </div>
 
-    <div class="search-container">
+    <div class="search-container print-never" ng-class="{ 'focused' : $ctrl.focusedOnSearch }">
         <div class="tags-wrapper" ng-click="$ctrl.focusOnInput()">
             <tag text="tag" active="true" ng-repeat="tag in $ctrl.selectedTags track by $id(tag, $index)" ng-click="$ctrl.removeSelectedTag($index)"></tag>
             <span class="input-wrapper">
@@ -18,17 +24,19 @@
                     class="search"
                     type="text"
                     ng-model="query"
+                    ng-focus="$ctrl.focusedOnSearch = true"
+                    ng-blur="$ctrl.focusedOnSearch = false"
                     ng-keydown="$ctrl.inputKeyDown($event)"
                     ng-style="{ 'width': $ctrl.inputWidth }"
                     ng-trim="false"
                     aria-label="filter resume"/>
                 
-                    <span class="fake-tag" ng-if="query.length !== 0" ng-bind="query"></span>
+                    <span class="fake-tag" fake-tag-bg ng-if="query.length !== 0" ng-bind="query"></span>
             </span>
         </div>
         <span class="search-placeholder material-icons" ng-if="query.length === 0 && $ctrl.selectedTags.length === 0">search</span>
     </div>
-    <div class="tags-wrapper">
+    <div class="tags-wrapper tags-examples print-never">
         <tag 
             text="tag.text" 
             active="tag.active" 
@@ -37,13 +45,17 @@
         </tag>
     </div>
 
+    <div ng-if="!$ctrl.resultsExist" class="no-results print-never">
+        Try a different query &nbsp;<i class="material-icons">insert_emoticon</i>
+    </div>
+
     <category 
         category="category" 
         subjects="$ctrl.data.subjectsByType[category.type]" 
         ng-repeat="category in $ctrl.data.categories track by $id(category)">
     </category>
 
-    <div class="contact">
+    <div class="contact print-never">
         <contact
             ng-click="$ctrl.contactToggle(cMethod)"
             contact-method="cMethod"
@@ -51,7 +63,7 @@
         </contact>
     </div>
 
-    <div class="contact-data-wrapper count-{{contactResults.length}}" ng-class="{ 'minimized' : contactResults.length === 0 }">
+    <div class="contact-data-wrapper count-{{contactResults.length}} print-never" ng-class="{ 'minimized' : contactResults.length === 0 }">
         <span 
             class="contact-data"
             ng-repeat="cMethod in $ctrl.contactMethods | filter : $ctrl.contactMethodFilter as contactResults track by $id(cMethod)">

@@ -1,5 +1,6 @@
 {
   "name": "angular1-resume",
+  "version": "1.0.0",
   "scripts": {
     "build": "rimraf dist && webpack --bail --progress --profile",
     "server": "webpack-dev-server --config ./webpack.config.js --progress",

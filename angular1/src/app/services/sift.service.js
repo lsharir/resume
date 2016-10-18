@@ -1,6 +1,8 @@
 export class SiftService {
     constructor() {
-
+        let thisDate = new Date();
+        this.thisYear = thisDate.getYear() + 1900;
+        this.bornYear = 1988;
     }
 
     getTags(textQuery, tags, defaults) {
@@ -68,10 +70,16 @@ export class SiftService {
 
     inYear(subject, years, yearsLength) {
         for (let i = 0; i < yearsLength; i++) {
+            // If the year is not a year I existed return false
+            if (years[i] > this.thisYear || years[i] < this.bornYear) {
+                return false;
+            }
+            // If the year is not within the range of the subject
             if (subject.start > years[i] || subject.end < years[i]) {
                 return false;
             }
         }
+        // If the item has no year range, it should return true as it is probably within the range
         return true;
     }
 

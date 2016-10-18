@@ -1,0 +1,8 @@
+<div class="print-only">
+    <div class="print-contact-details-wrapper">
+        <span class="print-contact-detail" ng-repeat="cDetail in $ctrl.contactDetails track by $index">
+            <span class="material-icons print-contact-detail-icon">{{:: cDetail.icon }}</span>
+            <span class="print-contact-detail-data">{{:: cDetail.data }}</span>
+        </span>
+    </div>
+</div>

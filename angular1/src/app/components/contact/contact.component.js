@@ -8,6 +8,5 @@ export const contact = {
     }
 }
 
-class contactCtrl {
-    constructor () {}
+function contactCtrl () {
 }

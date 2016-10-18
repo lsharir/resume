@@ -8,6 +8,8 @@ import { subject } from './components/subject/subject.component.js';
 import { tag } from './components/tag/tag.component.js';
 import { contact } from './components/contact/contact.component.js';
 
+import { printContactDetails } from './components/print/print-contact-details.component.js';
+
 import { subjectYears } from './filters/subjectYears.filter.js';
 import { SiftService } from './services/sift.service.js';
 
@@ -25,6 +27,7 @@ angular.module(MODULE_NAME, [
 	.component('subject', subject)
 	.component('tag', tag)
 	.component('contact', contact)
+	.component('printContactDetails', printContactDetails)
 	.filter('subjectYears', subjectYears)
 	.service('SiftService', SiftService)
 	.config(appConfig)
