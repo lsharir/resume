@@ -1,12 +1,13 @@
 import '../../../style/subject.scss';
 
-export const subject = {
-    template: require('./subject.component.html'),
-    controller: subjectCtrl,
-    bindings: {
-        subject: '='
+export class SubjectComponent {
+    constructor() {
+        this.template = require('./subject.component.html');
+        this.controller = SubjectController;
+        this.bindings = {
+            subject: '='
+        };
     }
 }
 
-function subjectCtrl () {
-}
+class SubjectController {}

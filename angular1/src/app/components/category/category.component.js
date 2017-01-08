@@ -1,14 +1,14 @@
 import '../../../style/category.scss';
 
-export const category = {
-    template: require('./category.component.html'),
-    controller: categoryCtrl,
-    bindings: {
-        category: '=',
-        subjects: '='
+export class CategoryComponent {
+    constructor() {
+        this.template = require('./category.component.html');
+        this.controller = CategoryController;
+        this.bindings = {
+            category: '=',
+            subjects: '='
+        };
     }
 }
 
-class categoryCtrl {
-    constructor () {}
-}
+class CategoryController {}

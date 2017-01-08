@@ -9,11 +9,7 @@ html {
     background: $bg-back;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    text-align:center;
-}
+/* Media queries for print mode */
 
 .print-only {
     display: none;
@@ -29,9 +25,17 @@ body {
     }
 }
 
-.document {
+/* Style of general components and elements within the app */
+
+body {
     margin: 1rem;
-    display:inline-block;
+    padding: 0;
+}
+
+.document {
+    display: flex;
+    flex-flow: column;
+    margin: auto;
     text-align:initial;
     max-width: 62.5rem;
     position: relative;
@@ -40,7 +44,7 @@ body {
     box-shadow: 0 2.5px 12.5px -2.5px rgba(0, 0, 0, 0.5);
 }
 
-.title {
+.name-header {
     text-align: center;
     font-weight: 300;
     font-family: $font-sans;
@@ -63,13 +67,19 @@ body {
     }
 }
 
-@media (max-width: 37.5rem) { // for devices with narrow screens (600px with font-size: 16px)
+/* Media query particular for narrow screens
+    for devices with narrow screens (600px with font-size: 16px) */
+
+@media (max-width: 37.5rem) {
+  body {
+      margin: 0.5rem;
+  }
+
   .document {
-    margin: 0.5rem;
     padding: 1rem;
   }
   
-  .title {
+  .name-header {
     font-size: 2rem;
   }
 
@@ -78,14 +88,7 @@ body {
   }
 }
 
-.page-spanner {
-    line-height: 0;
-    opacity: 0;
-    z-index: -1;
-    pointer-events: none;
-}
-
-.intro {
+.intro-line-header {
     font-style: italic;
     margin: 1rem;
     font-size: 1rem;

@@ -1,13 +1,13 @@
 import '../../../style/print-contact-details.scss';
 
-export const printContactDetails = {
-    template: require('./print-contact-details.component.html'),
-    controller: printContactDetailsCtrl,
-    bindings: {
-        contactDetails: '='
+export class PrintContactDetailsComponent {
+    constructor() {
+        this.template = require('./print-contact-details.component.html');
+        this.controller = PrintContactDetailsCtrl;
+        this.bindings = {
+            contactDetails: '='
+        };
     }
 }
 
-class printContactDetailsCtrl {
-    constructor () {}
-}
+class PrintContactDetailsCtrl {}

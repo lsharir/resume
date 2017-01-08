@@ -1,8 +1,9 @@
 export function subjectYears () {
     return function (subject) {
-        if (isNaN(subject.start) || isNaN(subject.end)) {
+        if (!Number.isInteger(subject.start) || !Number.isInteger(subject.end)) {
             return '';
         }
+
         if (subject.start === subject.end) {
             return subject.start;
         }

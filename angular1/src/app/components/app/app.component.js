@@ -1,4 +1,4 @@
-export function app () {
+export function AppDirective () {
 	return {
 		template: require('./app.component.html'),
 		controller: AppCtrl,
@@ -8,14 +8,16 @@ export function app () {
 
 class AppCtrl {
 	constructor($scope, SiftService, $analytics, $timeout) {
-		let ctrl = this,
-			sift = SiftService;
+		let sift = SiftService;
 
+		/* Binding injections to our controller */
 		this.$scope = $scope;
 		this.sift = SiftService;
 		this.$analytics = $analytics;
 		this.$timeout = $timeout;
 
+
+		/* Setting the desktop variable to false when user is on mobile*/
 		this.desktop = !(navigator.userAgent.match(/Android/i)
 						|| navigator.userAgent.match(/webOS/i)
 						|| navigator.userAgent.match(/iPhone/i)
@@ -24,53 +26,67 @@ class AppCtrl {
 						|| navigator.userAgent.match(/BlackBerry/i)
 						|| navigator.userAgent.match(/Windows Phone/i));
 
-		console.log(this.desktop);
-
+		/* Importing the raw data that the resume consists from */
 		this.contactMethods = require('methods.js');
 		this.rawSubjects = require('subjects.js');
 		this.rawCategories = require('categories.js');
+
+		/* Sift Service aids us with indexing keywords and re-sorting the data to improve our digestion :) */
         sift.indexSubjects(this.rawSubjects);
 		sift.indexCategories(this.rawCategories);
 		this.rawSubjectsByType = sift.subjectsByType(this.rawSubjects);
 
-		this.selectedTags = [];
-		this.defaultTags = require('defaults').map(defaultTag => {
-            return { text: defaultTag, active: false };
+		/* Array of currently selected tags through free-typing */
+		this.userTypedTags = [];
+		this.providedExampleTags = require('defaults').map(exampleTagText => {
+            return { text: exampleTagText, active: false };
         });
 
+		/* Data is bound to the template, here we set the filtered results of the resume's data */
         this.data = {
 			categories: [],
 			subjectsByType: []
 		};
-		this.resultsExist = true;
 
+		/* This is set to false when there are no results after applying the filter */
+		this.filteredResultsFound = true;
+
+		/* Setting the loaded query to an empty string */
 		$scope.query = '';
+
+		/* Private properties that handles our debounced analytics function */
 		this.debouncedAnalyticsDuration = 1000;
 		this.debouncedAnalyticsRunning = undefined;
 
+		/* We set the query watch to handle input changes and filter the resume */
 		$scope.$watch('query', () => {
-			let writtenTags = this.$scope.query.split(' '),
-				tags;
+			let writtenTags = this.$scope.query.split(' ');
 
 			if (Array.isArray(writtenTags) && writtenTags.length > 0) {
-                // pass every word of input but last to the tags
+                /* Pass every word of input but last to the tags */
 				for (let i = 0; i < writtenTags.length - 1; i++) {
 					this.addTag(writtenTags[i]);
 				}
 
-                // leave the remaining last word of input
+                /* Leave the remaining last word of input */
 				this.$scope.query = writtenTags[writtenTags.length - 1];
 			}
 
-			this.debouncedAnalytics();
+			/* After handling the tags the user wrote down, and after calling the filterResume method,
+			 * We call our debounced analytics data (to record partial queries) */
 			this.filterResume();
+			this.debouncedAnalytics();
 		});
 
+		/* Our controller asks the page to focus on the search container when it is loaded */
         this.focusOnInput();
 	}
 
+	/* Avoid this piece of code, a custom debounced function for this particular use */
 	debouncedAnalytics () {
-		if (!this.debouncedAnalyticsStatus(1)) { // if timeout has not ended debounce it
+		/* Status 1 occurs when our $timeout exists and has timed out
+		 * So whenever it does not exist or hasn't reached its end we re-create it */
+		if (!this.debouncedAnalyticsStatus(1)) {
 			this.$timeout.cancel(this.debouncedAnalyticsRunning);
 			this.debouncedAnalyticsRunning = this.$timeout(() => {
 				if (this.$scope.query.length > 2) {
@@ -88,8 +104,8 @@ class AppCtrl {
 
 	addTag(tag) {
         // do not add empty or existing tags
-		if (tag.length !== 0 && this.selectedTags.indexOf(tag) === -1) {
-            this.selectedTags.push(tag);
+		if (tag.length !== 0 && this.userTypedTags.indexOf(tag) === -1) {
+            this.userTypedTags.push(tag);
 			this.$analytics.eventTrack('tag-added', { category : 'tags', label: tag });
 		}
 	}
@@ -106,7 +122,7 @@ class AppCtrl {
 
         // let Backspace when input is empty remove previous tag
 		if (e.keyCode === 8 && this.$scope.query.length === 0) {
-			this.removeSelectedTag(this.selectedTags.length - 1);
+			this.removeSelectedTag(this.userTypedTags.length - 1);
 		}
 	}
 
@@ -121,7 +137,7 @@ class AppCtrl {
 
 	getTags() {
         let textQuery = this.$scope.query;
-		return this.sift.getTags(textQuery, this.selectedTags, this.defaultTags);
+		return this.sift.getTags(textQuery, this.userTypedTags, this.providedExampleTags);
 	}
 
 	toggleDefault(tag) {
@@ -133,7 +149,7 @@ class AppCtrl {
 	}
 
 	removeSelectedTag(index) {
-		this.selectedTags.splice(index, 1);
+		this.userTypedTags.splice(index, 1);
 		this.filterResume();
 	}
 
@@ -146,7 +162,7 @@ class AppCtrl {
 				categories: [],
 				subjectsByType: []
 			},
-			resultsExist = false
+			filteredResultsFound = false
 		;
 
 		this.rawCategories.forEach(category => {
@@ -161,7 +177,7 @@ class AppCtrl {
 
                 if (subjectMatch) {
                     this.sift.addSubjectByType(filtered.subjectsByType, subject);
-					resultsExist = true;
+					filteredResultsFound = true;
                 }
             });
 		});
@@ -169,14 +185,14 @@ class AppCtrl {
 		this.contactMethods.forEach(contactMethod => {
 			if (regularTags.indexOf(contactMethod.icon) !== -1) {
 				contactMethod.filtered = true;
-				resultsExist = true;
+				filteredResultsFound = true;
 			} else {
 				contactMethod.filtered = false;
 			}
-		})
+		});
 
 		this.data = filtered;
-		this.resultsExist = resultsExist;
+		this.filteredResultsFound = filteredResultsFound;
 	}
 
 	contactToggle(cMethod) {

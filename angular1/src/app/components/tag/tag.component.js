@@ -1,21 +1,27 @@
 import '../../../style/tag.scss';
 
-export const tag = {
-    template: require('./tag.component.html'),
-    controller: tagCtrl,
-    controllerAs: '$ctrl',
-    bindings: {
-        text: '=',
-        active: '='
+export class TagComponent {
+    constructor() {
+        this.template = require('./tag.component.html');
+        this.controller = TagController;
+        this.controllerAs = '$ctrl';
+        this.bindings = {
+            text: '=',
+            active: '='
+        };
     }
 }
 
-function tagCtrl($scope) {
-    this.randomize = () => {
-        this.randomized = Math.floor((Date.now() % 4000) / 1000);
-    };
+class TagController {
+    constructor($scope) {
+        $scope.$watch('$ctrl.active', () => {
+            this.randomize();
+        });
+    }
 
-    $scope.$watch('$ctrl.active', () => {
-        this.randomize();
-    });
+    randomize() {
+        this.randomized = Math.floor((Date.now() % 4000) / 1000);
+    }
+
+
 }

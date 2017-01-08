@@ -3,21 +3,17 @@
         ng-if="::$ctrl.desktop"
         ng-click="$ctrl.printDocument()">print</i>
 
-    <div class="title" ng-click="$ctrl.prepareForPrint()">Liran Sharir</div>
+    <div class="name-header" ng-click="$ctrl.prepareForPrint()">Liran Sharir</div>
 
     <print-contact-details contact-details="$ctrl.contactMethods"></print-contact-details>
 
-    <div class="intro">
+    <div class="intro-line-header">
         I enjoy creating, learning and teaching new web technologies
-    </div>
-
-    <div class="page-spanner print-never">
-        W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W 
     </div>
 
     <div class="search-container print-never" ng-class="{ 'focused' : $ctrl.focusedOnSearch }">
         <div class="tags-wrapper" ng-click="$ctrl.focusOnInput()">
-            <tag text="tag" active="true" ng-repeat="tag in $ctrl.selectedTags track by $id(tag, $index)" ng-click="$ctrl.removeSelectedTag($index)"></tag>
+            <tag text="tag" active="true" ng-repeat="tag in $ctrl.userTypedTags track by $id(tag, $index)" ng-click="$ctrl.removeSelectedTag($index)"></tag>
             <span class="input-wrapper">
                     <input
                     id="search"
@@ -34,18 +30,19 @@
                     <span class="fake-tag" fake-tag-bg ng-if="query.length !== 0" ng-bind="query"></span>
             </span>
         </div>
-        <span class="search-placeholder material-icons" ng-if="query.length === 0 && $ctrl.selectedTags.length === 0">search</span>
+        <span class="search-placeholder material-icons" ng-if="query.length === 0 && $ctrl.userTypedTags.length === 0">search</span>
     </div>
+
     <div class="tags-wrapper tags-examples print-never">
         <tag 
             text="tag.text" 
             active="tag.active" 
-            ng-repeat="tag in $ctrl.defaultTags track by $index" 
+            ng-repeat="tag in $ctrl.providedExampleTags track by $index"
             ng-click="$ctrl.toggleDefault(tag)">
         </tag>
     </div>
 
-    <div ng-if="!$ctrl.resultsExist" class="no-results print-never">
+    <div ng-if="!$ctrl.filteredResultsFound" class="no-results print-never">
         Try a different query &nbsp;<i class="material-icons">insert_emoticon</i>
     </div>
 

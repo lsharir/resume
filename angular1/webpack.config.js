@@ -10,6 +10,9 @@ var webpack = require('webpack'),
     ENV = process.env.npm_lifecycle_event,
     isProd = ENV === 'build';
 
+// We are building the webpack config object
+// makeWebpackConfig generates two types of configurations
+// one for development and the other (isProd === true) for production
 module.exports = (function makeWebpackConfig() {
     var config = {};
 
@@ -17,6 +20,7 @@ module.exports = (function makeWebpackConfig() {
         app: './src/app/app.js'
     };
 
+    // For production we include the Google Analytics Script
     if (isProd) {
         config.entry.ga = './src/ga.js';
     }
