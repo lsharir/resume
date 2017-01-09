@@ -16,7 +16,6 @@ class AppCtrl {
 		this.$analytics = $analytics;
 		this.$timeout = $timeout;
 
-
 		/* Setting the desktop variable to false when user is on mobile*/
 		this.desktop = !(navigator.userAgent.match(/Android/i)
 						|| navigator.userAgent.match(/webOS/i)
@@ -27,6 +26,7 @@ class AppCtrl {
 						|| navigator.userAgent.match(/Windows Phone/i));
 
 		/* Importing the raw data that the resume consists from */
+		this.sourcecode = require('config.js').sourcecode;
 		this.contactMethods = require('methods.js');
 		this.rawSubjects = require('subjects.js');
 		this.rawCategories = require('categories.js');
@@ -208,5 +208,9 @@ class AppCtrl {
 
 	printDocument() {
 		window.print();
+	}
+
+	showCode() {
+		window.location.href = this.sourcecode;
 	}
 }

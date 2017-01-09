@@ -1,7 +1,10 @@
 <div class="document">
-    <i class="material-icons print-button print-never"
+    <i class="material-icons icon-corner-button print-button print-never"
         ng-if="::$ctrl.desktop"
         ng-click="$ctrl.printDocument()">print</i>
+
+    <i class="material-icons icon-corner-button code-button print-never"
+        ng-click="$ctrl.showCode()">code</i>
 
     <div class="name-header" ng-click="$ctrl.prepareForPrint()">Liran Sharir</div>
 

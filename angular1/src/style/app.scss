@@ -52,10 +52,8 @@ body {
     margin-bottom: 1rem;
 }
 
-.print-button {
+.icon-corner-button {
     position: absolute;
-    top: 0;
-    right: 0;
     padding: 2rem;
     transition: opacity $duration-short ease-out;
     will-change: opacity;
@@ -64,6 +62,16 @@ body {
 
     &:hover {
         opacity: 1;
+    }
+
+    &.code-button {
+        top: 0;
+        left: 0;
+    }
+
+    &.print-button {
+        top: 0;
+        right: 0;
     }
 }
 
