@@ -1,0 +1,30 @@
+<div class="search-container print-never" ng-class="{ 'focused' : $search.focusedOnSearch }">
+    <div class="tags-wrapper" ng-click="$search.focusOnInput()">
+        <tag text="tag" active="true" ng-repeat="tag in $search.userCreatedTags track by $id(tag, $index)" ng-click="$search.removeSelectedTag($index)"></tag>
+        <span class="input-wrapper">
+                <input
+                id="search"
+                class="search"
+                type="text"
+                ng-model="$search.userLiveTag"
+                ng-focus="$search.focusedOnSearch = true"
+                ng-blur="$search.focusedOnSearch = false"
+                ng-keydown="$search.inputKeyDown($event)"
+                ng-style="{ 'width': $search.inputWidth }"
+                ng-trim="false"
+                aria-label="filter resume"/>
+            
+                <span class="fake-tag" fake-tag-bg ng-if="$search.userLiveTag.length !== 0" ng-bind="$search.userLiveTag"></span>
+        </span>
+    </div>
+    <span class="search-placeholder material-icons" ng-if="$search.userLiveTag.length === 0 && $ctrl.userTypedTags.length === 0">search</span>
+</div>
+
+<div class="tags-wrapper tags-examples print-never">
+    <tag 
+        text="tag.text" 
+        active="tag.active" 
+        ng-repeat="tag in $search.exampleTags track by $index"
+        ng-click="$search.toggleExampleTag(tag)">
+    </tag>
+</div>

@@ -14,36 +14,13 @@
         I enjoy creating, learning and teaching new web technologies
     </div>
 
-    <div class="search-container print-never" ng-class="{ 'focused' : $ctrl.focusedOnSearch }">
-        <div class="tags-wrapper" ng-click="$ctrl.focusOnInput()">
-            <tag text="tag" active="true" ng-repeat="tag in $ctrl.userTypedTags track by $id(tag, $index)" ng-click="$ctrl.removeSelectedTag($index)"></tag>
-            <span class="input-wrapper">
-                    <input
-                    id="search"
-                    class="search"
-                    type="text"
-                    ng-model="query"
-                    ng-focus="$ctrl.focusedOnSearch = true"
-                    ng-blur="$ctrl.focusedOnSearch = false"
-                    ng-keydown="$ctrl.inputKeyDown($event)"
-                    ng-style="{ 'width': $ctrl.inputWidth }"
-                    ng-trim="false"
-                    aria-label="filter resume"/>
-                
-                    <span class="fake-tag" fake-tag-bg ng-if="query.length !== 0" ng-bind="query"></span>
-            </span>
-        </div>
-        <span class="search-placeholder material-icons" ng-if="query.length === 0 && $ctrl.userTypedTags.length === 0">search</span>
-    </div>
+    <search-bar></search-bar>
 
-    <div class="tags-wrapper tags-examples print-never">
-        <tag 
-            text="tag.text" 
-            active="tag.active" 
-            ng-repeat="tag in $ctrl.providedExampleTags track by $index"
-            ng-click="$ctrl.toggleDefaultTag(tag)">
-        </tag>
-    </div>
+    <resume-search 
+        user-live-tag="$ctrl.userLiveTag"
+        user-created-tags="$ctrl.userCreatedTags"
+        example-tags="$ctrl.exampleTags"
+        tag-change-handler="$ctrl.tagChangeHandler()"></resume-search>
 
     <div ng-if="!$ctrl.data.resultsFound" class="no-results print-never">
         Try a different query &nbsp;<i class="material-icons">insert_emoticon</i>

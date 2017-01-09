@@ -7,13 +7,7 @@ export class UtilitiesService {
         return this.utilities.isAppRunningOnDesktop();
     }
 
-    /** Filter Resume returns an objected with the filtered resume data as so:
-     * {
-     *  categories: [],
-     *  subjectsByType: []
-     *  resultsFound: Boolean
-     * }
-     */
+    /** Filter Resume returns an objected with the filtered resume data */
     filterResume(resume, contactMethods, tags) {
         return this.utilities.filterResume(resume, contactMethods, tags);
     }
@@ -26,5 +20,10 @@ export class UtilitiesService {
     /** imports the hardcoded data of the contact details */
     importContactMethods() {
         return this.utilities.importContactMethods();
+    }
+
+    /** imports the example tags provided below the search bar */
+    importExampleTags() {
+        return this.utilities.importExampleTags();
     }
 }

@@ -25,6 +25,12 @@ Utilities.prototype.importResume = function() {
     };
 };
 
+Utilities.prototype.importExampleTags = function () {
+    return require('defaults').map(exampleTagText => {
+        return { text: exampleTagText, active: false };
+    })
+}
+
 Utilities.prototype.filterResume = function(resume, contactMethods, tags) {
     var years = getYears(tags),
         keywords = getKeywords(tags),

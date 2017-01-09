@@ -1,7 +1,7 @@
 export class SiftService {
     constructor() {}
 
-    getTagsFromQuery(textQuery, tags, defaults) {
+    getAllTags(textQuery, tags, defaults) {
         let textTags = textQuery !== undefined ? textQuery.split(' ') : [],
             validatedTags = [],
             uniqueTags = [];

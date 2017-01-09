@@ -4,6 +4,7 @@ import 'style/app.scss';
 
 /** Directives and Components */
 import { AppDirective } from './components/app/app.component.js';
+import { ResumeSearchComponent } from './components/resume-search/resume-search.component';
 import { CategoryComponent } from './components/category/category.component.js';
 import { SubjectComponent } from './components/subject/subject.component.js';
 import { TagComponent } from './components/tag/tag.component.js';
@@ -26,6 +27,7 @@ angular.module(MODULE_NAME, [
 		require('angulartics-google-analytics')
 	])
 	.directive('app', AppDirective)
+	.component('resumeSearch', new ResumeSearchComponent)
 	.component('category', new CategoryComponent)
 	.component('subject', new SubjectComponent)
 	.component('tag', new TagComponent)
