@@ -1,4 +1,4 @@
-import '../../../style/contact.scss';
+import './contact.component.scss';
 
 export class ContactComponent {
     constructor () {

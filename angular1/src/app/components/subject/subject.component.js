@@ -1,4 +1,4 @@
-import '../../../style/subject.scss';
+import './subject.component.scss';
 
 export class SubjectComponent {
     constructor() {

@@ -1,7 +1,5 @@
 import angular from 'angular';
 
-import 'style/app.scss';
-
 /** Directives and Components */
 import { AppDirective } from './components/app/app.component.js';
 import { ResumeSearchComponent } from './components/resume-search/resume-search.component';

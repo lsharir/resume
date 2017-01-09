@@ -1,0 +1,75 @@
+@import '../../../style/_constants';
+
+.tags-wrapper {
+    padding: 0.25rem;
+}
+
+$search-container-size: $tag-margin-top-bottom;
+
+.search-container {
+    background: white;
+    transition: border-color $duration-short ease-out;
+    will-change: border-color;
+    cursor: text;
+    border: 1px solid #ddd;
+    position: relative;
+
+    .search-placeholder {
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin: (2*$tag-margin-top-bottom + 2*$tag-margin-left-right);
+        color: #aaa;
+    }
+
+    &.focused {
+        border-color: $tag-bg-1;
+    }
+
+    &:hover:not(.focused) {
+        border-color: #aaa;
+    }
+}
+
+.input-wrapper {
+    position: relative;
+    display: inline-block;
+    margin: $search-container-size 0;
+    &:first-child {
+        margin-left: $tag-margin-left-right;
+    }
+    &:not(:first-child) {
+        margin-left: -$tag-margin-left-right;
+    }
+
+}
+
+input[type="text"].search {
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    outline: none;
+    font-size: 1rem;
+    min-width: 3rem;
+    margin: 0;
+    padding: $tag-padding;
+    z-index: 2;
+}
+
+.fake-tag {
+    @extend .tag-appearance;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    
+    &.ng-leave, &.ng-leave-prepare { // This is to prevent the lingering of the fake-tag due to existing transitions
+        transition: none;
+    }
+}
+
+.tags-examples {
+    text-align: center;
+}
+

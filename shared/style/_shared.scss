@@ -1,0 +1,87 @@
+
+$color-secondary: #666;
+$color-primary: #333;
+
+$bg-back: #f2f2f2;
+$bg-paper: #fff;
+
+$tag-bg-0: #66BB6A;
+$tag-bg-1: #29B6F6;
+$tag-bg-2: #FF7043;
+$tag-bg-3: #FFD54F;
+$tag-inactive: rgba(0,0,0,0.125);
+
+$tag-colors: $tag-bg-0, $tag-bg-1, $tag-bg-2, $tag-bg-3;
+
+$font-family: 'Open Sans';
+$font-sans: 'Lato';
+
+$duration-short: 0.2s;
+
+$category-title-font-size: 1.5rem;
+// All manual checks are to ensure animations fluidity
+$maximal-category-title-height: 2.0625rem; // This is checked manually
+
+$subtext-size: 1rem;
+$hint-size: 0.75rem;
+$header-size: 1rem;
+
+$maximal-subject-height: 14.5rem; // This is checked manually
+
+$maximal-contact-data-width: 9rem; // This is checked manually
+$maximal-contact-data-height: 1.375rem; // This is checked manually
+
+$maximal-no-results-height: 1.5rem; // This is checked manually
+
+$tag-margin-top-bottom: 0.25rem;
+$tag-margin-left-right: 0.125rem;
+$tag-margin: $tag-margin-top-bottom $tag-margin-left-right;
+$tag-padding: 0.25rem 0.5rem;
+
+.tag-appearance {
+    margin: $tag-margin;
+    padding: $tag-padding;
+    transition: background $duration-short ease-out;
+    background: $tag-inactive;
+    display: inline-block;
+    font-size: 1rem;
+    border-radius: 1rem;
+    position: relative;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+
+    @for $i from 1 through length($tag-colors) {
+        &.tag-color-#{$i - 1} {
+            background: nth($tag-colors, $i);
+        }
+    }
+
+    &:after {
+        font-size: 0.5rem;
+        font-family: 'Material Icons';
+        background: rgba(0,0,0,0.125);
+        border-radius: 100px;
+        padding: 0.125rem;
+        margin: 0 0 0 0.25rem;
+        top: 5px;
+        position: relative;
+        float: right;
+
+        text-rendering: optimizeLegibility;
+        font-feature-settings: "liga" 1;
+        font-style: normal;
+        text-transform: none;
+        line-height: 1;
+        overflow: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    &.active:after {
+        content: 'close';
+    }
+
+    &.inactive:after {
+        content: 'add';
+    }
+}

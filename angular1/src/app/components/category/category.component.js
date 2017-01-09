@@ -1,4 +1,4 @@
-import '../../../style/category.scss';
+import './category.component.scss';
 
 export class CategoryComponent {
     constructor() {

@@ -1,4 +1,4 @@
-import '../../../style/print-contact-details.scss';
+import './print-contact-details.component.scss';
 
 export class PrintContactDetailsComponent {
     constructor() {

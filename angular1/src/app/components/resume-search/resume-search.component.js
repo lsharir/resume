@@ -1,4 +1,4 @@
-import '../../../style/resume-search.scss';
+import './resume-search.scss';
 
 export class ResumeSearchComponent {
     constructor () {

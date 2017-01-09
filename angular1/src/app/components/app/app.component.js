@@ -1,3 +1,5 @@
+import './app.component.scss';
+
 export function AppDirective () {
 	return {
 		template: require('./app.component.html'),

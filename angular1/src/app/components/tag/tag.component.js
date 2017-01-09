@@ -1,4 +1,4 @@
-import '../../../style/tag.scss';
+import './tag.component.scss';
 
 export class TagComponent {
     constructor() {

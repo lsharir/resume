@@ -2,5 +2,7 @@
   "name": "resume",
   "version": "1.0.0",
   "private": true,
-  "author": "Liran Sharir"
+  "author": "Liran Sharir",
+  "devDependencies": {
+  }
 }
