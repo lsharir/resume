@@ -1,0 +1,10 @@
+@import '_shared';
+
+$category-title-margin: 0.5rem 0;
+
+.category-title {
+    font-size: $category-title-font-size;
+    text-transform: uppercase;
+    font-weight: 300;
+    margin: $category-title-margin;
+}

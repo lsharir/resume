@@ -1,17 +1,1 @@
-@import '../../../style/_constants';
-
-.contact-button {
-    cursor: pointer;
-    color: $color-primary;
-    transition: color 0.2s ease-in-out;
-    will-change: color;
-    user-select: none;
-
-    &:hover {
-        color: $color-secondary;
-    }
-
-    &.toggled {
-        color: $tag-bg-1;
-    }
-}
+@import '../../../../../shared/style/contact.scss';

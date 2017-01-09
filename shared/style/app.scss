@@ -1,0 +1,140 @@
+@import './_shared.scss';
+
+* {
+    font-family: $font-family;
+    color: $color-primary;
+}
+
+html {
+    background: $bg-back;
+}
+
+/* Media queries for print mode */
+
+.print-only {
+    display: none;
+}
+
+@media print {
+    .print-never {
+        display: none !important;
+    }
+
+    .print-only {
+        display: inherit;
+    }
+}
+
+/* Style of general components and elements within the app */
+
+body {
+    margin: 1rem;
+    padding: 0;
+}
+
+.document {
+    display: flex;
+    flex-flow: column;
+    margin: auto;
+    text-align:initial;
+    max-width: 62.5rem;
+    position: relative;
+    padding: 2rem;
+    background: $bg-paper;
+    box-shadow: 0 2.5px 12.5px -2.5px rgba(0, 0, 0, 0.5);
+}
+
+.name-header {
+    text-align: center;
+    font-weight: 300;
+    font-family: $font-sans;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.icon-corner-button {
+    position: absolute;
+    padding: 2rem;
+    transition: opacity $duration-short ease-out;
+    will-change: opacity;
+    opacity: 0.25;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    &.code-button {
+        top: 0;
+        left: 0;
+    }
+
+    &.print-button {
+        top: 0;
+        right: 0;
+    }
+}
+
+/* Media query particular for narrow screens
+    for devices with narrow screens (600px with font-size: 16px) */
+
+@media (max-width: 37.5rem) {
+  body {
+      margin: 0.5rem;
+  }
+
+  .document {
+    padding: 1rem;
+  }
+  
+  .name-header {
+    font-size: 2rem;
+  }
+
+  .print-button { 
+      padding: 1rem;
+  }
+}
+
+.intro-line-header {
+    font-style: italic;
+    margin: 1rem;
+    font-size: 1rem;
+    text-align: center;
+    color: $color-secondary;
+}
+
+.contact {
+    text-align: center;
+    margin-top: 1rem;
+    i {
+        font-size: 2rem;
+        margin: 1rem;
+    }
+}
+
+@media (max-width: 23.75rem) {
+    .contact-data-wrapper.count-2 {
+        max-height: 6.75rem;
+    }
+}
+
+.contact-data-wrapper {
+    text-align: center;
+    transition: max-height 1s ease-in-out;
+    will-change: max-height;
+    max-height: 3.375rem;
+
+    &.minimized {
+        max-height: 0;
+    }
+
+    .contact-data {
+        margin: 1rem;
+        display: inline-block;
+        white-space: nowrap;
+        max-width: $maximal-contact-data-width;
+        max-height: $maximal-contact-data-height;
+
+    }
+}

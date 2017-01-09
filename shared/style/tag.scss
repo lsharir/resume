@@ -1,0 +1,10 @@
+@import '_shared';
+
+.tag {
+    @extend .tag-appearance;
+    cursor: pointer;
+
+    &.inactive {
+        background: $tag-inactive;
+    }
+}

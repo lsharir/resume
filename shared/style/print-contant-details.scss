@@ -1,0 +1,19 @@
+@import '_shared.scss';
+
+.print-contact-details-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.print-contact-detail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.print-contact-detail-icon, .print-contact-detail-data {
+    padding: 0.5rem;
+}

@@ -37,7 +37,7 @@ class AppCtrl {
         this.data = {
 			categories: [],
 			subjectsByType: [],
-			resultsFound: true
+			resultsFound: false
 		};
 
 		this.filterResume();

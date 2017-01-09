@@ -1,0 +1,34 @@
+@import '_shared';
+
+.subject-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    .subject-years {
+        font-size: $hint-size;
+        white-space: nowrap;
+        color: $color-secondary;
+    }
+
+    .subject-title {
+        margin-top: 0.5rem;
+        font-size: $header-size;
+        font-weight: 700;
+    }
+}
+
+.subject-description-wrapper {
+    margin-bottom: 0.25rem;
+    font-size: $subtext-size;
+}
+
+.subject-links-wrapper {
+    margin: 0.5rem 0;
+    font-size: $subtext-size;
+    a.subject-link {
+        margin: 0.25rem;
+        color: $color-secondary;
+    }
+}

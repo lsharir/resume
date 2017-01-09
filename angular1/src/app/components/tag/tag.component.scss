@@ -1,10 +1,1 @@
-@import '../../../style/_constants';
-
-.tag {
-    @extend .tag-appearance;
-    cursor: pointer;
-
-    &.inactive {
-        background: $tag-inactive;
-    }
-}
+@import '../../../../../shared/style/tag.scss';
