@@ -41,11 +41,11 @@
             text="tag.text" 
             active="tag.active" 
             ng-repeat="tag in $ctrl.providedExampleTags track by $index"
-            ng-click="$ctrl.toggleDefault(tag)">
+            ng-click="$ctrl.toggleDefaultTag(tag)">
         </tag>
     </div>
 
-    <div ng-if="!$ctrl.filteredResultsFound" class="no-results print-never">
+    <div ng-if="!$ctrl.data.resultsFound" class="no-results print-never">
         Try a different query &nbsp;<i class="material-icons">insert_emoticon</i>
     </div>
 

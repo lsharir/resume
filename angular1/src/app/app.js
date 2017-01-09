@@ -13,6 +13,7 @@ import { PrintContactDetailsComponent } from './components/print/print-contact-d
 /** Services and Filters */
 import { subjectYears } from './filters/subjectYears.filter.js';
 import { SiftService } from './services/sift.service.js';
+import { UtilitiesService } from './services/utilities.service.js';
 
 /** Application configuration */
 import { appConfig } from './config/app.config.js';
@@ -32,6 +33,7 @@ angular.module(MODULE_NAME, [
 	.component('printContactDetails', new PrintContactDetailsComponent)
 	.filter('subjectYears', subjectYears)
 	.service('SiftService', SiftService)
+	.service('UtilitiesService', UtilitiesService)
 	.config(appConfig)
 	;
 

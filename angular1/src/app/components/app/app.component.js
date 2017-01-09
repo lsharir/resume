@@ -7,34 +7,24 @@ export function AppDirective () {
 }
 
 class AppCtrl {
-	constructor($scope, SiftService, $analytics, $timeout) {
-		let sift = SiftService;
-
+	constructor($scope, SiftService, UtilitiesService, $analytics, $timeout) {
 		/* Binding injections to our controller */
 		this.$scope = $scope;
 		this.sift = SiftService;
+		this.utils = UtilitiesService;
 		this.$analytics = $analytics;
 		this.$timeout = $timeout;
 
 		/* Setting the desktop variable to false when user is on mobile*/
-		this.desktop = !(navigator.userAgent.match(/Android/i)
-						|| navigator.userAgent.match(/webOS/i)
-						|| navigator.userAgent.match(/iPhone/i)
-						|| navigator.userAgent.match(/iPad/i)
-						|| navigator.userAgent.match(/iPod/i)
-						|| navigator.userAgent.match(/BlackBerry/i)
-						|| navigator.userAgent.match(/Windows Phone/i));
+		this.desktop = this.utils.isAppRunningOnDesktop();
 
 		/* Importing the raw data that the resume consists from */
 		this.sourcecode = require('config.js').sourcecode;
-		this.contactMethods = require('methods.js');
-		this.rawSubjects = require('subjects.js');
-		this.rawCategories = require('categories.js');
+		this.contactMethods = this.utils.importContactMethods();
+		this.resume = this.utils.importResume();
 
 		/* Sift Service aids us with indexing keywords and re-sorting the data to improve our digestion :) */
-        sift.indexSubjects(this.rawSubjects);
-		sift.indexCategories(this.rawCategories);
-		this.rawSubjectsByType = sift.subjectsByType(this.rawSubjects);
+		this.sift.indexResume(this.resume);
 
 		/* Array of currently selected tags through free-typing */
 		this.userTypedTags = [];
@@ -45,11 +35,9 @@ class AppCtrl {
 		/* Data is bound to the template, here we set the filtered results of the resume's data */
         this.data = {
 			categories: [],
-			subjectsByType: []
+			subjectsByType: [],
+			resultsFound: true
 		};
-
-		/* This is set to false when there are no results after applying the filter */
-		this.filteredResultsFound = true;
 
 		/* Setting the loaded query to an empty string */
 		$scope.query = '';
@@ -135,12 +123,12 @@ class AppCtrl {
         return 14.5 *  textQuery + 'px';
     }
 
-	getTags() {
+	getTagsFromQuery() {
         let textQuery = this.$scope.query;
-		return this.sift.getTags(textQuery, this.userTypedTags, this.providedExampleTags);
+		return this.sift.getTagsFromQuery(textQuery, this.userTypedTags, this.providedExampleTags);
 	}
 
-	toggleDefault(tag) {
+	toggleDefaultTag(tag) {
 		tag.active = !tag.active;
 		if (tag.active) {
 			this.$analytics.eventTrack('default-tag-added', { category : 'tags', label: tag.text });
@@ -154,45 +142,8 @@ class AppCtrl {
 	}
 
 	filterResume() {
-		let tags = this.getTags(), // get all the tags
-            years = this.sift.getYears(tags), // years queries only
-			yearsLength = years.length,
-			regularTags = this.sift.getRegularTags(tags), // not years
-			filtered = {
-				categories: [],
-				subjectsByType: []
-			},
-			filteredResultsFound = false
-		;
-
-		this.rawCategories.forEach(category => {
-			let categoryMatch = this.sift.categoryTagMatch(category, regularTags);
-			filtered.categories.push(category);
-
-            this.rawSubjectsByType[category.type].forEach(subject => {
-                let subjectMatch = true;
-
-                subjectMatch = (subjectMatch && this.sift.subjectTagMatch(subject, regularTags) || categoryMatch)
-                    && this.sift.inYear(subject, years, yearsLength);
-
-                if (subjectMatch) {
-                    this.sift.addSubjectByType(filtered.subjectsByType, subject);
-					filteredResultsFound = true;
-                }
-            });
-		});
-
-		this.contactMethods.forEach(contactMethod => {
-			if (regularTags.indexOf(contactMethod.icon) !== -1) {
-				contactMethod.filtered = true;
-				filteredResultsFound = true;
-			} else {
-				contactMethod.filtered = false;
-			}
-		});
-
-		this.data = filtered;
-		this.filteredResultsFound = filteredResultsFound;
+		let tags = this.getTagsFromQuery();
+		this.data = this.utils.filterResume(this.resume, this.contactMethods, tags);
 	}
 
 	contactToggle(cMethod) {

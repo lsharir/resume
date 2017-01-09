@@ -28,7 +28,7 @@ module.exports = (function makeWebpackConfig() {
     config.resolve = {
         root : [
             path.resolve('./src'),
-            path.resolve('../shared')
+            path.resolve('../shared_modules')
         ]
     };
 
@@ -51,7 +51,7 @@ module.exports = (function makeWebpackConfig() {
             {
                 test: /\.js$/,
                 loader: 'babel',
-                exclude: /node_modules/
+                exclude: [/node_modules/, /shared_modules/]
             }, 
             {
                 test: /\.scss$/,

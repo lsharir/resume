@@ -1,11 +1,7 @@
 export class SiftService {
-    constructor() {
-        let currentDate = new Date();
-        this.currentYear = currentDate.getYear() + 1900;
-        this.lowerYearBound = 1988;
-    }
+    constructor() {}
 
-    getTags(textQuery, tags, defaults) {
+    getTagsFromQuery(textQuery, tags, defaults) {
         let textTags = textQuery !== undefined ? textQuery.split(' ') : [],
             validatedTags = [],
             uniqueTags = [];
@@ -38,57 +34,22 @@ export class SiftService {
         return tag.length !== 0 && tag.indexOf(' ') === -1;
     }
 
-    getYears(tags) {
-        let years = [];
-
-        if (!tags || !tags.length) {
-            return years;
-        }
-
-        tags.forEach(tag => {
-            let matches = tag.match(/\b([0-9]{4})\b/g);
-            if (matches && matches.length !== 0) {
-                years.push(Number(tag));
-            }
-        });
-
-        return years;
-    }
-
-    getRegularTags(tags) {
-        let regular = [];
-
-        tags.forEach(tag => {
-            let matches = tag.match(/\b([0-9]{4})\b/g);
-            if (!matches) {
-                regular.push(tag);
-            }
-        });
-
-        return regular;
-    }
-
-    inYear(subject, years, yearsLength) {
-        for (let i = 0; i < yearsLength; i++) {
-            // If the year is not a year I existed return false
-            if (years[i] > this.currentYear || years[i] < this.lowerYearBound) {
-                return false;
-            }
-            // If the year is not within the range of the subject
-            if (subject.start > years[i] || subject.end < years[i]) {
-                return false;
-            }
-        }
-        // If the item has no year range, it should return true as it is probably within the range
-        return true;
-    }
-
     addSubjectByType(subjectsByTypeArray, subject) {
         if (!subjectsByTypeArray[subject.type] || !subjectsByTypeArray[subject.type].length) {
             subjectsByTypeArray[subject.type] = [];
         }
 
         subjectsByTypeArray[subject.type].push(subject);
+    }
+
+    indexResume(resume) {
+        if (!resume || !resume.categories || !resume.subjects) {
+            throw new Error('SiftService.indexResume : missing arguments');
+        }
+        this.indexCategories(resume.categories);
+        this.indexSubjects(resume.subjects);
+
+        resume.subjectsByType = this.createSubjectsByType(resume.subjects);;
     }
 
     indexCategories(categories) {
@@ -107,7 +68,7 @@ export class SiftService {
         });
     }
 
-    subjectsByType(subjects) {
+    createSubjectsByType(subjects) {
         let subjectsByType = [];
 
         subjects.forEach(subject => {
@@ -115,27 +76,5 @@ export class SiftService {
         });
 
         return subjectsByType;
-    }
-
-    categoryTagMatch(category, tags) {
-        // tags here are only keywords, not years
-        let match = true;
-
-        tags.forEach(tag => {
-            match = match && (category.words.search(tag) !== -1);
-        });
-
-        return match;
-    }
-
-    subjectTagMatch(subject, tags) {
-        // tags here are only keywords, not years
-        let match = true;
-
-        tags.forEach(tag => {
-            match = match && (subject.words.search(tag) !== -1);
-        });
-
-        return match;
     }
 }
