@@ -55,13 +55,6 @@ export class AppComponent {
 		this.data = this.utils.filterResume(this.resume, this.contactMethods, tags);
 	}
 
-	contactToggle(cMethod) {
-		cMethod.toggled = !cMethod.toggled;
-		if (cMethod.toggled) {
-			//TODO analytics
-		}
-	}
-
 	printDocument() {
 		window.print();
 	}

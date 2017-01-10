@@ -6,8 +6,8 @@ import { ResumeSearchComponent } from './components/resume-search/resume-search.
 import { CategoryComponent } from './components/category/category.component.js';
 import { SubjectComponent } from './components/subject/subject.component.js';
 import { TagComponent } from './components/tag/tag.component.js';
-import { ContactComponent } from './components/contact/contact.component.js';
 import { PrintContactDetailsComponent } from './components/print/print-contact-details.component.js';
+import { ContactDetailsMethodsComponent } from './components/contact-details-methods/contact-details-methods.component';
 
 /** Services and Filters */
 import { subjectYears } from './filters/subjectYears.filter.js';
@@ -29,8 +29,8 @@ angular.module(MODULE_NAME, [
 	.component('category', new CategoryComponent)
 	.component('subject', new SubjectComponent)
 	.component('tag', new TagComponent)
-	.component('contact', new ContactComponent)
 	.component('printContactDetails', new PrintContactDetailsComponent)
+	.component('contactDetailsMethods', new ContactDetailsMethodsComponent)
 	.filter('subjectYears', subjectYears)
 	.service('SiftService', SiftService)
 	.service('UtilitiesService', UtilitiesService)

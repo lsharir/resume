@@ -1,0 +1,42 @@
+@import '_shared.scss';
+
+.contact-button {
+    cursor: pointer;
+    color: $color-primary;
+    transition: color 0.2s ease-in-out;
+    will-change: color;
+    user-select: none;
+
+    &:hover {
+        color: $color-secondary;
+    }
+
+    &.toggled {
+        color: $tag-bg-1;
+    }
+}
+
+.contact {
+    text-align: center;
+    margin-top: 1rem;
+    i {
+        font-size: 2rem;
+        margin: 1rem;
+    }
+}
+
+.contact-data-wrapper {
+    text-align: center;
+    transition: max-height 1s ease-in-out;
+    will-change: max-height;
+    max-height: 3.375rem;
+
+    .contact-data {
+        margin: 1rem;
+        display: inline-block;
+        white-space: nowrap;
+        max-width: $maximal-contact-data-width;
+        max-height: $maximal-contact-data-height;
+
+    }
+}

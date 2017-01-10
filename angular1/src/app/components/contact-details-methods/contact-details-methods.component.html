@@ -1,0 +1,17 @@
+<div class="contact print-never">
+    <i 
+        ng-click="$ctrl.contactToggle(contactMethod)"
+        ng-repeat="contactMethod in $ctrl.contactMethods track by $id(contactMethod)"
+        ng-class="{ 'toggled' : contactMethod.toggled || contactMethod.filtered }"
+        class="material-icons contact-button">
+        {{:: contactMethod.icon }}
+    </i>
+</div>
+
+<div class="contact-data-wrapper count-{{contactResults.length}} print-never" ng-class="{ 'minimized' : contactResults.length === 0 }">
+    <span 
+        class="contact-data contact-data-animation"
+        ng-repeat="contactMethod in $ctrl.contactMethods | filter : $ctrl.contactMethodFilter as contactResults track by $id(contactMethod)">
+        {{:: contactMethod.data }}
+    </span>
+</div>

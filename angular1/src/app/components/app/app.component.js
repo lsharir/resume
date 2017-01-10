@@ -51,17 +51,6 @@ class AppCtrl {
 		this.data = this.utils.filterResume(this.resume, this.contactMethods, tags);
 	}
 
-	contactToggle(cMethod) {
-		cMethod.toggled = !cMethod.toggled;
-		if (cMethod.toggled) {
-			this.$analytics.eventTrack('contact-method', { category : 'contact', label: cMethod.icon });
-		}
-	}
-
-	contactMethodFilter(cMethod) {
-		return cMethod.toggled || cMethod.filtered;
-	}
-
 	printDocument() {
 		window.print();
 	}

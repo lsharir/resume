@@ -1,0 +1,18 @@
+<div class="contact print-never">
+    <i *ngFor="let contactMethod of contactMethods"
+        (click)="contactToggle(contactMethod)"
+        [ngClass]="{ 'toggled' : contactMethod.toggled || contactMethod.filtered }"
+        class="material-icons contact-button">
+        {{ contactMethod.icon }}
+    </i>
+</div>
+
+<div class="contact-data-wrapper print-never">
+    <template ngFor let-contactMethod [ngForOf]="contactMethods">
+        <span 
+            *ngIf="contactMethod.toggled"
+            class="contact-data">
+            {{ contactMethod.data }}
+        </span>
+    </template>
+</div>

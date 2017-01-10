@@ -29,19 +29,7 @@
         *ngFor="let category of data.categories">
     </category>
 
-    <div class="contact print-never">
-        <contact
-            (click)="contactToggle(cMethod)"
-            [contactMethod]="cMethod"
-            *ngFor="let cMethod of contactMethods">
-        </contact>
-    </div>
-
-    <div class="contact-data-wrapper count-{{ contactMethods | contactMethodsFilterCount }} print-never" [ngClass]="{ 'minimized' : (contactMethods | contactMethodsFilterCount).length === 0 }">
-        <span 
-            class="contact-data"
-            *ngFor="let cMethod of (contactMethods | contactMethodFilter)">
-            {{ cMethod.data }}
-        </span>
-    </div>
+    <contact-details-methods
+        [contactMethods]="contactMethods">
+    </contact-details-methods>
 </div>
