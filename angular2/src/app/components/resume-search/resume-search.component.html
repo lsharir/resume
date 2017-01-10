@@ -1,4 +1,4 @@
-<div class="search-container print-never" ngClass="{ 'focused' : focusedOnSearch }">
+<div class="search-container print-never" [ngClass]="{ 'focused' : focusedOnSearch }">
     <div class="tags-wrapper" (click)="focusOnInput()">
         <tag [text]="tag" active="true" *ngFor="let tag of userCreatedTags" (click)="removeSelectedTag($index)"></tag>
         <span class="input-wrapper">
@@ -6,7 +6,8 @@
                 id="search"
                 class="search"
                 type="text"
-                [(ngModel)]="userLiveTag"
+                [ngModel]="userLiveTag"
+                (ngModelChange)="userLiveTagChange($event)"
                 (focus)="focusedOnSearch = true"
                 (blur)="focusedOnSearch = false"
                 (keydown)="inputKeyDown($event)"

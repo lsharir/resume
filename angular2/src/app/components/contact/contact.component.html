@@ -1,5 +1,5 @@
 <i 
-    ngClass="{ 'toggled' : contactMethod.toggled || contactMethod.filtered }"
+    [ngClass]="{ 'toggled' : contactMethod.toggled || contactMethod.filtered }"
     class="material-icons contact-button">
     {{ contactMethod.icon }}
 </i>

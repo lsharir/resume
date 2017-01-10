@@ -45,7 +45,8 @@ export class AppComponent {
 		this.filterResume();
   }
 
-  tagChangeHandler() {
+  tagChangeHandler(event) {
+		this.userLiveTag = event.userLiveTag;
 		this.filterResume();
 	}
 

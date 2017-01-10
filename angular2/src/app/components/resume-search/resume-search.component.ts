@@ -6,7 +6,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 	styleUrls: ['./resume-search.component.scss']
 })
 export class ResumeSearchComponent implements OnInit {
-	@Input('userLiveTag') userLiveTag = '';
+	public userLiveTag = '';
 	@Input('userCreatedTags') userCreatedTags;
 	@Input('exampleTags') exampleTags;
 	@Output('tagChangeEmitter') tagChangeEmitter: EventEmitter<any> = new EventEmitter();
@@ -16,9 +16,16 @@ export class ResumeSearchComponent implements OnInit {
 	private debouncedAnalyticsRunning = undefined;
 	constructor() { 
 	}
+	ngOnInit() {
+		this.focusOnInput();
+	}
 
-	ngOnChanges() {
-		let writtenTags = this.userLiveTag.split(' ');
+	tagChangeOccurred() {
+		this.tagChangeEmitter.emit({ userLiveTag: this.userLiveTag});
+	}
+
+	userLiveTagChange(value) {
+		let writtenTags = value.split(' ');
 
 		if (Array.isArray(writtenTags) && writtenTags.length > 0) {
 			/* Pass every word of input but last to the tags */
@@ -30,16 +37,9 @@ export class ResumeSearchComponent implements OnInit {
 			this.userLiveTag = writtenTags[writtenTags.length - 1];
 		}
 
-		/* After handling the tags the user wrote down, and after calling the filterResume method,
-			* We call our debounced analytics data (to record partial queries) */
-		this.tagChangeEmitter.emit();
-
+		this.tagChangeOccurred();
 		this.debouncedAnalytics();
-
-        this.focusOnInput();
 	}
-
-	ngOnInit() { }
 
 	focusOnInput() {
         //TODO replace this
@@ -51,7 +51,7 @@ export class ResumeSearchComponent implements OnInit {
 		if (tag.active) {
 			//TODO analytics
 		}
-		this.tagChangeEmitter.emit();
+		this.tagChangeOccurred()
 	}
 
     inputKeyDown(e) {
@@ -62,6 +62,7 @@ export class ResumeSearchComponent implements OnInit {
 				this.addTag(tag);
 			});
 			this.userLiveTag = '';
+			this.tagChangeOccurred();
 		}
 
         // let Backspace when input is empty remove previous tag
@@ -80,14 +81,14 @@ export class ResumeSearchComponent implements OnInit {
 
     removeSelectedTag(index) {
 		this.userCreatedTags.splice(index, 1);
-		this.tagChangeEmitter.emit();
+		this.tagChangeOccurred();
 	}
 
     /* Avoid this piece of code, a custom debounced function for this particular use */
 	debouncedAnalytics () {
 		/* Status 1 occurs when our $timeout exists and has timed out
 		 * So whenever it does not exist or hasn't reached its end we re-create it */
-		if (!this.debouncedAnalyticsStatus(1)) {
+		if (!this.debouncedAnalyticsRunCount(1)) {
 			clearTimeout(this.debouncedAnalyticsRunning);
 			this.debouncedAnalyticsRunning = setTimeout(() => {
 				if (this.userLiveTag.length > 2) {
@@ -98,9 +99,10 @@ export class ResumeSearchComponent implements OnInit {
 		}
 	}
 
-	debouncedAnalyticsStatus(status) {
+	debouncedAnalyticsRunCount(runCount) {
+		/** runCount === 0 when timeout is still running, runCount === 1 when it's done */
 		return this.debouncedAnalyticsRunning
-				&& this.debouncedAnalyticsRunning.$$state.status === status;
+				&& this.debouncedAnalyticsRunning.runCount === runCount;
 	}
 
     get inputWidth() { // This monster calculates the length of the input element so it breaks line properly

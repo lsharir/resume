@@ -15,10 +15,9 @@
     </div>
 
     <resume-search 
-        [userLiveTag]="userLiveTag"
         [userCreatedTags]="userCreatedTags"
         [exampleTags]="exampleTags"
-        (tagChangeEmitter)="tagChangeHandler()"></resume-search>
+        (tagChangeEmitter)="tagChangeHandler($event)"></resume-search>
 
     <div *ngIf="!data.resultsFound" class="no-results print-never">
         Try a different query &nbsp;<i class="material-icons">insert_emoticon</i>
@@ -38,9 +37,9 @@
         </contact>
     </div>
 
-    <div class="contact-data-wrapper count-{{ contactMethods | contactMethodsFilterCount }} print-never" ngClass="{ 'minimized' : contactResults.length === 0 }">
+    <div class="contact-data-wrapper count-{{ contactMethods | contactMethodsFilterCount }} print-never" [ngClass]="{ 'minimized' : (contactMethods | contactMethodsFilterCount).length === 0 }">
         <span 
-            class="contact-data contact-data-animation"
+            class="contact-data"
             *ngFor="let cMethod of (contactMethods | contactMethodFilter)">
             {{ cMethod.data }}
         </span>
