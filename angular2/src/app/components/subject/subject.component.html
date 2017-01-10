@@ -1,0 +1,20 @@
+<div class="subject-header">
+    <span class="subject-title">
+        {{ subject.title }}
+    </span>
+    <span class="subject-years">
+        {{ subject | subjectYears }}
+    </span>
+</div>
+
+<div class="subject-description-wrapper">
+    <div class="subject-description" *ngFor="let line of subject.description">
+        {{ line }}
+    </div>
+</div>
+
+<div class="subject-links-wrapper" *ngIf="subject.links">
+    <a class="subject-link" *ngFor="let link of subject.links" [href]="link.href">
+        {{ link.title }}
+    </a>
+</div>

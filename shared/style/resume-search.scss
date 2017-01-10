@@ -1,4 +1,4 @@
-@import '../../../style/_constants';
+@import '_shared';
 
 .tags-wrapper {
     padding: 0.25rem;
@@ -63,13 +63,8 @@ input[type="text"].search {
     top: 0;
     left: 0;
     pointer-events: none;
-    
-    &.ng-leave, &.ng-leave-prepare { // This is to prevent the lingering of the fake-tag due to existing transitions
-        transition: none;
-    }
 }
 
 .tags-examples {
     text-align: center;
 }
-

@@ -9,13 +9,12 @@ export function AppDirective () {
 }
 
 class AppCtrl {
-	constructor($scope, SiftService, UtilitiesService, $analytics, $timeout) {
+	constructor($scope, SiftService, UtilitiesService, $analytics) {
 		/* Binding injections to our controller */
 		this.$scope = $scope;
 		this.sift = SiftService;
 		this.utils = UtilitiesService;
 		this.$analytics = $analytics;
-		this.$timeout = $timeout;
 
 		/* Setting the desktop variable to false when user is on mobile*/
 		this.desktop = this.utils.isAppRunningOnDesktop();

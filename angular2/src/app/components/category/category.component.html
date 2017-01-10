@@ -1,0 +1,11 @@
+<div>
+    <div *ngIf="subjects" class="category-title category-title-animation">
+        {{ category.title}}
+    </div>
+
+    <subject 
+        class="subject-animation"
+        [subject]="subject"
+        *ngFor="let subject of subjects">
+    </subject>
+</div>

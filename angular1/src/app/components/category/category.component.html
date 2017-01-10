@@ -1,11 +1,11 @@
 <div>
-    <div ng-if="results" class="category-title category-title-animation">
+    <div ng-if="$ctrl.subjects" class="category-title category-title-animation">
         {{:: $ctrl.category.title}}
     </div>
 
     <subject 
         class="subject-animation"
         subject="subject"
-        ng-repeat="subject in $ctrl.subjects as results track by $id(subject)">
+        ng-repeat="subject in $ctrl.subjects track by $id(subject)">
     </subject>
 </div>

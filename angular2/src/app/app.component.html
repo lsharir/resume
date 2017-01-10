@@ -1,3 +1,48 @@
-<h1>
-  {{title}}
-</h1>
+<div class="document">
+    <i class="material-icons icon-corner-button print-button print-never"
+        *ngIf="desktop"
+        (click)="printDocument()">print</i>
+
+    <i class="material-icons icon-corner-button code-button print-never"
+        (click)="showCode()">code</i>
+
+    <div class="name-header" (click)="prepareForPrint()">Liran Sharir</div>
+
+    <print-contact-details [contactDetails]="contactMethods"></print-contact-details>
+
+    <div class="intro-line-header">
+        I enjoy creating, learning and teaching new web technologies
+    </div>
+
+    <resume-search 
+        [userLiveTag]="userLiveTag"
+        [userCreatedTags]="userCreatedTags"
+        [exampleTags]="exampleTags"
+        (tagChangeEmitter)="tagChangeHandler()"></resume-search>
+
+    <div *ngIf="!data.resultsFound" class="no-results print-never">
+        Try a different query &nbsp;<i class="material-icons">insert_emoticon</i>
+    </div>
+
+    <category 
+        [category]="category" 
+        [subjects]="data.subjectsByType[category.type]" 
+        *ngFor="let category of data.categories">
+    </category>
+
+    <div class="contact print-never">
+        <contact
+            (click)="contactToggle(cMethod)"
+            [contactMethod]="cMethod"
+            *ngFor="let cMethod of contactMethods">
+        </contact>
+    </div>
+
+    <div class="contact-data-wrapper count-{{ contactMethods | contactMethodsFilterCount }} print-never" ngClass="{ 'minimized' : contactResults.length === 0 }">
+        <span 
+            class="contact-data contact-data-animation"
+            *ngFor="let cMethod of (contactMethods | contactMethodFilter)">
+            {{ cMethod.data }}
+        </span>
+    </div>
+</div>

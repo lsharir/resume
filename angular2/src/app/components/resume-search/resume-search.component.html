@@ -1,0 +1,29 @@
+<div class="search-container print-never" ngClass="{ 'focused' : focusedOnSearch }">
+    <div class="tags-wrapper" (click)="focusOnInput()">
+        <tag [text]="tag" active="true" *ngFor="let tag of userCreatedTags" (click)="removeSelectedTag($index)"></tag>
+        <span class="input-wrapper">
+                <input
+                id="search"
+                class="search"
+                type="text"
+                [(ngModel)]="userLiveTag"
+                (focus)="focusedOnSearch = true"
+                (blur)="focusedOnSearch = false"
+                (keydown)="inputKeyDown($event)"
+                [style.width]="inputWidth"
+                aria-label="filter resume"/>
+            
+                <span class="fake-tag" fake-tag-bg *ngIf="userLiveTag.length !== 0">{{ userLiveTag }}</span>
+        </span>
+    </div>
+    <span class="search-placeholder material-icons" *ngIf="userLiveTag.length === 0 && userCreatedTags.length === 0">search</span>
+</div>
+
+<div class="tags-wrapper tags-examples print-never">
+    <tag 
+        [text]="tag.text" 
+        [active]="tag.active" 
+        *ngFor="let tag of exampleTags"
+        (click)="toggleExampleTag(tag)">
+    </tag>
+</div>

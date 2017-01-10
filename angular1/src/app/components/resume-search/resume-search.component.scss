@@ -1,0 +1,8 @@
+@import '../../../../../shared/style/resume-search.scss';
+
+.fake-tag {
+    &.ng-leave, &.ng-leave-prepare { // This is to prevent the lingering of the fake-tag due to existing transitions
+        transition: none;
+    }
+}
+

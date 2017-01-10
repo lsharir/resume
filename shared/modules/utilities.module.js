@@ -15,18 +15,18 @@ Utilities.prototype.isAppRunningOnDesktop = function() {
 };
 
 Utilities.prototype.importContactMethods = function() {
-    return require('methods.js');
+    return require('../methods.js');
 };
 
 Utilities.prototype.importResume = function() {
     return {
-        categories: require('categories'),
-        subjects: require('subjects')
+        categories: require('../categories.js'),
+        subjects: require('../subjects.js')
     };
 };
 
 Utilities.prototype.importExampleTags = function () {
-    return require('defaults').map(exampleTagText => {
+    return require('../defaults.js').map(exampleTagText => {
         return { text: exampleTagText, active: false };
     })
 }
