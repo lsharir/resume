@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { AnalyticsService } from '../../services';
 
 @Component({
 	selector: 'resume-search',
@@ -14,7 +15,7 @@ export class ResumeSearchComponent implements OnInit {
 	/* Private properties that handles our debounced analytics function */
 	private debouncedAnalyticsDuration = 1000;
 	private debouncedAnalyticsRunning = undefined;
-	constructor() { 
+	constructor(private analyticsService: AnalyticsService) { 
 	}
 	ngOnInit() {
 		this.focusOnInput();
@@ -49,7 +50,7 @@ export class ResumeSearchComponent implements OnInit {
 	toggleExampleTag(tag) {
 		tag.active = !tag.active;
 		if (tag.active) {
-			//TODO analytics
+			this.analyticsService.addExampleTag(tag);
 		}
 		this.tagChangeOccurred()
 	}
@@ -75,7 +76,7 @@ export class ResumeSearchComponent implements OnInit {
         // do not add empty or existing tags
 		if (tag.length !== 0 && this.userCreatedTags.indexOf(tag) === -1) {
             this.userCreatedTags.push(tag);
-			//TODO analytics
+			this.analyticsService.addTag(tag);
 		}
 	}
 
@@ -92,7 +93,7 @@ export class ResumeSearchComponent implements OnInit {
 			clearTimeout(this.debouncedAnalyticsRunning);
 			this.debouncedAnalyticsRunning = setTimeout(() => {
 				if (this.userLiveTag.length > 2) {
-					//TODO analytics;
+					this.analyticsService.addLiveTag(this.userLiveTag);
 				}
 				delete this.debouncedAnalyticsRunning;
 			}, this.debouncedAnalyticsDuration, false);

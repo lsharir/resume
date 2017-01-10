@@ -11,8 +11,8 @@ import { ContactDetailsMethodsComponent } from './components/contact-details-met
 
 /** Services and Filters */
 import { subjectYears } from './filters/subjectYears.filter.js';
-import { SiftService } from './services/sift.service.js';
-import { UtilitiesService } from './services/utilities.service.js';
+
+import { AnalyticsService, UtilitiesService, SiftService } from './services';
 
 /** Application configuration */
 import { appConfig } from './config/app.config.js';
@@ -34,6 +34,7 @@ angular.module(MODULE_NAME, [
 	.filter('subjectYears', subjectYears)
 	.service('SiftService', SiftService)
 	.service('UtilitiesService', UtilitiesService)
+	.service('AnalyticsService', AnalyticsService)
 	.config(appConfig)
 	;
 

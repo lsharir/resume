@@ -15,9 +15,9 @@ export class ResumeSearchComponent {
 }
 
 class ResumeSearchController {
-    constructor($scope, $analytics, $timeout) {
+    constructor($scope, AnalyticsService, $timeout) {
         this.$scope = $scope;
-        this.$analytics = $analytics;
+        this.analyticsService = AnalyticsService;
         this.$timeout = $timeout;
 
         /** initializing the query string */
@@ -51,14 +51,14 @@ class ResumeSearchController {
     }
 
     focusOnInput() {
-        //TODO replace this
+        //TODO replace this shit
         document.getElementById('search').focus();
     }
 
 	toggleExampleTag(tag) {
 		tag.active = !tag.active;
 		if (tag.active) {
-			this.$analytics.eventTrack('default-tag-added', { category : 'tags', label: tag.text });
+			this.analyticsService.addExampleTag(tag.text);
 		}
 		this.tagChangeHandler();
 	}
@@ -83,7 +83,7 @@ class ResumeSearchController {
         // do not add empty or existing tags
 		if (tag.length !== 0 && this.userCreatedTags.indexOf(tag) === -1) {
             this.userCreatedTags.push(tag);
-			this.$analytics.eventTrack('tag-added', { category : 'tags', label: tag });
+			this.analyticsService.addTag(tag);
 		}
 	}
 
@@ -100,7 +100,7 @@ class ResumeSearchController {
 			this.$timeout.cancel(this.debouncedAnalyticsRunning);
 			this.debouncedAnalyticsRunning = this.$timeout(() => {
 				if (this.userLiveTag.length > 2) {
-					this.$analytics.eventTrack('tag-live', { category : 'live', label: this.userLiveTag });
+					this.analyticsService.addLiveTag(this.userLiveTag);
 				}
 				delete this.debouncedAnalyticsRunning;
 			}, this.debouncedAnalyticsDuration, false);

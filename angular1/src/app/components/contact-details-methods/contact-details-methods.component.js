@@ -11,14 +11,14 @@ export class ContactDetailsMethodsComponent {
 }
 
 class ContactDetailsMethodsController {
-    constructor($analytics) {
-        this.$analytics = $analytics;
+    constructor(AnalyticsService) {
+        this.AnalyticsService = AnalyticsService;
     }
 
     contactToggle(contactMethod) {
 		contactMethod.toggled = !contactMethod.toggled;
 		if (contactMethod.toggled) {
-			this.$analytics.eventTrack('contact-method', { category : 'contact', label: contactMethod.icon });
+            this.AnalyticsService.contactToggled(contactMethod);
 		}
 	}
 

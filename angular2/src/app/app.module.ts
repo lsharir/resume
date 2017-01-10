@@ -6,9 +6,7 @@ import { HttpModule } from '@angular/http';
 
 import { COMPONENTS } from './components';
 import { FILTERS } from './filters';
-
-import { UtilitiesService } from './services/utilities.service';
-import { IndexService } from './services/index.service';
+import { SERVICES } from './services';
 
 import { AppComponent } from './app.component';
 
@@ -24,7 +22,9 @@ import { AppComponent } from './app.component';
     FormsModule,
     HttpModule
   ],
-  providers: [UtilitiesService, IndexService],
+  providers: [
+    ...SERVICES
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
