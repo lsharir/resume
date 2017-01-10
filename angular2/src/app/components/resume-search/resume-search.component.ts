@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { AnalyticsService } from '../../services';
+import { AnalyticsService, UtilitiesService } from '../../services';
 
 @Component({
 	selector: 'resume-search',
@@ -7,22 +7,29 @@ import { AnalyticsService } from '../../services';
 	styleUrls: ['./resume-search.component.scss']
 })
 export class ResumeSearchComponent implements OnInit {
-	public userLiveTag = '';
-	@Input('userCreatedTags') userCreatedTags;
 	@Input('exampleTags') exampleTags;
-	@Output('tagChangeEmitter') tagChangeEmitter: EventEmitter<any> = new EventEmitter();
+
+	public userLiveTag = '';
+	public userCreatedTags = [];
+
+	@Output('keywords') keywordsEmitter: EventEmitter<any> = new EventEmitter(); 
 
 	/* Private properties that handles our debounced analytics function */
 	private debouncedAnalyticsDuration = 1000;
 	private debouncedAnalyticsRunning = undefined;
-	constructor(private analyticsService: AnalyticsService) { 
-	}
+
+	constructor(
+		private analyticsService: AnalyticsService,
+		private utils: UtilitiesService
+	) {}
+
 	ngOnInit() {
 		this.focusOnInput();
 	}
 
-	tagChangeOccurred() {
-		this.tagChangeEmitter.emit({ userLiveTag: this.userLiveTag});
+	updateKeywords() {
+		let keywords = this.utils.getKeywords(this.userLiveTag, this.userCreatedTags, this.exampleTags);
+		this.keywordsEmitter.emit({ keywords : keywords });
 	}
 
 	userLiveTagChange(value) {
@@ -38,7 +45,7 @@ export class ResumeSearchComponent implements OnInit {
 			this.userLiveTag = writtenTags[writtenTags.length - 1];
 		}
 
-		this.tagChangeOccurred();
+		this.updateKeywords();
 		this.debouncedAnalytics();
 	}
 
@@ -49,21 +56,20 @@ export class ResumeSearchComponent implements OnInit {
 
 	toggleExampleTag(tag) {
 		tag.active = !tag.active;
+
 		if (tag.active) {
-			this.analyticsService.addExampleTag(tag);
+			this.analyticsService.addExampleTag(tag.text);
 		}
-		this.tagChangeOccurred()
+		
+		this.updateKeywords();
 	}
 
     inputKeyDown(e) {
         // let Return/Enter key generate a new tag
 		if (e.keyCode === 13) {
-			let tags = this.userLiveTag.split(' ');
-			tags.forEach(tag => {
-				this.addTag(tag);
-			});
+			this.addTag(this.userLiveTag);
 			this.userLiveTag = '';
-			this.tagChangeOccurred();
+			this.updateKeywords();
 		}
 
         // let Backspace when input is empty remove previous tag
@@ -73,16 +79,19 @@ export class ResumeSearchComponent implements OnInit {
 	}
 
     addTag(tag) {
-        // do not add empty or existing tags
-		if (tag.length !== 0 && this.userCreatedTags.indexOf(tag) === -1) {
-            this.userCreatedTags.push(tag);
-			this.analyticsService.addTag(tag);
+		if (!this.utils.validateTag(tag) || !this.utils.originalTag(this.userCreatedTags, tag)) {
+			return;
 		}
+
+		//TODO add example tag dupes handling
+
+		this.userCreatedTags.push(tag);
+		this.analyticsService.addTag(tag);
 	}
 
     removeSelectedTag(index) {
 		this.userCreatedTags.splice(index, 1);
-		this.tagChangeOccurred();
+		this.updateKeywords();
 	}
 
     /* Avoid this piece of code, a custom debounced function for this particular use */

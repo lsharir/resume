@@ -26,10 +26,11 @@ class AppCtrl {
 		/* Sift Service aids us with indexing keywords and re-sorting the data to improve our digestion :) */
 		this.sift.indexResume(this.resume);
 
-		/* Array of currently selected tags through free-typing */
-		this.userLiveTag = '';
-		this.userCreatedTags = []
+		/* Importing the example tags */
 		this.exampleTags = this.utils.importExampleTags();
+
+		/** initializing the keywords array */
+		this.keywords = [];
 
 		/* Data is bound to the template, here we set the filtered results of the resume's data */
         this.data = {
@@ -41,13 +42,13 @@ class AppCtrl {
 		this.filterResume();
 	}
 
-	tagChangeHandler() {
+	changeKeywords(keywords) {
+		this.keywords = keywords;
 		this.filterResume();
 	}
 
 	filterResume() {
-		let tags = this.sift.getAllTags(this.userLiveTag, this.userCreatedTags, this.exampleTags);
-		this.data = this.utils.filterResume(this.resume, this.contactMethods, tags);
+		this.data = this.utils.filterResume(this.resume, this.contactMethods, this.keywords);
 	}
 
 	printDocument() {

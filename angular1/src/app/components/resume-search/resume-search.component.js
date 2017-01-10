@@ -6,22 +6,22 @@ export class ResumeSearchComponent {
         this.controller = ResumeSearchController;
         this.controllerAs = '$search',
         this.bindings = {
-            userLiveTag: '=',
-            userCreatedTags: '=',
             exampleTags: '=',
-            tagChangeHandler: '&'
+            keywordsEmitter: '&'
         }
     }
 }
 
 class ResumeSearchController {
-    constructor($scope, AnalyticsService, $timeout) {
+    constructor($scope, AnalyticsService, UtilitiesService, $timeout) {
         this.$scope = $scope;
         this.analyticsService = AnalyticsService;
+		this.utils = UtilitiesService;
         this.$timeout = $timeout;
 
         /** initializing the query string */
         this.userLiveTag = '';
+		this.userCreatedTags = [];
 
         /* Private properties that handles our debounced analytics function */
 		this.debouncedAnalyticsDuration = 1000;
@@ -40,15 +40,17 @@ class ResumeSearchController {
 				this.userLiveTag = writtenTags[writtenTags.length - 1];
 			}
 
-			/* After handling the tags the user wrote down, and after calling the filterResume method,
-			 * We call our debounced analytics data (to record partial queries) */
-			this.tagChangeHandler();
-
+			this.updateKeywords();
 			this.debouncedAnalytics();
 		});
 
         this.focusOnInput();
     }
+
+	updateKeywords() {
+		let keywords = this.utils.getKeywords(this.userLiveTag, this.userCreatedTags, this.exampleTags);
+		this.keywordsEmitter({ keywords : keywords });
+	}
 
     focusOnInput() {
         //TODO replace this shit
@@ -57,20 +59,20 @@ class ResumeSearchController {
 
 	toggleExampleTag(tag) {
 		tag.active = !tag.active;
+
 		if (tag.active) {
 			this.analyticsService.addExampleTag(tag.text);
 		}
-		this.tagChangeHandler();
+
+		this.updateKeywords();
 	}
 
     inputKeyDown(e) {
         // let Return/Enter key generate a new tag
 		if (e.keyCode === 13) {
-			let tags = this.userLiveTag.split(' ');
-			tags.forEach(tag => {
-				this.addTag(tag);
-			});
+			this.addTag(this.userLiveTag);
 			this.userLiveTag = '';
+			this.updateKeywords();
 		}
 
         // let Backspace when input is empty remove previous tag
@@ -80,16 +82,19 @@ class ResumeSearchController {
 	}
 
     addTag(tag) {
-        // do not add empty or existing tags
-		if (tag.length !== 0 && this.userCreatedTags.indexOf(tag) === -1) {
-            this.userCreatedTags.push(tag);
-			this.analyticsService.addTag(tag);
+		if (!this.utils.validateTag(tag) || !this.utils.originalTag(this.userCreatedTags, tag)) {
+			return;
 		}
+
+		//TODO add example tag dupes handling
+
+		this.userCreatedTags.push(tag);
+		this.analyticsService.addTag(tag);
 	}
 
     removeSelectedTag(index) {
 		this.userCreatedTags.splice(index, 1);
-		this.tagChangeHandler();
+		this.updateKeywords();
 	}
 
     /* Avoid this piece of code, a custom debounced function for this particular use */

@@ -15,9 +15,8 @@
     </div>
 
     <resume-search 
-        [userCreatedTags]="userCreatedTags"
         [exampleTags]="exampleTags"
-        (tagChangeEmitter)="tagChangeHandler($event)"></resume-search>
+        (keywords)="changeKeywords($event.keywords)"></resume-search>
 
     <div *ngIf="!data.resultsFound" class="no-results print-never">
         Try a different query &nbsp;<i class="material-icons">insert_emoticon</i>

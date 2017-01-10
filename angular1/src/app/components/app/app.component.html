@@ -15,10 +15,8 @@
     </div>
 
     <resume-search 
-        user-live-tag="$ctrl.userLiveTag"
-        user-created-tags="$ctrl.userCreatedTags"
         example-tags="$ctrl.exampleTags"
-        tag-change-handler="$ctrl.tagChangeHandler()"></resume-search>
+        keywords-emitter="$ctrl.changeKeywords(keywords)"></resume-search>
 
     <div ng-if="!$ctrl.data.resultsFound" class="no-results print-never">
         Try a different query &nbsp;<i class="material-icons">insert_emoticon</i>

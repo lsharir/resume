@@ -29,7 +29,35 @@ Utilities.prototype.importExampleTags = function () {
     return require('../defaults.js').map(exampleTagText => {
         return { text: exampleTagText, active: false };
     })
-}
+};
+
+Utilities.prototype.getKeywords = function(userLiveTag, userCreatedTags, exampleTags) {
+    let userLiveTags = userLiveTag !== undefined ? userLiveTag.split(' ') : [],
+        validatedTags = [],
+        uniqueTags = [];
+
+    userLiveTags.forEach(tag => {
+        if (this.validateTag(tag)) {
+            validatedTags.push(tag);
+        }
+    });
+
+    exampleTags.forEach(tag => {
+        if (tag.active) {
+            validatedTags.push(tag.text);
+        }
+    });
+
+    validatedTags = validatedTags.concat(userCreatedTags);
+
+    validatedTags.forEach(tag => {
+        if (uniqueTags.indexOf(tag) === -1) {
+            uniqueTags.push(tag.toLowerCase());
+        }
+    });
+
+    return uniqueTags;
+};
 
 Utilities.prototype.filterResume = function(resume, contactMethods, tags) {
     var years = getYears(tags),
@@ -69,6 +97,14 @@ Utilities.prototype.filterResume = function(resume, contactMethods, tags) {
     return results;
 }
 
+Utilities.prototype.validateTag = function(tag) {
+    // tags do not contain spaces
+    return tag.length !== 0 && tag.indexOf(' ') === -1;
+}
+
+Utilities.prototype.originalTag = function(existingTags, tag) {
+    return existingTags.indexOf(tag) === -1;
+}
 function addSubjectByType(subjectsByTypeArray, subject) {
     if (!subjectsByTypeArray[subject.type] || !subjectsByTypeArray[subject.type].length) {
         subjectsByTypeArray[subject.type] = [];
