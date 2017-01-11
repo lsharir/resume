@@ -1,0 +1,12 @@
+@import '_shared';
+
+.no-results {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: $maximal-no-results-height;
+    margin: 1rem 1rem;
+    font-size: 1rem;
+    color: $color-secondary;
+    font-style: italic;
+}

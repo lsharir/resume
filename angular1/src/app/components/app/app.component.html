@@ -12,9 +12,7 @@
         example-tags="$ctrl.exampleTags"
         keywords-emitter="$ctrl.changeKeywords(keywords)"></resume-search>
 
-    <div ng-if="!$ctrl.data.resultsFound" class="no-results print-never">
-        Try a different query &nbsp;<i class="material-icons">insert_emoticon</i>
-    </div>
+    <resume-no-results no-results="!$ctrl.data.resultsFound"></resume-no-results>
 
     <category 
         category="category" 
@@ -22,6 +20,7 @@
         ng-repeat="category in $ctrl.data.categories track by $id(category)">
     </category>
 
-    <contact-details-methods contact-methods="$ctrl.contactMethods">
+    <contact-details-methods 
+        contact-methods="$ctrl.contactMethods">
     </contact-details-methods>
 </div>

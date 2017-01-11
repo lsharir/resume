@@ -12,9 +12,7 @@
         [exampleTags]="exampleTags"
         (keywords)="changeKeywords($event.keywords)"></resume-search>
 
-    <div *ngIf="!data.resultsFound" class="no-results print-never">
-        Try a different query &nbsp;<i class="material-icons">insert_emoticon</i>
-    </div>
+    <resume-no-results [noResults]="!data.resultsFound"></resume-no-results>
 
     <category 
         [category]="category" 

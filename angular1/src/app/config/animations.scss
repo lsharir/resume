@@ -99,3 +99,32 @@
         max-height: $maximal-contact-data-height;
     }
 }
+
+.no-results-animation {
+    &.ng-enter-prepare, &.ng-enter {
+        transition: max-height 1s ease-in-out 2s,
+                    margin 1s ease-in-out 2s,
+                    opacity 1s cubic-bezier(1,0,.5,.5) 2s;
+    }
+
+    &.ng-leave {
+        transition: max-height 1s ease-in-out, 
+                    margin 1s ease-in-out,
+                    opacity 0.25s ease-in-out;
+    }
+
+    &.ng-leave.ng-leave-active,
+    &.ng-enter,
+    &.ng-enter-prepare {
+        opacity: 0;
+        max-height: 0;
+        margin: 0 1rem;
+    }
+
+    &.ng-leave,
+    &.ng-enter.ng-enter-active {
+        opacity: 1;
+        margin: 1rem 1rem;
+        max-height: $maximal-no-results-height;
+    }
+}

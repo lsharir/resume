@@ -17,10 +17,36 @@ const ANIMATION_CONFIG = {
         MAX_HEIGHT: '1.375rem',
         MAX_WIDTH: '9rem',
         MARGIN: '1rem'
+    },
+    NO_RESULTS: {
+        MAX_HEIGHT: '1.5rem',
+        DELAY: animate('2s linear', style({}))
     }
 }
 
 /** Before importing a trigger, it is important to include the binding [@inOut]="'in'" in the relevant element */
+
+export const NO_RESULTS_ANIMATION = {
+    trigger: trigger('inOut', [
+        state('in', style({ opacity: 1, 'max-height': ANIMATION_CONFIG.NO_RESULTS.MAX_HEIGHT, margin: '1rem' })),
+        transition('void => *', [
+            style({ opacity: 0, 'max-height': 0, margin: 0 }),
+            ANIMATION_CONFIG.NO_RESULTS.DELAY,
+            group([
+                animate(ANIMATION_CONFIG.FADE_TRANSITION_IN, style({ opacity: 1})),
+                animate(ANIMATION_CONFIG.HEIGHT_TRANSITION, style({ 'max-height': ANIMATION_CONFIG.NO_RESULTS.MAX_HEIGHT })),
+                animate(ANIMATION_CONFIG.MARGIN_TRANSITION, style({ 'margin': '1rem' }))
+            ])
+        ]),
+        transition('* => void', [
+            group([
+                animate(ANIMATION_CONFIG.FADE_TRANSITION_OUT, style({ opacity: 0})),
+                animate(ANIMATION_CONFIG.HEIGHT_TRANSITION, style({ 'max-height': 0 })),
+                animate(ANIMATION_CONFIG.MARGIN_TRANSITION, style({ 'margin': 0 }))
+            ])
+        ])
+    ])
+}
 
 export const SUBJECT_ANIMATION = {
     trigger: trigger('inOut', [
