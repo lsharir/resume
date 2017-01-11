@@ -2,6 +2,7 @@ var Utilities = function () {
     var currentDate = new Date();
     this.currentYear = currentDate.getYear() + 1900;
     this.lowerYearBound = 1988;
+    this.config = require('../config.js');
 };
 
 Utilities.prototype.isAppRunningOnDesktop = function() {
@@ -15,34 +16,39 @@ Utilities.prototype.isAppRunningOnDesktop = function() {
 };
 
 Utilities.prototype.importContactMethods = function() {
-    return require('../methods.js');
+    return require('../resume/methods.js');
 };
 
 Utilities.prototype.importResume = function() {
     return {
-        categories: require('../categories.js'),
-        subjects: require('../subjects.js')
+        categories: require('../resume/categories.js'),
+        subjects: require('../resume/subjects.js')
     };
 };
 
+Utilities.prototype.importSourcecodeLink = function() {
+    return this.config.sourcecode;
+};
+
 Utilities.prototype.importExampleTags = function () {
-    return require('../defaults.js').map(exampleTagText => {
+    return this.config.exampleTags.map(function(exampleTagText) {
         return { text: exampleTagText, active: false };
     })
 };
 
 Utilities.prototype.getKeywords = function(userLiveTag, userCreatedTags, exampleTags) {
-    let userLiveTags = userLiveTag !== undefined ? userLiveTag.split(' ') : [],
+    var self = this,
+        userLiveTags = userLiveTag !== undefined ? userLiveTag.split(' ') : [],
         validatedTags = [],
         uniqueTags = [];
 
-    userLiveTags.forEach(tag => {
-        if (this.validateTag(tag)) {
+    userLiveTags.forEach(function(tag) {
+        if (self.validateTag(tag)) {
             validatedTags.push(tag);
         }
     });
 
-    exampleTags.forEach(tag => {
+    exampleTags.forEach(function(tag) {
         if (tag.active) {
             validatedTags.push(tag.text);
         }
@@ -50,7 +56,7 @@ Utilities.prototype.getKeywords = function(userLiveTag, userCreatedTags, example
 
     validatedTags = validatedTags.concat(userCreatedTags);
 
-    validatedTags.forEach(tag => {
+    validatedTags.forEach(function(tag) {
         if (uniqueTags.indexOf(tag) === -1) {
             uniqueTags.push(tag.toLowerCase());
         }
@@ -68,12 +74,12 @@ Utilities.prototype.filterResume = function(resume, contactMethods, tags) {
             resultsFound: false
         };
 
-    resume.categories.forEach(category => {
-        let categoryMatch = categoryTagMatch(category, keywords);
+    resume.categories.forEach(function(category) {
+        var categoryMatch = categoryTagMatch(category, keywords);
         results.categories.push(category);
 
-        resume.subjectsByType[category.type].forEach(subject => {
-            let subjectMatch = true;
+        resume.subjectsByType[category.type].forEach(function(subject) {
+            var subjectMatch = true;
 
             subjectMatch = (subjectMatch && subjectTagMatch(subject, keywords) || categoryMatch)
                 && subjectYearMatch(subject, years);
@@ -85,7 +91,7 @@ Utilities.prototype.filterResume = function(resume, contactMethods, tags) {
         });
     });
 
-    contactMethods.forEach(contactMethod => {
+    contactMethods.forEach(function(contactMethod) {
         if (keywords.indexOf(contactMethod.icon) !== -1) {
             contactMethod.filtered = true;
             results.resultsFound = true;
@@ -114,9 +120,9 @@ function addSubjectByType(subjectsByTypeArray, subject) {
 }
 
 function categoryTagMatch(category, keywords) {
-    let match = true;
+    var match = true;
 
-    keywords.forEach(keyword => {
+    keywords.forEach(function(keyword) {
         match = match && (category.words.search(keyword) !== -1);
     });
 
@@ -124,9 +130,9 @@ function categoryTagMatch(category, keywords) {
 }
 
 function subjectTagMatch(subject, keywords) {
-    let match = true;
+    var match = true;
 
-    keywords.forEach(keyword => {
+    keywords.forEach(function(keyword) {
         match = match && (subject.words.search(keyword) !== -1);
     });
 
@@ -134,7 +140,9 @@ function subjectTagMatch(subject, keywords) {
 }
 
 function subjectYearMatch(subject, years) {
-    for (let i = 0; i < years.length; i++) {
+    var i;
+
+    for (i = 0; i < years.length; i++) {
         // If the year is not a year I existed return false
         if (years[i] > this.currentYear || years[i] < this.lowerYearBound) {
             return false;
@@ -149,14 +157,14 @@ function subjectYearMatch(subject, years) {
 }
 
 getYears = function(tags) {
-    let years = [];
+    var years = [];
 
     if (!tags || !tags.length) {
         return years;
     }
 
-    tags.forEach(tag => {
-        let matches = tag.match(/\b([0-9]{4})\b/g);
+    tags.forEach(function(tag) {
+        var matches = tag.match(/\b([0-9]{4})\b/g);
         if (matches && matches.length !== 0) {
             years.push(Number(tag));
         }
@@ -166,10 +174,10 @@ getYears = function(tags) {
 }
 
 function getKeywords(tags) {
-    let keywords = [];
+    var keywords = [];
 
-    tags.forEach(tag => {
-        let matches = tag.match(/\b([0-9]{4})\b/g);
+    tags.forEach(function(tag) {
+        var matches = tag.match(/\b([0-9]{4})\b/g);
         if (!matches) {
             keywords.push(tag);
         }

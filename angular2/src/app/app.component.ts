@@ -24,7 +24,7 @@ export class AppComponent {
 		this.desktop = this.utils.isAppRunningOnDesktop();
 
 		/* Importing the raw data that the resume consists from */
-		this.sourcecode = require('../../../shared/config.js').sourcecode;
+		this.sourcecode = this.utils.importSourcecodeLink();
 		this.contactMethods = this.utils.importContactMethods();
 		this.resume = this.utils.importResume();
 
