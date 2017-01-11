@@ -15,5 +15,5 @@ For the Angular2, I tried using angular-cli (due to the simplistic nature of thi
 But think I prefer configuring a wepback build in the future.
 
 
-[ng2] http://angular.io
-[ng1] http://angularjs.org
+[ng2]: http://angular.io
+[ng1]: http://angularjs.org
