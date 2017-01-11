@@ -10,6 +10,7 @@ import { SubjectComponent } from './components/subject/subject.component.js';
 import { TagComponent } from './components/tag/tag.component.js';
 import { PrintContactDetailsComponent } from './components/print/print-contact-details.component.js';
 import { ContactDetailsMethodsComponent } from './components/contact-details-methods/contact-details-methods.component';
+import { ResumeHeaderComponent } from './components/resume-header/resume-header.component';
 
 /** Services and Filters */
 import { subjectYears } from './filters/subjectYears.filter.js';
@@ -28,6 +29,7 @@ angular.module(MODULE_NAME, [
 	])
 	.directive('appRoot', AppDirective)
 	.component('resumeSearch', new ResumeSearchComponent)
+	.component('resumeHeader', new ResumeHeaderComponent)
 	.component('category', new CategoryComponent)
 	.component('subject', new SubjectComponent)
 	.component('tag', new TagComponent)

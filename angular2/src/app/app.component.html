@@ -6,13 +6,7 @@
     <i class="material-icons icon-corner-button code-button print-never"
         (click)="showCode()">code</i>
 
-    <div class="name-header" (click)="prepareForPrint()">Liran Sharir</div>
-
-    <print-contact-details [contactDetails]="contactMethods"></print-contact-details>
-
-    <div class="intro-line-header">
-        I enjoy creating, learning and teaching new web technologies
-    </div>
+    <resume-header [contactMethods]="contactMethods"></resume-header>
 
     <resume-search 
         [exampleTags]="exampleTags"

@@ -1,8 +1,8 @@
 <div class="print-only">
     <div class="print-contact-details-wrapper">
-        <span *ngFor="let cDetail of contactDetails" class="print-contact-detail">
-            <span class="material-icons print-contact-detail-icon">{{ cDetail.icon }}</span>
-            <span class="print-contact-detail-data">{{ cDetail.data }}</span>
+        <span *ngFor="let contactMethod of contactMethods" class="print-contact-detail">
+            <span class="material-icons print-contact-detail-icon">{{ contactMethod.icon }}</span>
+            <span class="print-contact-detail-data">{{ contactMethod.data }}</span>
         </span>
     </div>
 </div>

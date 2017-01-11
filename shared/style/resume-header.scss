@@ -1,0 +1,23 @@
+@import '_shared';
+
+.resume-header-name {
+    text-align: center;
+    font-weight: 300;
+    font-family: $font-sans;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 37.5rem) {
+  .resume-header-name {
+    font-size: 2rem;
+  }
+}
+
+.resume-header-intro {
+    font-style: italic;
+    margin: 1rem;
+    font-size: 1rem;
+    text-align: center;
+    color: $color-secondary;
+}

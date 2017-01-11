@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
     styleUrls: ['./print-contact-details.component.scss']
 })
 export class PrintContactDetailsComponent implements OnInit {
-    @Input('contactDetails') contactDetails;
+    @Input('contactMethods') contactMethods;
 
     constructor() { }
 

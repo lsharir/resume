@@ -5,7 +5,7 @@ export class PrintContactDetailsComponent {
         this.template = require('./print-contact-details.component.html');
         this.controller = PrintContactDetailsCtrl;
         this.bindings = {
-            contactDetails: '='
+            contactMethods: '='
         };
     }
 }

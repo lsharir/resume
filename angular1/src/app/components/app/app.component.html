@@ -6,13 +6,7 @@
     <i class="material-icons icon-corner-button code-button print-never"
         ng-click="$ctrl.showCode()">code</i>
 
-    <div class="name-header" ng-click="$ctrl.prepareForPrint()">Liran Sharir</div>
-
-    <print-contact-details contact-details="$ctrl.contactMethods"></print-contact-details>
-
-    <div class="intro-line-header">
-        I enjoy creating, learning and teaching new web technologies
-    </div>
+    <resume-header contact-methods="$ctrl.contactMethods"></resume-header>
 
     <resume-search 
         example-tags="$ctrl.exampleTags"

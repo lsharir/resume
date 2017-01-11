@@ -44,14 +44,6 @@ body {
     box-shadow: 0 2.5px 12.5px -2.5px rgba(0, 0, 0, 0.5);
 }
 
-.name-header {
-    text-align: center;
-    font-weight: 300;
-    font-family: $font-sans;
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
 .icon-corner-button {
     position: absolute;
     padding: 2rem;
@@ -86,22 +78,10 @@ body {
   .document {
     padding: 1rem;
   }
-  
-  .name-header {
-    font-size: 2rem;
-  }
 
   .print-button, .code-button { 
       padding: 1rem;
   }
-}
-
-.intro-line-header {
-    font-style: italic;
-    margin: 1rem;
-    font-size: 1rem;
-    text-align: center;
-    color: $color-secondary;
 }
 
 .no-results {
