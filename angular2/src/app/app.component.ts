@@ -56,6 +56,6 @@ export class AppComponent {
 	}
 
 	showCode() {
-		window.location.href = this.sourcecode;
+		window.open(this.sourcecode);
 	}
 }

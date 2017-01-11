@@ -1,5 +1,3 @@
-import './app.component.scss';
-
 export function AppDirective () {
 	return {
 		template: require('./app.component.html'),
@@ -9,9 +7,10 @@ export function AppDirective () {
 }
 
 class AppCtrl {
-	constructor($scope, IndexService, UtilitiesService) {
+	constructor($scope, $window, IndexService, UtilitiesService) {
 		/* Binding injections to our controller */
 		this.$scope = $scope;
+		this.$window = $window;
 		this.indexService = IndexService;
 		this.utils = UtilitiesService;
 
@@ -52,10 +51,10 @@ class AppCtrl {
 	}
 
 	printDocument() {
-		window.print();
+		this.$window.print();
 	}
 
 	showCode() {
-		window.location.href = this.sourcecode;
+		this.$window.open(this.sourcecode);
 	}
 }

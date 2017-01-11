@@ -15,7 +15,7 @@ module.exports = (function () {
             'Photoshop-like tool for monitoring and improving image stitching systems',
             'Browser that exposes collected data to customers'
         ],
-        tags: ['web', 'image', 'vision', 'big', 'data', 'angular', 'angularjs', 'angular1']
+        tags: ['web', 'work', 'image', 'vision', 'big', 'data', 'angular', 'angularjs', 'angular1']
     });
 
     subjects.push({

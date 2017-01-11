@@ -17,7 +17,7 @@ module.exports = (function makeWebpackConfig() {
     var config = {};
 
     config.entry = {
-        app: './src/app/app.js'
+        app: './src/app/app.module.js'
     };
 
     // For production we include the Google Analytics Script
@@ -80,7 +80,7 @@ module.exports = (function makeWebpackConfig() {
     config.plugins.push(
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
-            template: './src/public/index.html',
+            template: './src/index.html',
             inject: 'body'
         }),
         new ExtractTextPlugin('[name].[hash].css', { disable: !isProd })
