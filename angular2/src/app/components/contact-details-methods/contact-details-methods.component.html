@@ -10,7 +10,7 @@
 <div class="contact-data-wrapper print-never">
     <template ngFor let-contactMethod [ngForOf]="contactMethods">
         <span 
-            *ngIf="contactMethod.toggled"
+            *ngIf="contactMethod.toggled || contactMethod.filtered"
             class="contact-data">
             {{ contactMethod.data }}
         </span>

@@ -1,10 +1,7 @@
-import { Injectable } from '@angular/core';
-
-@Injectable()
 export class IndexService {
-    indexingModule = require('../../../../shared/modules/indexing.module');
-
-    constructor() {}
+    constructor() {
+        this.indexingModule = require('modules/indexing.module');
+    }
 
     indexResume(resume) {
         this.indexingModule.indexResume(resume);

@@ -66,7 +66,8 @@ Utilities.prototype.getKeywords = function(userLiveTag, userCreatedTags, example
 };
 
 Utilities.prototype.filterResume = function(resume, contactMethods, tags) {
-    var years = getYears(tags),
+    var self = this,
+        years = getYears(tags),
         keywords = getKeywords(tags),
         results = {
             categories: [],
@@ -76,6 +77,7 @@ Utilities.prototype.filterResume = function(resume, contactMethods, tags) {
 
     resume.categories.forEach(function(category) {
         var categoryMatch = categoryTagMatch(category, keywords);
+
         results.categories.push(category);
 
         resume.subjectsByType[category.type].forEach(function(subject) {
@@ -85,7 +87,7 @@ Utilities.prototype.filterResume = function(resume, contactMethods, tags) {
                 && subjectYearMatch(subject, years);
 
             if (subjectMatch) {
-                addSubjectByType(results.subjectsByType, subject);
+                self.addSubjectByType(results.subjectsByType, subject);
                 results.resultsFound = true;
             }
         });
@@ -111,13 +113,14 @@ Utilities.prototype.validateTag = function(tag) {
 Utilities.prototype.originalTag = function(existingTags, tag) {
     return existingTags.indexOf(tag) === -1;
 }
-function addSubjectByType(subjectsByTypeArray, subject) {
+
+Utilities.prototype.addSubjectByType = function(subjectsByTypeArray, subject) {
     if (!subjectsByTypeArray[subject.type] || !subjectsByTypeArray[subject.type].length) {
         subjectsByTypeArray[subject.type] = [];
     }
 
     subjectsByTypeArray[subject.type].push(subject);
-}
+};
 
 function categoryTagMatch(category, keywords) {
     var match = true;

@@ -12,7 +12,7 @@ import { ContactDetailsMethodsComponent } from './components/contact-details-met
 /** Services and Filters */
 import { subjectYears } from './filters/subjectYears.filter.js';
 
-import { AnalyticsService, UtilitiesService, SiftService } from './services';
+import { AnalyticsService, UtilitiesService, IndexService } from './services';
 
 /** Application configuration */
 import { appConfig } from './config/app.config.js';
@@ -32,7 +32,7 @@ angular.module(MODULE_NAME, [
 	.component('printContactDetails', new PrintContactDetailsComponent)
 	.component('contactDetailsMethods', new ContactDetailsMethodsComponent)
 	.filter('subjectYears', subjectYears)
-	.service('SiftService', SiftService)
+	.service('IndexService', IndexService)
 	.service('UtilitiesService', UtilitiesService)
 	.service('AnalyticsService', AnalyticsService)
 	.config(appConfig)

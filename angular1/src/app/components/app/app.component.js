@@ -9,10 +9,10 @@ export function AppDirective () {
 }
 
 class AppCtrl {
-	constructor($scope, SiftService, UtilitiesService) {
+	constructor($scope, IndexService, UtilitiesService) {
 		/* Binding injections to our controller */
 		this.$scope = $scope;
-		this.sift = SiftService;
+		this.indexService = IndexService;
 		this.utils = UtilitiesService;
 
 		/* Setting the desktop variable to false when user is on mobile*/
@@ -24,7 +24,7 @@ class AppCtrl {
 		this.resume = this.utils.importResume();
 
 		/* Sift Service aids us with indexing keywords and re-sorting the data to improve our digestion :) */
-		this.sift.indexResume(this.resume);
+		this.indexService.indexResume(this.resume);
 
 		/* Importing the example tags */
 		this.exampleTags = this.utils.importExampleTags();
