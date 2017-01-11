@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { UtilitiesService } from './services/utilities.service';
 import { IndexService } from './services/index.service';
 
@@ -13,6 +13,8 @@ export class AppComponent {
 	public resume;
 	public exampleTags;
 	public keywords: Array<string> = [];
+
+	public filterResumeContactMethodsEmitter: EventEmitter<any> = new EventEmitter();
 
 	public data;
 
@@ -49,6 +51,8 @@ export class AppComponent {
 
 	filterResume() {
 		this.data = this.utils.filterResume(this.resume, this.contactMethods, this.keywords);
+		/** Emitting a change has occured down to the contacts-method component */
+		this.filterResumeContactMethodsEmitter.emit();
 	}
 
 	printDocument() {

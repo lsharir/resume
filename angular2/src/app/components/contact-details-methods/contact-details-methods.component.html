@@ -7,9 +7,10 @@
     </i>
 </div>
 
-<div class="contact-data-wrapper print-never">
+<div class="contact-data-wrapper print-never" [class.minimized]="noContactMethodSelected">
     <template ngFor let-contactMethod [ngForOf]="contactMethods">
         <span 
+            [@inOut]="'in'"
             *ngIf="contactMethod.toggled || contactMethod.filtered"
             class="contact-data">
             {{ contactMethod.data }}

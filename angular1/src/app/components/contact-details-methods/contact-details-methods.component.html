@@ -8,7 +8,7 @@
     </i>
 </div>
 
-<div class="contact-data-wrapper count-{{contactResults.length}} print-never" ng-class="{ 'minimized' : contactResults.length === 0 }">
+<div class="contact-data-wrapper print-never" ng-class="{ 'minimized' : contactResults.length === 0 }">
     <span 
         class="contact-data contact-data-animation"
         ng-repeat="contactMethod in $ctrl.contactMethods | filter : $ctrl.contactMethodFilter as contactResults track by $id(contactMethod)">

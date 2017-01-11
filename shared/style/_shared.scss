@@ -20,21 +20,25 @@ $duration-short: 0.2s;
 
 $category-title-font-size: 1.5rem;
 
-// All manual checks are to ensure animations fluidity
-
-$maximal-category-title-height: 2.0625rem; // This is checked manually
-$category-title-margin: 0.5rem 0;
 
 $subtext-size: 1rem;
 $hint-size: 0.75rem;
 $header-size: 1rem;
 
-$maximal-subject-height: 14.5rem; // This is checked manually, also in animations.ts
+// Animations related constants, should match animations.ts config
+// All manual checks are to ensure animations fluidity
+// ########################
+$maximal-category-title-height: 2.0625rem; // This is checked manually
+$category-title-margin: 0.5rem 0;
+
+$maximal-subject-height: 14.5rem; // This is checked manually
 
 $maximal-contact-data-width: 9rem; // This is checked manually
 $maximal-contact-data-height: 1.375rem; // This is checked manually
+$contact-data-margin: 1rem;
 
 $maximal-no-results-height: 1.5rem; // This is checked manually
+// #########################
 
 $tag-margin-top-bottom: 0.25rem;
 $tag-margin-left-right: 0.125rem;

@@ -60,3 +60,42 @@
         margin: $category-title-margin;
     }
 }
+
+
+.contact-data-wrapper .contact-data-animation {
+    will-change: max-width, max-height, opacity, margin;
+    
+    &.ng-enter-prepare, &.ng-move-prepare, &.ng-enter, &.ng-move {
+        transition: max-width 1s ease-in-out,
+                    max-height 1s ease-in-out, 
+                    margin 1s ease-in-out, 
+                    opacity 1s cubic-bezier(1,0,.5,.5);
+    }
+
+    &.ng-leave {
+        transition: max-width 1s ease-in-out, 
+                    max-height 1s ease-in-out, 
+                    margin 1s ease-in-out, 
+                    opacity 0.25s ease-in-out;
+    }
+
+    &.ng-leave.ng-leave-active,
+    &.ng-move,
+    &.ng-enter,
+    &.ng-enter-prepare,
+    &.ng-move-prepare {
+        opacity: 0;
+        max-width: 0;
+        max-height: 0;
+        margin: 0;
+    }
+
+    &.ng-leave,
+    &.ng-move.ng-move-active,
+    &.ng-enter.ng-enter-active {
+        opacity:1;
+        margin: $contact-data-margin;
+        max-width: $maximal-contact-data-width;
+        max-height: $maximal-contact-data-height;
+    }
+}

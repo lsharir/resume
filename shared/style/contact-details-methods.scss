@@ -29,10 +29,15 @@
     text-align: center;
     transition: max-height 1s ease-in-out;
     will-change: max-height;
-    max-height: 3.375rem;
+    max-height: 6.75rem;
+
+    &.minimized {
+        max-height: 0rem;
+    }
 
     .contact-data {
         margin: 1rem;
+        will-change: max-height, max-width, opacity, margin;
         display: inline-block;
         white-space: nowrap;
         max-width: $maximal-contact-data-width;

@@ -1,13 +1,1 @@
 @import '../../../../../shared/style/contact-details-methods.scss';
-
-@media (max-width: 23.75rem) {
-    .contact-data-wrapper.count-2 {
-        max-height: 6.75rem;
-    }
-}
-
-.contact-data-wrapper {
-    &.minimized {
-        max-height: 0;
-    }
-}
