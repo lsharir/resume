@@ -1,2 +1,10 @@
 @import '../../../../../shared/style/subject.scss';
 
+:host {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    will-change: max-height, opacity;
+    box-sizing:border-box;
+    max-height: $maximal-subject-height;
+}

@@ -1,15 +1,22 @@
 import './subject.component.scss';
+import { SUBJECT_ANIMATION } from '../../config/animations';
 
-import { Component, OnInit, Input } from '@angular/core';
+import { 
+    Component,
+    Input,
+    HostBinding
+} from '@angular/core';
 
 @Component({
     selector: 'subject',
     templateUrl: './subject.component.html',
-    styleUrls: ['./subject.component.scss']
+    styleUrls: ['./subject.component.scss'],
+    animations: [ SUBJECT_ANIMATION.trigger ],
+    host: {
+        '[@inOut]': "'in'"
+    }
 })
-export class SubjectComponent implements OnInit {
+export class SubjectComponent {
     @Input('subject') subject;
     constructor() { }
-
-    ngOnInit() { }
 }

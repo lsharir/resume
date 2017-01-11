@@ -1,5 +1,5 @@
 <div>
-    <div *ngIf="subjects" class="category-title category-title-animation">
+    <div *ngIf="subjects" [@inOut]="'in'" class="category-title category-title-animation">
         {{ category.title}}
     </div>
 
