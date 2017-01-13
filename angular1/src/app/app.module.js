@@ -2,8 +2,10 @@ import angular from 'angular';
 
 import '../styles.scss';
 
-/** Directives and Components */
-import { AppDirective } from './components/app/app.component.js';
+/** App */
+import { AppComponent } from './components/app/app.component.js';
+
+/** Components */
 import { ResumeSearchComponent } from './components/resume-search/resume-search.component';
 import { CategoryComponent } from './components/category/category.component.js';
 import { SubjectComponent } from './components/subject/subject.component.js';
@@ -13,10 +15,18 @@ import { ContactDetailsMethodsComponent } from './components/contact-details-met
 import { ResumeHeaderComponent } from './components/resume-header/resume-header.component';
 import { ResumeNoResultsComponent } from './components/resume-no-results/resume-no-results.component';
 
+/** Directives */
+import { RevealOrderDirective } from './directives/reveal-order.directive';
+
 /** Services and Filters */
 import { subjectYears } from './filters/subjectYears.filter.js';
 
-import { AnalyticsService, UtilitiesService, IndexService } from './services';
+import { 
+	AnalyticsService, 
+	UtilitiesService, 
+	IndexService,
+	RevealService
+} from './services';
 
 /** Application configuration */
 import { appConfig } from './config/app.config.js';
@@ -28,7 +38,7 @@ angular.module(MODULE_NAME, [
 		require('angulartics'),
 		require('angulartics-google-analytics')
 	])
-	.directive('appRoot', AppDirective)
+	.component('appRoot', new AppComponent)
 	.component('resumeSearch', new ResumeSearchComponent)
 	.component('resumeHeader', new ResumeHeaderComponent)
 	.component('resumeNoResults', new ResumeNoResultsComponent)
@@ -37,10 +47,12 @@ angular.module(MODULE_NAME, [
 	.component('tag', new TagComponent)
 	.component('printContactDetails', new PrintContactDetailsComponent)
 	.component('contactDetailsMethods', new ContactDetailsMethodsComponent)
+	.directive('revealOrder', () => new RevealOrderDirective)
 	.filter('subjectYears', subjectYears)
 	.service('IndexService', IndexService)
 	.service('UtilitiesService', UtilitiesService)
 	.service('AnalyticsService', AnalyticsService)
+	.service('RevealService', RevealService)
 	.config(appConfig)
 	;
 

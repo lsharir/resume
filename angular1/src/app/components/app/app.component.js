@@ -1,4 +1,4 @@
-export function AppDirective () {
+export function AppComponent () {
 	return {
 		template: require('./app.component.html'),
 		controller: AppCtrl,
@@ -7,12 +7,23 @@ export function AppDirective () {
 }
 
 class AppCtrl {
-	constructor($scope, $window, IndexService, UtilitiesService) {
+	constructor($scope, $timeout, $interval, $window, RevealService, IndexService, UtilitiesService) {
+		let specialEffectExampleTag,
+			specialEffects = {
+				globalsAvailabilityChecker : angular.noop,
+				globalsAdditionalWait : 0,
+				exampleTag : { active : true , text : 'AngularJS' },
+				animate : angular.noop
+			};
+
 		/* Binding injections to our controller */
 		this.$scope = $scope;
 		this.$window = $window;
+		this.$interval = $interval;
+		this.$timeout = $timeout;
 		this.indexService = IndexService;
 		this.utils = UtilitiesService;
+		this.reveal = RevealService;
 
 		/* Setting the desktop variable to false when user is on mobile*/
 		this.desktop = this.utils.isAppRunningOnDesktop();
@@ -27,6 +38,7 @@ class AppCtrl {
 
 		/* Importing the example tags */
 		this.exampleTags = this.utils.importExampleTags();
+		this.exampleTags.unshift(specialEffects.exampleTag);
 
 		/** initializing the keywords array */
 		this.keywords = [];
@@ -39,6 +51,37 @@ class AppCtrl {
 		};
 
 		this.filterResume();
+
+		/** Loader special effects */
+
+		specialEffects.animate = () => {
+			this.reveal.execute([
+				() => {
+					specialEffects.globalsAdditionalWait = Math.max(0, (1000 - (Date.now() - this.$window.loaderStart)));
+				},
+				this.reveal.waitAndIncrement(specialEffects.globalsAdditionalWait, 0),
+				() => {
+					$window.flipLoader();
+					this.documentLoaded = true;
+				},
+				this.reveal.waitAndIncrement(100, 1),
+				this.reveal.waitAndIncrement(600, 1),
+				this.reveal.waitAndIncrement(300, 1),
+				this.reveal.waitAndIncrement(300, 1),
+				this.reveal.waitAndIncrement(1500, 0),
+				() => {
+					specialEffects.exampleTag.active = false;
+					this.changeKeywords([]);
+				}
+			]);
+		}
+
+		specialEffects.globalsAvailabilityChecker = this.$interval(() => {
+			if (this.$window.loaderStart && this.$window.flipLoader) {
+				this.$interval.cancel(specialEffects.globalsAvailabilityChecker);
+				specialEffects.animate();
+			}
+		}, 100, 0, false);
 	}
 
 	changeKeywords(keywords) {
@@ -56,5 +99,12 @@ class AppCtrl {
 
 	showCode() {
 		this.$window.open(this.sourcecode);
+	}
+
+	switchAngular() {
+		this.documentLoaded = false;
+		this.$timeout(() => {
+			this.$window.location.href = this.sourcecode;
+		}, 3000);
 	}
 }

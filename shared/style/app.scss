@@ -1,12 +1,20 @@
 @import './_shared.scss';
 
-* {
+html {
+    transition: background 0.5 ease-out;
+    background: $bg-back;
+}
+
+body {
+    margin: 1rem;
     font-family: $font-family;
     color: $color-primary;
 }
 
-html {
-    background: $bg-back;
+@media (max-width: 37.5rem) {
+    body {
+        margin: 0.5rem;
+    }
 }
 
 /* Media queries for print mode */
@@ -27,13 +35,9 @@ html {
 
 /* Style of general components and elements within the app */
 
-body {
-    margin: 1rem;
-    padding: 0;
-}
-
 .document {
     display: flex;
+    position: relative;
     flex-flow: column;
     margin: auto;
     text-align:initial;
@@ -41,12 +45,12 @@ body {
     position: relative;
     padding: 2rem;
     background: $bg-paper;
-    box-shadow: 0 2.5px 12.5px -2.5px rgba(0, 0, 0, 0.5);
 }
 
 .icon-corner-button {
     position: absolute;
     padding: 2rem;
+    color: #aaa;
     transition: opacity $duration-short ease-out;
     will-change: opacity;
     opacity: 0.25;
@@ -71,10 +75,6 @@ body {
     for devices with narrow screens (600px with font-size: 16px) */
 
 @media (max-width: 37.5rem) {
-  body {
-      margin: 0.5rem;
-  }
-
   .document {
     padding: 1rem;
   }

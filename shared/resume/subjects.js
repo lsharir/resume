@@ -130,7 +130,7 @@ module.exports = (function () {
         type: 5,
         title: 'Aviation enthusiast',
         description: [
-            'Assembled and fly remote control models of both helicopters and airplanes'
+            'Assemble and fly remote control models of both helicopters and airplanes'
         ],
         tags: ['aviation', 'flight', 'rc', 'plane', 'helicopter']
     });

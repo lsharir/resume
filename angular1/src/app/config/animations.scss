@@ -1,5 +1,43 @@
 @import '../../../../shared/style/_shared.scss';
 
+.document-flipped-add {
+    transition: transform 3s cubic-bezier(0.75, 0.25, 0, 1),
+        opacity 2s ease-in;
+    transform: rotateY(0deg);
+    opacity: 1;
+}
+
+.document-flipped-add.document-flipped-add-active {
+    transform: rotateY(-180deg);
+    opacity: 0;
+}
+
+.document-flipped-remove {
+    transition: transform 6s cubic-bezier(0.75, 0.25, 0, 1),
+        opacity 0.5s ease-out;
+    transform: rotateY(180deg);
+    opacity: 0;
+}
+
+&.document-flipped-remove.document-flipped-remove-active {
+    transform: rotateY(0deg);
+    opacity: 1;
+}
+
+.reveal-hidden {
+    opacity: 0;
+}
+
+.reveal-hidden-remove {
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    transform: translate3d(0, 100px, 0);
+}
+
+.reveal-hidden-remove.reveal-hidden-remove-active {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+}
+
 .subject-animation {
     position: relative;
     display: flex;

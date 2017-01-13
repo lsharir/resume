@@ -1,26 +1,35 @@
-<div class="document">
+<div class="document" ng-class="{'document-flipped' : !$ctrl.documentLoaded }">
+
     <i class="material-icons icon-corner-button print-button print-never"
         ng-if="::$ctrl.desktop"
+        reveal-order="4"
         ng-click="$ctrl.printDocument()">print</i>
 
     <i class="material-icons icon-corner-button code-button print-never"
+        reveal-order="4"
         ng-click="$ctrl.showCode()">code</i>
 
-    <resume-header contact-methods="$ctrl.contactMethods"></resume-header>
+    <resume-header 
+        ng-click="$ctrl.switchAngular()"
+        reveal-order="1"
+        contact-methods="$ctrl.contactMethods"></resume-header>
 
     <resume-search 
+        reveal-order="2"
         example-tags="$ctrl.exampleTags"
         keywords-emitter="$ctrl.changeKeywords(keywords)"></resume-search>
 
     <resume-no-results no-results="!$ctrl.data.resultsFound"></resume-no-results>
 
     <category 
+        reveal-order="3"
         category="category" 
         subjects="$ctrl.data.subjectsByType[category.type]" 
         ng-repeat="category in $ctrl.data.categories track by $id(category)">
     </category>
 
     <contact-details-methods 
+        reveal-order="4"
         contact-methods="$ctrl.contactMethods">
     </contact-details-methods>
 </div>
