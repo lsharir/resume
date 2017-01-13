@@ -36,7 +36,7 @@
             max-width: 120rem;
             margin: 0 auto;
             overflow: hidden;
-            background: rgba(0,0,0,0.825);
+            background: rgba(0,0,0,0.75);
             color: white;
             backface-visibility: hidden;
             font-size: 1rem;
@@ -73,32 +73,83 @@
     window.addEventListener('load', function() {
         var loader = document.getElementById('loader'),
             codeBlock = document.getElementById('code-block'),
-            code = getCode(),
-            LETTER_DURATION = 2;
+            code = getCode();
 
         function getCode() {
             return "angular.module(MODULE_NAME, [\n\u0009\u0009require('angular-animate'),\n\u0009\u0009require('angulartics'),\n\u0009\u0009require('angulartics-google-analytics')\n\u0009])\n\u0009.component('appRoot', new AppComponent)\n\u0009.component('resumeSearch', new ResumeSearchComponent)\n\u0009.component('resumeHeader', new ResumeHeaderComponent)\n\u0009.component('resumeNoResults', new ResumeNoResultsComponent)\n\u0009.component('category', new CategoryComponent)\n\u0009.component('subject', new SubjectComponent)\n\u0009.component('tag', new TagComponent)\n\u0009.component('printContactDetails', new PrintContactDetailsComponent)\n\u0009.component('contactDetailsMethods', new ContactDetailsMethodsComponent)\n\u0009.directive('revealOrder', () => new RevealOrderDirective)\n\u0009.filter('subjectYears', subjectYears)\n\u0009.service('IndexService', IndexService)\n\u0009.service('UtilitiesService', UtilitiesService)\n\u0009.service('AnalyticsService', AnalyticsService)\n\u0009.service('RevealService', RevealService)\n\u0009.config(appConfig)\n\u0009;"
         }
-        
-        loader.style.transition = 'transform 6s cubic-bezier(0.75,0.15,0,1), max-width 1s ease-out';
-        loader.style.maxWidth = '66.5rem';
 
-        codeBlock.innerHTML = '';
+        function typewriteCode(code, letterDuration) {
+            codeBlock.innerHTML = '';
 
-        for (var charIndex = 0; charIndex <= code.length; charIndex++) {
-            setTimeout(function (code, showLength) {
-                codeBlock.innerHTML = code.slice(0, showLength);
-            }, charIndex * LETTER_DURATION, code, charIndex);
+            for (var charIndex = 0; charIndex <= code.length; charIndex++) {
+                setTimeout(function (code, showLength) {
+                    codeBlock.innerHTML = code.slice(0, showLength);
+                }, charIndex * letterDuration, code, charIndex);
+            }
         }
+
+        loader.animate([
+            { maxWidth : '120rem' },
+            { maxWidth : '66.5rem' }
+        ], {
+            duration: 1000,
+            fill: 'forwards',
+            easing: 'ease-out'
+        });
+
+        typewriteCode(code, 2);
 
         // assigning global variables to continue the animation sequence from the app
         window.flipLoader = function() {
-            loader.style.transform = 'rotateY(-180deg)';
+            loader.animate([
+                { transform : 'rotateY(0deg)' },
+                { transform : 'rotateY(-180deg)' }
+            ], {
+                duration: 4000,
+                fill: 'forwards',
+                easing: 'cubic-bezier(0.75,0,0.25,1)'
+            });
 
             setTimeout(function() {
-                loader.remove();
+                loader.style.display = 'none';
             }, 10 * 1000);
         };
+
+        window.backToConsole = function() {
+            typewriteCode('$scope.$on("$destroy") {\n   $window.location.href = "ng2.lsharir.com";\n});', 30);
+
+            loader.style.display = 'block';
+
+            loader.animate([
+                { transform : 'rotateY(-180deg)' },
+                { transform : 'rotateY(-360deg)' }
+            ], {
+                duration: 3000,
+                fill: 'forwards',
+                easing: 'cubic-bezier(1,0,0,1)'
+            });
+
+            loader.animate([
+                { maxWidth : '66.5rem' },
+                { maxWidth : '120rem' }
+            ], {
+                duration: 1000,
+                delay: 2000,
+                fill: 'forwards',
+                easing: 'ease-in'
+            });
+
+            document.body.animate([
+                { margin : window.getComputedStyle(document.body).margin },
+                { margin : 0 }
+            ], {
+                duration : 1000,
+                delay: 2000,
+                fill: 'forwards',
+                easing: 'ease-in'
+            });
+        }
 
         window.loaderStart = Date.now();
     });
@@ -108,8 +159,8 @@
 <!-- ###### actual content ###### -->
 
 <body>
-    <div id="loader">
-        <code id="code-block"></code>
+    <div id="loader" class="print-never">
+        <code id="code-block">// Loading ng1 application</code>
     </div>
     <app-root></app-root>
 </body>

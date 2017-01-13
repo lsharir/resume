@@ -50,14 +50,13 @@ body {
 .icon-corner-button {
     position: absolute;
     padding: 2rem;
-    color: #aaa;
-    transition: opacity $duration-short ease-out;
-    will-change: opacity;
-    opacity: 0.25;
+    color: #888;
+    transition: color $duration-short ease-out;
+    will-change: color;
     cursor: pointer;
 
     &:hover {
-        opacity: 1;
+        color: #ccc;
     }
 
     &.code-button {

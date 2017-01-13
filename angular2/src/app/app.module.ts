@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { COMPONENTS } from './components';
+import { DIRECTIVES } from './directives';
 import { FILTERS } from './filters';
 import { SERVICES } from './services';
 
@@ -14,6 +15,7 @@ import { AppComponent } from './app.component';
   declarations: [
     AppComponent,
     ...COMPONENTS,
+    ...DIRECTIVES,
     ...FILTERS
   ],
   imports: [
@@ -27,4 +29,4 @@ import { AppComponent } from './app.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

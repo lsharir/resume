@@ -1,10 +1,11 @@
 import { Component, EventEmitter } from '@angular/core';
-import { UtilitiesService } from './services/utilities.service';
-import { IndexService } from './services/index.service';
+import { RevealService, UtilitiesService, IndexService } from './services';
+import { DOCUMENT_FLIPPED_ANIMATION } from './config/animations';
 
 @Component({
 	selector: 'app-root',
-	templateUrl: './app.component.html'
+	templateUrl: './app.component.html',
+	animations: [ DOCUMENT_FLIPPED_ANIMATION.trigger ]
 })
 export class AppComponent {
 	public desktop: Boolean;
@@ -13,6 +14,7 @@ export class AppComponent {
 	public resume;
 	public exampleTags;
 	public keywords: Array<string> = [];
+	public documentLoaded: Boolean = false;
 
 	public filterResumeContactMethodsEmitter: EventEmitter<any> = new EventEmitter();
 
@@ -20,7 +22,8 @@ export class AppComponent {
 
 	constructor(
 		private utils: UtilitiesService,
-		private indexService: IndexService
+		private indexService: IndexService,
+		private reveal: RevealService
 	) {
 		/* Setting the desktop variable to false when user is on mobile*/
 		this.desktop = this.utils.isAppRunningOnDesktop();
@@ -41,7 +44,46 @@ export class AppComponent {
 			resultsFound: false
 		};
 
-		this.filterResume();
+		this.animationSequence();
+	}
+
+	animationSequence() {
+		let globalsAvailabilityChecker,
+			globalsAdditionalWait = 0,
+			exampleTag = { active : true , text : 'Angular2' },
+			animate;
+
+		this.exampleTags.unshift(exampleTag);
+		this.changeKeywords(['angular2']);
+
+		animate = () => {
+			this.reveal.execute([
+				() => {
+					globalsAdditionalWait = Math.max(0, (1000 - (Date.now() - window['loaderStart'])));
+				},
+				this.reveal.waitAndIncrement(globalsAdditionalWait, 0),
+				() => {
+					window['flipLoader']();
+					this.documentLoaded = true;
+				},
+				this.reveal.waitAndIncrement(100, 1),
+				this.reveal.waitAndIncrement(600, 1),
+				this.reveal.waitAndIncrement(300, 1),
+				this.reveal.waitAndIncrement(300, 1),
+				this.reveal.waitAndIncrement(1500, 0),
+				() => {
+					exampleTag.active = false;
+					this.changeKeywords([]);
+				}
+			])
+		}
+
+		globalsAvailabilityChecker = setInterval(() => {
+			if (window['loaderStart'] && window['flipLoader']) {
+				clearInterval(globalsAvailabilityChecker);
+				animate();
+			}
+		}, 100, 0, false);
 	}
 
 	changeKeywords(keywords) {
@@ -61,5 +103,13 @@ export class AppComponent {
 
 	showCode() {
 		window.open(this.sourcecode);
+	}
+
+	switchAngular() {
+		this.documentLoaded = false;
+		window['backToConsole']();
+		setTimeout(() => {
+			window.location.href = 'http://localhost:8080';
+		}, 3000);
 	}
 }

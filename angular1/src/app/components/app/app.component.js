@@ -7,15 +7,15 @@ export function AppComponent () {
 }
 
 class AppCtrl {
-	constructor($scope, $timeout, $interval, $window, RevealService, IndexService, UtilitiesService) {
-		let specialEffectExampleTag,
-			specialEffects = {
-				globalsAvailabilityChecker : angular.noop,
-				globalsAdditionalWait : 0,
-				exampleTag : { active : true , text : 'AngularJS' },
-				animate : angular.noop
-			};
-
+	constructor(
+		$scope,
+		$timeout,
+		$interval, 
+		$window, 
+		RevealService, 
+		IndexService, 
+		UtilitiesService
+	) {
 		/* Binding injections to our controller */
 		this.$scope = $scope;
 		this.$window = $window;
@@ -38,7 +38,6 @@ class AppCtrl {
 
 		/* Importing the example tags */
 		this.exampleTags = this.utils.importExampleTags();
-		this.exampleTags.unshift(specialEffects.exampleTag);
 
 		/** initializing the keywords array */
 		this.keywords = [];
@@ -50,18 +49,25 @@ class AppCtrl {
 			resultsFound: false
 		};
 
-		this.filterResume();
+		this.animationSequence();
+	}
 
-		/** Loader special effects */
+	animationSequence() {
+		let globalsAvailabilityChecker = angular.noop,
+			globalsAdditionalWait = 0,
+			exampleTag = { active : true , text : 'AngularJS' },
+			animate = angular.noop;
 
-		specialEffects.animate = () => {
+		this.exampleTags.unshift(exampleTag);
+
+		animate = () => {
 			this.reveal.execute([
 				() => {
-					specialEffects.globalsAdditionalWait = Math.max(0, (1000 - (Date.now() - this.$window.loaderStart)));
+					globalsAdditionalWait = Math.max(0, (1000 - (Date.now() - this.$window.loaderStart)));
 				},
-				this.reveal.waitAndIncrement(specialEffects.globalsAdditionalWait, 0),
+				this.reveal.waitAndIncrement(globalsAdditionalWait, 0),
 				() => {
-					$window.flipLoader();
+					this.$window.flipLoader();
 					this.documentLoaded = true;
 				},
 				this.reveal.waitAndIncrement(100, 1),
@@ -70,16 +76,16 @@ class AppCtrl {
 				this.reveal.waitAndIncrement(300, 1),
 				this.reveal.waitAndIncrement(1500, 0),
 				() => {
-					specialEffects.exampleTag.active = false;
+					exampleTag.active = false;
 					this.changeKeywords([]);
 				}
 			]);
 		}
 
-		specialEffects.globalsAvailabilityChecker = this.$interval(() => {
+		globalsAvailabilityChecker = this.$interval(() => {
 			if (this.$window.loaderStart && this.$window.flipLoader) {
-				this.$interval.cancel(specialEffects.globalsAvailabilityChecker);
-				specialEffects.animate();
+				this.$interval.cancel(globalsAvailabilityChecker);
+				animate();
 			}
 		}, 100, 0, false);
 	}
@@ -103,8 +109,9 @@ class AppCtrl {
 
 	switchAngular() {
 		this.documentLoaded = false;
+		this.$window.backToConsole();
 		this.$timeout(() => {
-			this.$window.location.href = this.sourcecode;
+			this.$window.location.href = 'http://localhost:4200';
 		}, 3000);
 	}
 }

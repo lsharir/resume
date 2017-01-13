@@ -1,16 +1,181 @@
 <!doctype html>
 <html>
+    <style>
+    </style>
 <head>
   <meta charset="utf-8">
   <title>Liran Sharir</title>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css?family=Lato:300|Open+Sans:300,400,700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        html {
+            background: #fff;
+        }
+
+        body {
+            transition: margin 0.5s ease-in-out;
+            perspective: 1800px;
+            perspective-origin: 50% 5%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body.no-margin {
+            margin: 0;
+        }
+
+        .document-flipped {
+            opacity: 0;
+        }
+
+        #loader {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 10;
+            height: 150vh;
+            max-width: 120rem;
+            margin: 0 auto;
+            overflow: hidden;
+            background: rgba(0,0,0,0.75);
+            color: white;
+            backface-visibility: hidden;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 50rem) {
+            #loader {
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 37.5rem) {
+            #loader {
+                font-size: 0.35rem;
+            }
+        }
+
+        @media (max-width: 28rem) {
+            #loader {
+                font-size: 0.25rem;
+            }
+        }
+
+        #loader > code {
+            font-family: Monaco, Menlo, Consolas, "Droid Sans Mono", "Inconsolata", "Courier New", monospace;
+            white-space: pre;
+            display: block;
+            padding: 0.5rem;
+        }
+    </style>
+
+    <script>
+
+    window.addEventListener('load', function() {
+        var loader = document.getElementById('loader'),
+            codeBlock = document.getElementById('code-block'),
+            code = getCode();
+
+        function getCode() {
+            return "import { BrowserModule } from \'@angular\/platform-browser\';\r\nimport { CommonModule } from \'@angular\/common\';\r\nimport { NgModule } from \'@angular\/core\';\r\nimport { FormsModule } from \'@angular\/forms\';\r\nimport { HttpModule } from \'@angular\/http\';\r\n\r\nimport { COMPONENTS } from \'.\/components\';\r\nimport { DIRECTIVES } from \'.\/directives\';\r\nimport { FILTERS } from \'.\/filters\';\r\nimport { SERVICES } from \'.\/services\';\r\n\r\nimport { AppComponent } from \'.\/app.component\';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n    ...COMPONENTS,\r\n    ...DIRECTIVES,\r\n    ...FILTERS\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    CommonModule,\r\n    FormsModule,\r\n    HttpModule\r\n  ],\r\n  providers: [\r\n    ...SERVICES\r\n  ],\r\n  bootstrap: [AppComponent]\r\n})\r\nexport class AppModule {}";
+        }
+
+        function typewriteCode(code, letterDuration) {
+            codeBlock.innerHTML = '';
+
+            for (var charIndex = 0; charIndex <= code.length; charIndex++) {
+                setTimeout(function (code, showLength) {
+                    codeBlock.innerHTML = code.slice(0, showLength);
+                }, charIndex * letterDuration, code, charIndex);
+            }
+        }
+        
+        loader.animate([
+            { maxWidth : '120rem' },
+            { maxWidth : '66.5rem' }
+        ], {
+            duration: 1000,
+            fill: 'forwards',
+            easing: 'ease-out'
+        });
+
+        document.body.classList.remove('no-margin');
+
+        typewriteCode(code, 2);
+
+        // assigning global variables to continue the animation sequence from the app
+        window.flipLoader = function() {
+            loader.animate([
+                { transform : 'rotateY(0deg)' },
+                { transform : 'rotateY(-180deg)' }
+            ], {
+                duration: 4000,
+                fill: 'forwards',
+                easing: 'cubic-bezier(0.75,0,0.25,1)'
+            });
+
+            setTimeout(function() {
+                loader.style.display = 'none';
+            }, 10 * 1000);
+        };
+
+        window.backToConsole = function() {
+            typewriteCode('ngOnDestroy() {\n    window.location.href = "ng1.lsharir.com";\n}', 30);
+            
+            loader.style.display = 'block';
+
+            loader.animate([
+                { transform : 'rotateY(-180deg)' },
+                { transform : 'rotateY(-360deg)' }
+            ], {
+                duration: 3000,
+                fill: 'forwards',
+                easing: 'cubic-bezier(1,0,0,1)'
+            });
+
+            loader.animate([
+                { maxWidth : '66.5rem' },
+                { maxWidth : '120rem' }
+            ], {
+                duration: 1000,
+                delay: 2000,
+                fill: 'forwards',
+                easing: 'ease-in'
+            });
+
+            document.body.animate([
+                { margin : window.getComputedStyle(document.body).margin },
+                { margin : 0 }
+            ], {
+                duration : 1000,
+                delay: 2000,
+                fill: 'forwards',
+                easing: 'ease-in'
+            });
+        }
+
+        window.loaderStart = Date.now();
+    });
+    </script>
 </head>
-<body>
-  <app-root>Loading...</app-root>
+
+<!-- ###### actual content ###### -->
+
+<body class="no-margin">
+  <div id="loader" class="print-never">
+    <code id="code-block">// Loading ng2 application</code>
+  </div>
+  <app-root></app-root>
 </body>
+
+<!-- ###### actual content ###### -->
+
+<link href="https://fonts.googleapis.com/css?family=Lato:300|Open+Sans:300,400,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+
 </html>

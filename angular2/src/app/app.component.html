@@ -1,26 +1,35 @@
-<div class="document">
+<div class="document" [@documentFlipped]="!documentLoaded">
+    
     <i class="material-icons icon-corner-button print-button print-never"
         *ngIf="desktop"
+        [revealOrder]="4"
         (click)="printDocument()">print</i>
 
     <i class="material-icons icon-corner-button code-button print-never"
+        [revealOrder]="4"
         (click)="showCode()">code</i>
 
-    <resume-header [contactMethods]="contactMethods"></resume-header>
+    <resume-header 
+        (click)="switchAngular()"
+        [revealOrder]="1"
+        [contactMethods]="contactMethods"></resume-header>
 
     <resume-search 
+        [revealOrder]="2"
         [exampleTags]="exampleTags"
         (keywords)="changeKeywords($event.keywords)"></resume-search>
 
     <resume-no-results [noResults]="!data.resultsFound"></resume-no-results>
 
     <category 
+        [revealOrder]="3"
         [category]="category" 
         [subjects]="data.subjectsByType[category.type]" 
         *ngFor="let category of data.categories">
     </category>
 
     <contact-details-methods
+        [revealOrder]="4"
         [contactMethodsChangeEmitter]="filterResumeContactMethodsEmitter"
         [contactMethods]="contactMethods">
     </contact-details-methods>
