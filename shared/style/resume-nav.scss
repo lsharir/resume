@@ -1,0 +1,43 @@
+@import '_shared';
+
+.resume-nav-container {
+    display: flex;
+    align-items: center;
+
+    .stretch {
+        flex-grow: 1;
+    }
+}
+
+.button-icon {
+    
+    color: #555;
+    transition: color $duration-short ease-out;
+    will-change: color;
+    cursor: pointer;
+
+    &:hover {
+        color: #333;
+    }
+}
+
+.switch-angular {
+    margin-left: 1rem;
+    display: flex;
+
+    .switch-button {
+        padding: 0.5rem;
+        font-size: 0.75rem;
+        color: #ccc;
+        cursor: pointer;
+        transition: color 0.2s ease-out;
+
+        &:hover {
+            color: #333;
+        }
+
+        &.active {
+            color: #555;
+        }
+    }
+}

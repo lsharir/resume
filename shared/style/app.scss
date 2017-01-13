@@ -47,38 +47,11 @@ body {
     background: $bg-paper;
 }
 
-.icon-corner-button {
-    position: absolute;
-    padding: 2rem;
-    color: #888;
-    transition: color $duration-short ease-out;
-    will-change: color;
-    cursor: pointer;
-
-    &:hover {
-        color: #ccc;
-    }
-
-    &.code-button {
-        top: 0;
-        left: 0;
-    }
-
-    &.print-button {
-        top: 0;
-        right: 0;
-    }
-}
-
 /* Media query particular for narrow screens
     for devices with narrow screens (600px with font-size: 16px) */
 
 @media (max-width: 37.5rem) {
   .document {
     padding: 1rem;
-  }
-
-  .print-button, .code-button { 
-      padding: 1rem;
   }
 }

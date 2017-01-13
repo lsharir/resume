@@ -14,6 +14,7 @@ import { PrintContactDetailsComponent } from './components/print/print-contact-d
 import { ContactDetailsMethodsComponent } from './components/contact-details-methods/contact-details-methods.component';
 import { ResumeHeaderComponent } from './components/resume-header/resume-header.component';
 import { ResumeNoResultsComponent } from './components/resume-no-results/resume-no-results.component';
+import { ResumeNavComponent } from './components/resume-nav/resume-nav.component';
 
 /** Directives */
 import { RevealOrderDirective } from './directives/reveal-order.directive';
@@ -47,6 +48,7 @@ angular.module(MODULE_NAME, [
 	.component('tag', new TagComponent)
 	.component('printContactDetails', new PrintContactDetailsComponent)
 	.component('contactDetailsMethods', new ContactDetailsMethodsComponent)
+	.component('resumeNav', new ResumeNavComponent)
 	.directive('revealOrder', () => new RevealOrderDirective)
 	.filter('subjectYears', subjectYears)
 	.service('IndexService', IndexService)

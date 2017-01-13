@@ -25,11 +25,7 @@ class AppCtrl {
 		this.utils = UtilitiesService;
 		this.reveal = RevealService;
 
-		/* Setting the desktop variable to false when user is on mobile*/
-		this.desktop = this.utils.isAppRunningOnDesktop();
-
 		/* Importing the raw data that the resume consists from */
-		this.sourcecode = this.utils.importSourcecodeLink();
 		this.contactMethods = this.utils.importContactMethods();
 		this.resume = this.utils.importResume();
 
@@ -67,8 +63,8 @@ class AppCtrl {
 				},
 				this.reveal.waitAndIncrement(globalsAdditionalWait, 0),
 				() => {
+					this.documentFlipped = true;
 					this.$window.flipLoader();
-					this.documentLoaded = true;
 				},
 				this.reveal.waitAndIncrement(100, 1),
 				this.reveal.waitAndIncrement(600, 1),
@@ -90,6 +86,11 @@ class AppCtrl {
 		}, 100, 0, false);
 	}
 
+	flipApp() {
+		this.documentFlipped = false;
+		this.$window.backToConsole();
+	}
+
 	changeKeywords(keywords) {
 		this.keywords = keywords;
 		this.filterResume();
@@ -97,21 +98,5 @@ class AppCtrl {
 
 	filterResume() {
 		this.data = this.utils.filterResume(this.resume, this.contactMethods, this.keywords);
-	}
-
-	printDocument() {
-		this.$window.print();
-	}
-
-	showCode() {
-		this.$window.open(this.sourcecode);
-	}
-
-	switchAngular() {
-		this.documentLoaded = false;
-		this.$window.backToConsole();
-		this.$timeout(() => {
-			this.$window.location.href = 'http://localhost:4200';
-		}, 3000);
 	}
 }

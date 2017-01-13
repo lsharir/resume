@@ -1,0 +1,15 @@
+<div class="resume-nav-container">
+    <i class="material-icons button-icon"
+        (click)="showCode()">code</i>
+    
+    <span class="switch-angular">
+        <span class="switch-button" (click)="switchAngular()">AngularJS</span>
+        <span class="switch-button active">Angular2</span>
+    </span>
+
+    <span class="stretch"></span>
+
+    <i class="material-icons button-icon"
+        *ngIf="desktop"
+        (click)="printDocument()">print</i>
+</div>

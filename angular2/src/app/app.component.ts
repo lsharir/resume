@@ -9,12 +9,12 @@ import { DOCUMENT_FLIPPED_ANIMATION } from './config/animations';
 })
 export class AppComponent {
 	public desktop: Boolean;
-	public sourcecode: string;
+	public sourceCode: string;
 	public contactMethods;
 	public resume;
 	public exampleTags;
 	public keywords: Array<string> = [];
-	public documentLoaded: Boolean = false;
+	public documentFlipped: Boolean = false;
 
 	public filterResumeContactMethodsEmitter: EventEmitter<any> = new EventEmitter();
 
@@ -25,11 +25,7 @@ export class AppComponent {
 		private indexService: IndexService,
 		private reveal: RevealService
 	) {
-		/* Setting the desktop variable to false when user is on mobile*/
-		this.desktop = this.utils.isAppRunningOnDesktop();
-
 		/* Importing the raw data that the resume consists from */
-		this.sourcecode = this.utils.importSourcecodeLink();
 		this.contactMethods = this.utils.importContactMethods();
 		this.resume = this.utils.importResume();
 
@@ -63,8 +59,8 @@ export class AppComponent {
 				},
 				this.reveal.waitAndIncrement(globalsAdditionalWait, 0),
 				() => {
+					this.documentFlipped = true;
 					window['flipLoader']();
-					this.documentLoaded = true;
 				},
 				this.reveal.waitAndIncrement(100, 1),
 				this.reveal.waitAndIncrement(600, 1),
@@ -97,19 +93,8 @@ export class AppComponent {
 		this.filterResumeContactMethodsEmitter.emit();
 	}
 
-	printDocument() {
-		window.print();
-	}
-
-	showCode() {
-		window.open(this.sourcecode);
-	}
-
-	switchAngular() {
-		this.documentLoaded = false;
+	flipApp() {
+		this.documentFlipped = false;
 		window['backToConsole']();
-		setTimeout(() => {
-			window.location.href = 'http://localhost:8080';
-		}, 3000);
 	}
 }

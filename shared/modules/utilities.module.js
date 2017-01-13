@@ -26,8 +26,16 @@ Utilities.prototype.importResume = function() {
     };
 };
 
-Utilities.prototype.importSourcecodeLink = function() {
-    return this.config.sourcecode;
+Utilities.prototype.importAngularJSUrl = function () {
+    return this.config.ng1;
+}
+
+Utilities.prototype.importAngular2Url = function () {
+    return this.config.ng2;
+}
+
+Utilities.prototype.importSourceCodeLink = function() {
+    return this.config.sourceCode;
 };
 
 Utilities.prototype.importExampleTags = function () {

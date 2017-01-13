@@ -15,10 +15,19 @@ export class UtilitiesService {
         return this.utilsModule.filterResume(resume, contactMethods, tags);
     }
 
-    /** import the sourcecode link */
-    importSourcecodeLink() {
-        return this.utilsModule.importSourcecodeLink();
+    /** import the sourceCode link */
+    importSourceCodeLink() {
+        return this.utilsModule.importSourceCodeLink();
     }
+
+    importAngular2Url() {
+        return this.utilsModule.importAngular2Url();
+    }
+
+    importAngularJSUrl() {
+        return this.utilsModule.importAngularJSUrl();
+    }
+    
 
     /** imports the hardcoded data of the resume */
     importResume() {

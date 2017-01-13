@@ -1,25 +1,25 @@
-<div class="document" [@documentFlipped]="!documentLoaded">
+<div class="document" [@documentFlipped]="!documentFlipped">
     
-    <i class="material-icons icon-corner-button print-button print-never"
-        *ngIf="desktop"
+    <resume-nav
+        class="print-never"
         [revealOrder]="4"
-        (click)="printDocument()">print</i>
-
-    <i class="material-icons icon-corner-button code-button print-never"
-        [revealOrder]="4"
-        (click)="showCode()">code</i>
+        (navigate-out)="flipApp()">
+    </resume-nav>
 
     <resume-header 
-        (click)="switchAngular()"
         [revealOrder]="1"
-        [contactMethods]="contactMethods"></resume-header>
+        [contactMethods]="contactMethods">
+    </resume-header>
 
     <resume-search 
         [revealOrder]="2"
         [exampleTags]="exampleTags"
-        (keywords)="changeKeywords($event.keywords)"></resume-search>
+        (keywords)="changeKeywords($event.keywords)">
+    </resume-search>
 
-    <resume-no-results [noResults]="!data.resultsFound"></resume-no-results>
+    <resume-no-results 
+        [noResults]="!data.resultsFound">
+    </resume-no-results>
 
     <category 
         [revealOrder]="3"

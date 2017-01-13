@@ -1,16 +1,12 @@
-<div class="document" ng-class="{'document-flipped' : !$ctrl.documentLoaded }">
+<div class="document" ng-class="{'document-flipped' : !$ctrl.documentFlipped }">
 
-    <i class="material-icons icon-corner-button print-button print-never"
-        ng-if="::$ctrl.desktop"
+    <resume-nav
         reveal-order="4"
-        ng-click="$ctrl.printDocument()">print</i>
-
-    <i class="material-icons icon-corner-button code-button print-never"
-        reveal-order="4"
-        ng-click="$ctrl.showCode()">code</i>
+        flip-app="$ctrl.flipApp()"
+        class="print-never">
+    </resume-nav>
 
     <resume-header 
-        ng-click="$ctrl.switchAngular()"
         reveal-order="1"
         contact-methods="$ctrl.contactMethods"></resume-header>
 

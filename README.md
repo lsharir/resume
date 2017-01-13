@@ -16,7 +16,7 @@ Component and app wide styling is also shared at ```shared/style```
 For the AngularJS application I configured a webpack build.
 
 For the Angular2, I tried using angular-cli (due to the simplistic nature of this app).
-But think I prefer configuring a wepback build in the future.
+But think I prefer configuring a webpack build in the future.
 
 
 [ng2]: http://angular.io

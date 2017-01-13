@@ -6,6 +6,7 @@ import { TagComponent } from './tag/tag.component';
 import { ContactDetailsMethodsComponent } from './contact-details-methods/contact-details-methods.component';
 import { ResumeHeaderComponent } from './resume-header/resume-header.component';
 import { ResumeNoResultsComponent } from './resume-no-results/resume-no-results.component';
+import { ResumeNavComponent } from './resume-nav/resume-nav.component';
 
 export const COMPONENTS = [
     PrintContactDetailsComponent,
@@ -15,5 +16,6 @@ export const COMPONENTS = [
     TagComponent,
     ContactDetailsMethodsComponent,
     ResumeHeaderComponent,
-    ResumeNoResultsComponent
+    ResumeNoResultsComponent,
+    ResumeNavComponent
 ]
