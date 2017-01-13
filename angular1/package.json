@@ -9,11 +9,12 @@
   "private": true,
   "author": "Liran Sharir",
   "dependencies": {
-    "angular": "1.5.8",
-    "angular-animate": "1.5.8",
-    "angulartics": "^1.2.1",
-    "angulartics-google-analytics": "^0.2.1",
-    "fastclick": "^1.0.6"
+    "angular": "1.6.1",
+    "angular-animate": "1.6.1",
+    "angulartics": "^1.3.0",
+    "angulartics-google-analytics": "^0.4.0",
+    "fastclick": "^1.0.6",
+    "web-animations-js": "^2.2.2"
   },
   "devDependencies": {
     "autoprefixer": "^6.0.3",

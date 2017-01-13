@@ -17,6 +17,7 @@ module.exports = (function makeWebpackConfig() {
     var config = {};
 
     config.entry = {
+        polyfills: './src/polyfills.js',
         app: './src/app/app.module.js'
     };
 
