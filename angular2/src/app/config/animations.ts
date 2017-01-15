@@ -21,37 +21,10 @@ const ANIMATION_CONFIG = {
     NO_RESULTS: {
         MAX_HEIGHT: '1.5rem',
         DELAY: animate('2s linear', style({}))
-    },
-    DOCUMENT_FLIPPED : {
-        TRANSFORM_TRANSITION_IN: '4s cubic-bezier(0.75,0,0.25,1)',
-        TRANSFORM_TRANSITION_OUT: '3s cubic-bezier(1,0,0,1)',
-        FADE_TRANSITION_OUT: '1s 2s ease-in',
-        FADE_TRANSITION_IN: '0.5s ease-in-out'
     }
 }
 
 /** Before importing a trigger, it is important to include the binding [@inOut]="'in'" in the relevant element */
-
-export const DOCUMENT_FLIPPED_ANIMATION = {
-    trigger: trigger('documentFlipped', [
-        state('true', style({ opacity: 0 })),
-        state('false', style({ opacity: 1 })),
-        transition('1 => 0', [
-            style({ opacity: 0, 'transform': 'rotateY(180deg)' }),
-            group([
-                animate(ANIMATION_CONFIG.DOCUMENT_FLIPPED.TRANSFORM_TRANSITION_IN, style({ transform: 'rotateY(0deg)'})),
-                animate(ANIMATION_CONFIG.DOCUMENT_FLIPPED.FADE_TRANSITION_IN, style({ opacity: 1 }))
-            ])
-        ]),
-        transition('0 => 1', [
-            style({ opacity: 1, 'transform': 'rotateY(0deg)' }),
-            group([
-                animate(ANIMATION_CONFIG.DOCUMENT_FLIPPED.TRANSFORM_TRANSITION_OUT, style({ transform: 'rotateY(-180deg)'})),
-                animate(ANIMATION_CONFIG.DOCUMENT_FLIPPED.FADE_TRANSITION_OUT, style({ opacity: 0 }))
-            ])
-        ])
-    ])
-}
 
 export const NO_RESULTS_ANIMATION = {
     trigger: trigger('inOut', [

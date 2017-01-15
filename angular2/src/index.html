@@ -29,10 +29,6 @@
             margin: 0;
         }
 
-        .document-flipped {
-            opacity: 0;
-        }
-
         #loader {
             display: block;
             position: absolute;
@@ -50,6 +46,7 @@
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
             -moz-backface-visibility: hidden;
+            transform-origin: 50% 50% -5px;
             font-size: 1rem;
         }
 
@@ -83,6 +80,7 @@
 
     window.addEventListener('load', function() {
         var loader = document.getElementById('loader'),
+            app = document.getElementById('app'),
             codeBlock = document.getElementById('code-block'),
             code = getCode();
 
@@ -99,69 +97,30 @@
                 }, charIndex * letterDuration, code, charIndex);
             }
         }
-        
-        loader.animate([
-            { maxWidth : '120rem' },
-            { maxWidth : '66.5rem' }
-        ], {
-            duration: 1000,
-            fill: 'forwards',
-            easing: 'ease-out'
-        });
-
-        document.body.classList.remove('no-margin');
 
         typewriteCode(code, 2);
 
         // assigning global variables to continue the animation sequence from the app
         window.flipLoader = function() {
-            loader.animate([
-                { transform : 'rotateY(0deg)' },
-                { transform : 'rotateY(-180deg)' }
-            ], {
-                duration: 4000,
-                fill: 'forwards',
+            var options = {
+                duration : 4000,
                 easing: 'cubic-bezier(0.75,0,0.25,1)'
-            });
+            };
 
-            setTimeout(function() {
-                loader.style.display = 'none';
-            }, 10 * 1000);
+            window._flipConsole(loader, true, options);
+            window._flipApp(app, false, options);
         };
 
         window.backToConsole = function() {
+            var options = {
+                duration: 3000,
+                easing: 'cubic-bezier(1,0,0,1)'
+            };
+
             typewriteCode('ngOnDestroy() {\n    window.location.href = "ng1.lsharir.com";\n}', 30);
             
-            loader.style.display = 'block';
-
-            loader.animate([
-                { transform : 'rotateY(-180deg)' },
-                { transform : 'rotateY(-360deg)' }
-            ], {
-                duration: 3000,
-                fill: 'forwards',
-                easing: 'cubic-bezier(1,0,0,1)'
-            });
-
-            loader.animate([
-                { maxWidth : '66.5rem' },
-                { maxWidth : '120rem' }
-            ], {
-                duration: 1000,
-                delay: 2000,
-                fill: 'forwards',
-                easing: 'ease-in'
-            });
-
-            document.body.animate([
-                { margin : window.getComputedStyle(document.body).margin },
-                { margin : 0 }
-            ], {
-                duration : 1000,
-                delay: 2000,
-                fill: 'forwards',
-                easing: 'ease-in'
-            });
+            window._flipConsole(loader, false, options);
+            window._flipApp(app, true, options);
         }
 
         window.loaderStart = Date.now();
@@ -175,7 +134,9 @@
   <div id="loader" class="print-never">
     <code id="code-block">// Loading ng2 application</code>
   </div>
-  <app-root></app-root>
+  <div id="app">
+    <app-root></app-root>
+  </div>
 </body>
 
 <!-- ###### actual content ###### -->

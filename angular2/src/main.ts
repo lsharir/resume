@@ -1,3 +1,4 @@
+import '../../shared/scripts/loader.js';
 import './polyfills.ts';
 
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';

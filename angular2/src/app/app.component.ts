@@ -1,11 +1,9 @@
 import { Component, EventEmitter } from '@angular/core';
 import { RevealService, UtilitiesService, IndexService } from './services';
-import { DOCUMENT_FLIPPED_ANIMATION } from './config/animations';
 
 @Component({
 	selector: 'app-root',
-	templateUrl: './app.component.html',
-	animations: [ DOCUMENT_FLIPPED_ANIMATION.trigger ]
+	templateUrl: './app.component.html'
 })
 export class AppComponent {
 	public desktop: Boolean;
@@ -14,7 +12,6 @@ export class AppComponent {
 	public resume;
 	public exampleTags;
 	public keywords: Array<string> = [];
-	public documentFlipped: Boolean = false;
 
 	public filterResumeContactMethodsEmitter: EventEmitter<any> = new EventEmitter();
 
@@ -59,7 +56,6 @@ export class AppComponent {
 				},
 				this.reveal.waitAndIncrement(globalsAdditionalWait, 0),
 				() => {
-					this.documentFlipped = true;
 					window['flipLoader']();
 				},
 				this.reveal.waitAndIncrement(100, 1),
@@ -94,7 +90,6 @@ export class AppComponent {
 	}
 
 	flipApp() {
-		this.documentFlipped = false;
 		window['backToConsole']();
 	}
 }

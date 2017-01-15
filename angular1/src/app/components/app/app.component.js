@@ -63,7 +63,6 @@ class AppCtrl {
 				},
 				this.reveal.waitAndIncrement(globalsAdditionalWait, 0),
 				() => {
-					this.documentFlipped = true;
 					this.$window.flipLoader();
 				},
 				this.reveal.waitAndIncrement(100, 1),
@@ -87,7 +86,6 @@ class AppCtrl {
 	}
 
 	flipApp() {
-		this.documentFlipped = false;
 		this.$window.backToConsole();
 	}
 
