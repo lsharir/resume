@@ -28,6 +28,10 @@
             margin: 0;
         }
 
+        #app.concealed {
+            opacity: 0;
+        }
+
         #loader {
             display: block;
             position: absolute;
@@ -76,8 +80,9 @@
     </style>
 
     <script>
+    console.log(document.getElementById('loader'));
 
-    window.addEventListener('load', function() {
+    window.addEventListener('DOMContentLoaded', function() {
         var loader = document.getElementById('loader'),
             app = document.getElementById('app'),
             codeBlock = document.getElementById('code-block'),
@@ -129,11 +134,11 @@
 
 <!-- ###### actual content ###### -->
 
-<body>
+<body class="no-margin">
     <div id="loader" class="print-never">
         <code id="code-block">// Loading ng1 application</code>
     </div>
-    <div id="app">
+    <div id="app" class="concealed">
         <app-root></app-root>
     </div>
 </body>

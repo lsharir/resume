@@ -19,6 +19,8 @@ window._flipApp = function(app, frontToBack, options) {
         });
 
         app.style.setProperty('opacity', 0);
+    } else {
+        app.classList.remove('concealed');
     }
     
     animation = app.animate([
