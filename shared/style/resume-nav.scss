@@ -9,15 +9,18 @@
     }
 }
 
-.button-icon {
-    
-    color: #555;
-    transition: color $duration-short ease-out;
+.button-icon { 
+    color: $md-grey-idle;
     will-change: color;
+    transition: color $duration-short ease-out;
     cursor: pointer;
 
     &:hover {
-        color: #333;
+        color: $md-grey-hover;
+    }
+
+    &:active {
+        color: $md-grey-active;
     }
 }
 
@@ -27,17 +30,24 @@
 
     .switch-button {
         padding: 0.5rem;
+        font-family: $lato;
         font-size: 0.75rem;
-        color: #ccc;
+        color: $md-grey-idle;
         cursor: pointer;
-        transition: color 0.2s ease-out;
+        will-change: color;
+        transition: color $duration-shorter ease-out;
 
         &:hover {
-            color: #333;
+            color: $md-grey-hover;
         }
 
         &.active {
-            color: #555;
+            color: $md-grey-active;
+            cursor: default;
+        }
+
+        &:active {
+            color: $md-grey-active
         }
     }
 }

@@ -80,28 +80,28 @@
     </style>
 
     <script>
-    console.log(document.getElementById('loader'));
-
-    window.addEventListener('DOMContentLoaded', function() {
-        var loader = document.getElementById('loader'),
-            app = document.getElementById('app'),
-            codeBlock = document.getElementById('code-block'),
-            code = getCode();
+    function startLoader(loader, app, codeBlock) {
+        var code = getCode(); // getCode is hoisted before this call
 
         function getCode() {
             return "angular.module(MODULE_NAME, [\n\u0009\u0009require('angular-animate'),\n\u0009\u0009require('angulartics'),\n\u0009\u0009require('angulartics-google-analytics')\n\u0009])\n\u0009.component('appRoot', new AppComponent)\n\u0009.component('resumeSearch', new ResumeSearchComponent)\n\u0009.component('resumeHeader', new ResumeHeaderComponent)\n\u0009.component('resumeNoResults', new ResumeNoResultsComponent)\n\u0009.component('category', new CategoryComponent)\n\u0009.component('subject', new SubjectComponent)\n\u0009.component('tag', new TagComponent)\n\u0009.component('printContactDetails', new PrintContactDetailsComponent)\n\u0009.component('contactDetailsMethods', new ContactDetailsMethodsComponent)\n\u0009.directive('revealOrder', () => new RevealOrderDirective)\n\u0009.filter('subjectYears', subjectYears)\n\u0009.service('IndexService', IndexService)\n\u0009.service('UtilitiesService', UtilitiesService)\n\u0009.service('AnalyticsService', AnalyticsService)\n\u0009.service('RevealService', RevealService)\n\u0009.config(appConfig)\n\u0009;"
         }
 
         function typewriteCode(code, letterDuration) {
+            var codeLength = code.length,
+                partialCodeLength = 0;
+
+            clearInterval(window._typewriter);
             codeBlock.innerHTML = '';
 
-            for (var charIndex = 0; charIndex <= code.length; charIndex++) {
-                setTimeout(function (code, showLength) {
-                    codeBlock.innerHTML = code.slice(0, showLength);
-                }, charIndex * letterDuration, code, charIndex);
-            }
+            window._typewriter = setInterval(function () {
+                codeBlock.innerHTML = code.slice(0, partialCodeLength++);
+                if (partialCodeLength > codeLength) {
+                    clearInterval(window._typewriter);
+                }
+            }, letterDuration);
         }
-
+        
         typewriteCode(code, 2);
 
         // assigning global variables to continue the animation sequence from the app
@@ -122,13 +122,30 @@
             };
 
             typewriteCode('$scope.$on("$destroy") {\n   $window.location.href = "ng2.lsharir.com";\n});', 30);
-
+            
             window._flipConsole(loader, false, options);
             window._flipApp(app, true, options);
         }
 
         window.loaderStart = Date.now();
-    });
+    }
+
+    function getElementsASAP() { //DOMContentLoaded was acting too weird
+        var loader, app, codeBlock, areWeThereYet;
+
+        areWeThereYet = setTimeout(function() {
+            loader = document.getElementById('loader');
+            app = document.getElementById('app');
+            codeBlock = document.getElementById('code-block');
+
+            if (loader && app && codeBlock) {
+                clearInterval(areWeThereYet);
+                startLoader(loader, app, codeBlock);
+            }
+        }, 25);
+    }
+
+    getElementsASAP();
     </script>
 </head>
 

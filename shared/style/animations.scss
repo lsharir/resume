@@ -1,0 +1,65 @@
+@import '_shared';
+
+.flashing {
+    animation-name: flashing;
+    animation-iteration-count: infinite;
+    animation-duration: 1.2s;
+    animation-timing-function: linear;
+}
+
+@keyframes flashing {
+    0% {
+        color: #1A237E;
+        transform: translate3d(2px, 0px, 0px) rotate3d(1,0,0,2deg);
+    }
+
+    10% {
+        color: #b71c1c;
+        transform: translate3d(1px, 0px, 2px) rotate3d(0,1,0,1deg);
+    }
+
+    20% {
+        color: #1A237E;
+        transform: translate3d(0px, 1px, 0px) rotate3d(0,0,1,2deg);
+    }
+
+    30% {
+        color: #b71c1c;
+        transform: translate3d(0px, 0px, 2px) rotate3d(0,1,0,3deg);
+    }
+
+    40% {
+        color: #1A237E;
+        transform: translate3d(3px, 0px, 0px) rotate3d(0,0,1,1deg);
+    }
+
+    50% {
+        color: #b71c1c;
+        transform: translate3d(1px, 0px, 1px) rotate3d(1,0,0,3deg);
+    }
+
+    60% {
+        color: #1A237E;
+        transform: translate3d(2px, 1px, 0px) rotate3d(1,1,0,2deg);
+    }
+
+    70% {
+        color: #b71c1c;
+        transform: translate3d(0px, 0px, 2px) rotate3d(1,0,1,1deg);
+    }
+
+    80% {
+        color: #1A237E;
+        transform: translate3d(2px, 1px, 0px) rotate3d(1,1,1,2deg);
+    }
+
+    90% {
+        color: #b71c1c;
+        transform: translate3d(0px, 3px, 1px) rotate3d(0,1,1,1deg);
+    }
+
+    100% {
+        color: #1A237E;
+        transform: translate3d(2px, 0px, 0px) rotate3d(1,0,0,2deg);
+    }
+}

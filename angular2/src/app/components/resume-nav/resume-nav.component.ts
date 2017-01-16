@@ -11,6 +11,7 @@ export class ResumeNavComponent {
 
     private _sourceCode: string;
     public desktop: Boolean;
+    public loadingNg1: Boolean;
     private _ng1Url: string;
 
     constructor(private utils: UtilitiesService) {
@@ -30,11 +31,15 @@ export class ResumeNavComponent {
 	}
     
     switchAngular() {
-        this.navigateOut.emit();
+        if (!this.loadingNg1) {
+            this.navigateOut.emit();
         
-		setTimeout(() => {
-			window.location.href = this._ng1Url;
-		}, 3000);
+            setTimeout(() => {
+                window.location.href = this._ng1Url;
+            }, 3000);
+        }
+        
+        this.loadingNg1 = true;
 	}
 
     showCode() {

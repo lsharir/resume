@@ -28,7 +28,7 @@
         body.no-margin {
             margin: 0;
         }
-        
+
         #app.concealed {
             opacity: 0;
         }
@@ -81,25 +81,26 @@
     </style>
 
     <script>
-
-    window.addEventListener('DOMContentLoaded', function() {
-        var loader = document.getElementById('loader'),
-            app = document.getElementById('app'),
-            codeBlock = document.getElementById('code-block'),
-            code = getCode();
+    function startLoader(loader, app, codeBlock) {
+        var code = getCode(); // getCode is hoisted before this call
 
         function getCode() {
             return "import { BrowserModule } from \'@angular\/platform-browser\';\r\nimport { CommonModule } from \'@angular\/common\';\r\nimport { NgModule } from \'@angular\/core\';\r\nimport { FormsModule } from \'@angular\/forms\';\r\nimport { HttpModule } from \'@angular\/http\';\r\n\r\nimport { COMPONENTS } from \'.\/components\';\r\nimport { DIRECTIVES } from \'.\/directives\';\r\nimport { FILTERS } from \'.\/filters\';\r\nimport { SERVICES } from \'.\/services\';\r\n\r\nimport { AppComponent } from \'.\/app.component\';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n    ...COMPONENTS,\r\n    ...DIRECTIVES,\r\n    ...FILTERS\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    CommonModule,\r\n    FormsModule,\r\n    HttpModule\r\n  ],\r\n  providers: [\r\n    ...SERVICES\r\n  ],\r\n  bootstrap: [AppComponent]\r\n})\r\nexport class AppModule {}";
         }
 
         function typewriteCode(code, letterDuration) {
+            var codeLength = code.length,
+                partialCodeLength = 0;
+
+            clearInterval(window._typewriter);
             codeBlock.innerHTML = '';
 
-            for (var charIndex = 0; charIndex <= code.length; charIndex++) {
-                setTimeout(function (code, showLength) {
-                    codeBlock.innerHTML = code.slice(0, showLength);
-                }, charIndex * letterDuration, code, charIndex);
-            }
+            window._typewriter = setInterval(function () {
+                codeBlock.innerHTML = code.slice(0, partialCodeLength++);
+                if (partialCodeLength > codeLength) {
+                    clearInterval(window._typewriter);
+                }
+            }, letterDuration);
         }
 
         typewriteCode(code, 2);
@@ -128,7 +129,24 @@
         }
 
         window.loaderStart = Date.now();
-    });
+    }
+
+    function getElementsASAP() { //DOMContentLoaded was acting too weird
+        var loader, app, codeBlock, areWeThereYet;
+
+        areWeThereYet = setTimeout(function() {
+            loader = document.getElementById('loader');
+            app = document.getElementById('app');
+            codeBlock = document.getElementById('code-block');
+
+            if (loader && app && codeBlock) {
+                clearInterval(areWeThereYet);
+                startLoader(loader, app, codeBlock);
+            }
+        }, 25)
+    }
+
+    getElementsASAP();
     </script>
 </head>
 
@@ -136,7 +154,7 @@
 
 <body class="no-margin">
   <div id="loader" class="print-never">
-    <code id="code-block">// Loading ng2 application</code>
+    <code id="code-block">// Loading ng2+ application</code>
   </div>
   <div id="app" class="concealed">
     <app-root></app-root>

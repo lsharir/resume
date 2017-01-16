@@ -1,6 +1,6 @@
 .reveal-hidden {
     transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-    transform: translate3d(0, 100px, 0);
+    transform: translate3d(0, 25px, 0);
     opacity: 0;
 
     &.reveal-hidden-active {

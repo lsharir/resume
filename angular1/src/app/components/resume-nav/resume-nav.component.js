@@ -32,11 +32,15 @@ class ResumeNavController {
 	}
     
     switchAngular() {
-        this.flipApp();
+        if (!this.loadingNg2) {
+            this.flipApp();
         
-		this.$timeout(() => {
-			this.$window.location.href = this.ng2Url;
-		}, 3000);
+            this.$timeout(() => {
+                this.$window.location.href = this.ng2Url;
+            }, 3000);
+        }
+
+        this.loadingNg2 = true;
 	}
 
     showCode() {

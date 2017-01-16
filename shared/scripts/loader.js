@@ -1,5 +1,5 @@
 window._flipApp = function(app, frontToBack, options) {
-    var animation,
+    var flipAppAnimation,
         fromAngle = frontToBack ? '0deg' : '180deg',
         toAngle = frontToBack ? '-180deg' : '0deg',
         fromTransform = 'rotate3d(0,1,0,' + fromAngle + ')',
@@ -23,7 +23,7 @@ window._flipApp = function(app, frontToBack, options) {
         app.classList.remove('concealed');
     }
     
-    animation = app.animate([
+    flipAppAnimation = app.animate([
         { transform : fromTransform },
         { transform : toTransform }
     ], {
@@ -35,7 +35,8 @@ window._flipApp = function(app, frontToBack, options) {
 };
 
 window._flipConsole = function(loader, frontToBack, options) {
-    var animation,
+    var flipAnimation, maxWidthAnimation,
+        maxWidthDelay, maxWidthDuration = 1000,
         fromAngle, toAngle, fromMaxWidth, toMaxWidth, fromTransform, toTransform;
 
     if (!options || !options.duration || !options.easing) {
@@ -45,48 +46,39 @@ window._flipConsole = function(loader, frontToBack, options) {
     if (frontToBack) {
         fromAngle = '0deg';
         toAngle = '-180deg';
-        fromMaxWidth = '120rem';
+        fromMaxWidth = window.innerWidth + 'px';
         toMaxWidth = '66.5rem';
+        maxWidthDelay = 0;
+
+        document.body.classList.remove('no-margin');
     } else {
         fromAngle = '180deg';
         toAngle = '0deg';
         fromMaxWidth = '66.5rem';
-        toMaxWidth = '120rem';
+        toMaxWidth = window.innerWidth + 'px';
+        maxWidthDelay = 1500;
+
+        loader.style.setProperty('display', 'block');
+
+        setTimeout(function () {
+            document.body.classList.add('no-margin');
+        }, 2000);
     }
     
     fromTransform = 'rotate3d(0,1,0,' + fromAngle + ') translate3d(0,0,10px)';
     toTransform = 'rotate3d(0,1,0,' + toAngle + ') translate3d(0,0,10px)';
 
-    if (!frontToBack) {
-        loader.style.setProperty('display', 'block');
+    maxWidthAnimation = loader.animate([
+        { maxWidth : fromMaxWidth },
+        { maxWidth : toMaxWidth }
+    ], {
+        duration: maxWidthDuration,
+        delay: maxWidthDelay,
+        fill: 'forwards',
+        easing: 'ease-in-out'
+    });
 
-        loader.animate([
-            { maxWidth : fromMaxWidth },
-            { maxWidth : toMaxWidth }
-        ], {
-            duration: options.duration,
-            delay: 2000,
-            fill: 'forwards',
-            easing: 'ease-in'
-        });
-
-        setTimeout(function () {
-            document.body.classList.add('no-margin');
-        }, 2000);
-    } else {
-        loader.animate([
-            { maxWidth : fromMaxWidth },
-            { maxWidth : toMaxWidth }
-        ], {
-            duration: 1000,
-            fill: 'forwards',
-            easing: 'ease-out'
-        });
-
-        document.body.classList.remove('no-margin');
-    }
-
-    animation = loader.animate([
+    flipAnimation = loader.animate([
         { transform : fromTransform },
         { transform : toTransform }
     ], {
@@ -96,7 +88,7 @@ window._flipConsole = function(loader, frontToBack, options) {
 
     loader.style.setProperty('transform', toTransform);
 
-    animation.onfinish = function () {
+    flipAnimation.onfinish = function () {
         if (frontToBack) {
             loader.style.setProperty('display', 'none');
         }

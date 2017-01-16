@@ -3,8 +3,11 @@
         ng-click="$ctrl.showCode()">code</i>
     
     <span class="switch-angular">
-        <span class="switch-button active">AngularJS</span>
-        <span class="switch-button" ng-click="$ctrl.switchAngular()">Angular2</span>
+        <span class="switch-button"
+            ng-class="{ 'active': !$ctrl.loadingNg2 }">AngularJS</span>
+        <span class="switch-button" 
+            ng-click="$ctrl.switchAngular()"
+            ng-class="{ 'flashing' : $ctrl.loadingNg2 }">Angular2</span>
     </span>
 
     <span class="stretch"></span>

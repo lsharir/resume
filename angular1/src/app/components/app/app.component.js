@@ -69,11 +69,12 @@ class AppCtrl {
 				this.reveal.waitAndIncrement(600, 1),
 				this.reveal.waitAndIncrement(300, 1),
 				this.reveal.waitAndIncrement(300, 1),
-				this.reveal.waitAndIncrement(1500, 0),
+				this.reveal.waitAndIncrement(1000, 0),
 				() => {
 					exampleTag.active = false;
 					this.changeKeywords([]);
-				}
+				},
+				this.reveal.waitAndIncrement(300, 1)
 			]);
 		}
 

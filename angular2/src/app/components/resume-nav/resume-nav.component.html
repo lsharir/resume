@@ -3,8 +3,11 @@
         (click)="showCode()">code</i>
     
     <span class="switch-angular">
-        <span class="switch-button" (click)="switchAngular()">AngularJS</span>
-        <span class="switch-button active">Angular2</span>
+        <span class="switch-button" 
+            (click)="switchAngular()"
+            [class.flashing]="loadingNg1">AngularJS</span>
+        <span class="switch-button"
+            [class.active]="!loadingNg1">Angular2</span>
     </span>
 
     <span class="stretch"></span>

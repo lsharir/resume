@@ -5,6 +5,10 @@ $color-primary: #333;
 $bg-back: #f2f2f2;
 $bg-paper: #fff;
 
+$md-grey-idle: #9E9E9E;
+$md-grey-hover: #424242;
+$md-grey-active: #212121;
+
 $tag-bg-0: #66BB6A;
 $tag-bg-1: #29B6F6;
 $tag-bg-2: #FF7043;
@@ -13,13 +17,13 @@ $tag-inactive: rgba(0,0,0,0.125);
 
 $tag-colors: $tag-bg-0, $tag-bg-1, $tag-bg-2, $tag-bg-3;
 
-$font-family: 'Open Sans';
-$font-sans: 'Lato';
+$font-primary: 'Open Sans';
+$lato: 'Lato';
 
 $duration-short: 0.2s;
+$duration-shorter: 0.1s;
 
 $category-title-font-size: 1.5rem;
-
 
 $subtext-size: 1rem;
 $hint-size: 0.75rem;
