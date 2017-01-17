@@ -9,7 +9,9 @@ export class RevealOrderDirective {
     @Input('revealOrder') revealOrder: Number;
 
     private _removeListener: Function;
+    private _hideFunction: Function;
     private _revealFunction: Function;
+    private _revealState: Boolean;
 
     constructor(
         private reveal: RevealService,
@@ -21,14 +23,14 @@ export class RevealOrderDirective {
         this._renderer.setElementClass(this._element.nativeElement ,'reveal-hidden', true);
         
         this._removeListener = this.reveal.bind((count) => {
-            if (count >= this.revealOrder) {
-                this._revealFunction();
-            }
+            this._revealFunction(count >= this.revealOrder);
         });
 
-        this._revealFunction = () => {
-            this._renderer.setElementClass(this._element.nativeElement ,'reveal-hidden-active', true);
-            this.removeListener();
+        this._revealFunction = (suggestedRevealState) => {
+            if (suggestedRevealState !== this._revealState) {
+                this._renderer.setElementClass(this._element.nativeElement ,'reveal-hidden-active', suggestedRevealState);
+                this._revealState = suggestedRevealState;
+            }
         }
     }
 

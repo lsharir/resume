@@ -21,9 +21,6 @@ export class ResumeNavComponent {
         /** Setting the desktop variable to false when user is on mobile*/
         this.desktop = this.utils.isAppRunningOnDesktop();
 
-        /** Setting the angular switch url */
-        this._ng1Url = this.utils.importAngularJSUrl();
-
     }
 
     printDocument() {
@@ -33,10 +30,6 @@ export class ResumeNavComponent {
     switchAngular() {
         if (!this.loadingNg1) {
             this.navigateOut.emit();
-
-            setTimeout(() => {
-                window.location.href = this._ng1Url;
-            }, 3000);
         }
 
         this.loadingNg1 = true;

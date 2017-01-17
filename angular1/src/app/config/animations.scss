@@ -2,14 +2,25 @@
 
 .reveal-hidden {
     opacity: 0;
-}
-
-.reveal-hidden-remove, .reveal-hidden-remove-prepare {
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
     transform: translate3d(0, 25px, 0);
 }
 
-.reveal-hidden-remove.reveal-hidden-remove-active {
+.reveal-hidden-remove,
+.reveal-hidden.remove-prepare,
+.reveal-hidden-add,
+.reveal-hidden-add-prepare {
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.reveal-hidden-add.reveal-hidden-add-active,
+.reveal-hidden-remove,
+.reveal-hidden-remove-prepare {
+    transform: translate3d(0, 25px, 0);
+    opacity: 0;
+}
+
+.reveal-hidden-remove.reveal-hidden-remove-active,
+.reveal-hidden-add, .reveal-hidden-add-prepare {
     transform: translate3d(0, 0, 0);
     opacity: 1;
 }

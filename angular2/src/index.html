@@ -27,7 +27,12 @@
             margin: 0;
         }
 
-        #app.concealed {
+        #app {
+            will-change: opacity;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        #app.app-concealed {
             opacity: 0;
         }
 
@@ -200,7 +205,7 @@
   <div id="loader" class="print-never">
     <code id="code-block">Please hold</code>
   </div>
-  <div id="app" class="concealed">
+  <div id="app" class="app-concealed">
     <app-root></app-root>
   </div>
 </body>

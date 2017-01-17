@@ -10,17 +10,11 @@ window._flipApp = function(app, frontToBack, options) {
     }
 
     if (frontToBack) {
-        app.animate([
-            { opacity : 1 },
-            { opacity : 0 }
-        ], {
-            duration : options.duration,
-            easing: options.easing
-        });
-
-        app.style.setProperty('opacity', 0);
+        setTimeout(function() {
+            app.classList.add('app-concealed');
+        }, options.duration);
     } else {
-        app.classList.remove('concealed');
+        app.classList.remove('app-concealed');
     }
     
     flipAppAnimation = app.animate([
@@ -58,8 +52,6 @@ window._flipConsole = function(loader, frontToBack, options) {
         toMaxWidth = window.innerWidth + 'px';
         maxWidthDelay = 1500;
 
-        loader.style.setProperty('display', 'block');
-
         setTimeout(function () {
             document.body.classList.add('no-margin');
         }, 2000);
@@ -87,10 +79,4 @@ window._flipConsole = function(loader, frontToBack, options) {
     });
 
     loader.style.setProperty('transform', toTransform);
-
-    flipAnimation.onfinish = function () {
-        if (frontToBack) {
-            loader.style.setProperty('display', 'none');
-        }
-    };
 };

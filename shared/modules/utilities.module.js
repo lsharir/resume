@@ -27,6 +27,7 @@ Utilities.prototype.importResume = function() {
 };
 
 Utilities.prototype.importAngularJSUrl = function () {
+    
     return this.config.ng1;
 }
 

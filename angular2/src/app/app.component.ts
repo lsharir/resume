@@ -17,6 +17,8 @@ export class AppComponent {
 
 	public data;
 
+	private _ng1Url: string;
+
 	constructor(
 		private utils: UtilitiesService,
 		private indexService: IndexService,
@@ -27,6 +29,9 @@ export class AppComponent {
 		this.resume = this.utils.importResume();
 
 		this.indexService.indexResume(this.resume);
+
+        /** Setting the angular switch url */
+        this._ng1Url = this.utils.importAngularJSUrl();
 
 		/* Importing our example tags */
 		this.exampleTags = this.utils.importExampleTags();
@@ -87,6 +92,25 @@ export class AppComponent {
 	}
 
 	flipApp() {
-		window['backToConsole']();
+		let animate;
+
+		animate = () => {
+			this.reveal.execute([
+				() => {
+					window['backToConsole']();
+				},
+				this.reveal.waitAndIncrement(1000, -1),
+				this.reveal.waitAndIncrement(300, -1),
+				this.reveal.waitAndIncrement(300, -1),
+				this.reveal.waitAndIncrement(300, -1),
+				this.reveal.waitAndIncrement(300, -1),
+				this.reveal.waitAndIncrement(300, 0),
+				() => {
+					window.location.href = this._ng1Url;
+				}
+			])
+		}
+
+		animate();
 	}
 }

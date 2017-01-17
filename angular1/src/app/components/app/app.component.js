@@ -32,6 +32,9 @@ class AppCtrl {
 		/* Sift Service aids us with indexing keywords and re-sorting the data to improve our digestion :) */
 		this.indexService.indexResume(this.resume);
 
+        /** Setting the angular switch url */
+        this.ng2Url = this.utils.importAngular2Url();
+
 		/* Importing the example tags */
 		this.exampleTags = this.utils.importExampleTags();
 
@@ -83,7 +86,26 @@ class AppCtrl {
 	}
 
 	flipApp() {
-		this.$window.backToConsole();
+		let animate;
+
+		animate = () => {
+			this.reveal.execute([
+				() => {
+					this.$window.backToConsole();
+				},
+				this.reveal.waitAndIncrement(1000, -1),
+				this.reveal.waitAndIncrement(300, -1),
+				this.reveal.waitAndIncrement(300, -1),
+				this.reveal.waitAndIncrement(300, -1),
+				this.reveal.waitAndIncrement(300, -1),
+				this.reveal.waitAndIncrement(300, 0),
+				() => {
+					this.$window.location.href = this.ng2Url;
+				}
+			])
+		}
+
+		animate();
 	}
 
 	changeKeywords(keywords) {

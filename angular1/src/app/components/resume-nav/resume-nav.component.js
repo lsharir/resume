@@ -21,10 +21,6 @@ class ResumeNavController {
 
         /** Setting the desktop variable to false when user is on mobile*/
 		this.desktop = this.utils.isAppRunningOnDesktop();
-
-        /** Setting the angular switch url */
-        this.ng2Url = this.utils.importAngular2Url();
-
     }
 
 	printDocument() {
@@ -34,10 +30,6 @@ class ResumeNavController {
     switchAngular() {
         if (!this.loadingNg2) {
             this.flipApp();
-        
-            this.$timeout(() => {
-                this.$window.location.href = this.ng2Url;
-            }, 3000);
         }
 
         this.loadingNg2 = true;
