@@ -105,41 +105,6 @@ module.exports = (function () {
         tags: ['cmu', 'carnegie', 'mellon', 'cs', 'computer', 'science','web', 'physics', 'math', 'mathematics', 'exchange']
     });
 
-    subjects.push({
-        type: 3,
-        start: 2007,
-        end: 2008,
-        title: 'Ben Gurion University',
-        description: [
-            'Participated in courses for IAF\'s pilot training program'
-        ],
-        tags: ['iaf', 'flight', 'aviation', 'military', 'army', 'meteorology']
-    });
-
-    subjects.push({
-        type: 3,
-        start: 2004,
-        end: 2007,
-        title: 'Ben Zvi High School',
-        description: [
-            'Graduated with honors; majored in physics, mathematics, computer science, chemistry and english'
-        ],
-        tags: ['high', 'school', 'honors', 'physics', 'math', 'chemistry']
-    });
-
- 
-    subjects.push({
-        type: 3,
-        start: 2002,
-        end: 2005,
-        title: 'Bar Ilan University',
-        description: [
-            'Participated in talented youth program in mathematics - graduated high school math there',
-            'Selected courses of B.Sc. in Mathematics'
-        ],
-        tags: ['high', 'school', 'honors', 'physics', 'math', 'chemistry']
-    });   
-
 
     subjects.push({
         type: 4,
