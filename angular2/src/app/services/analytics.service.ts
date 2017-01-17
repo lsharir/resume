@@ -1,23 +1,59 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
+declare var ga:any;
 
 @Injectable()
 export class AnalyticsService {
+    constructor() {}
 
-    constructor() { }
+    private _report(fieldsObject) {
+        if (!fieldsObject || !fieldsObject.hitType) {
+            return;
+        }
 
-    contactToggled() {
-        console.log('TODO analytics service')
+        if (typeof ga !== 'undefined') {
+            ga('send', fieldsObject);
+        }
+    }
+
+    pageView() {
+        this._report({
+            hitType: 'pageview'
+        });
+    }
+
+    contactToggled(contactMethod) {
+        this._report({
+            hitType: 'event',
+            eventCategory: 'contact',
+            eventAction: 'contact-method',
+            eventLabel: contactMethod.icon
+        });
     }
 
     addTag(tag) {
-        console.log('TODO analytics service ' + tag);
+        this._report({
+            hitType: 'event',
+            eventCategory: 'tags',
+            eventAction: 'tag-added',
+            eventLabel: tag
+        });
     }
 
     addLiveTag(tag) {
-        console.log('TODO analytics service ' + tag);
+        this._report({
+            hitType: 'event',
+            eventCategory: 'live',
+            eventAction: 'tag-live',
+            eventLabel: tag
+        });
     }
 
     addExampleTag(tag) {
-        console.log('TODO analytics service ' + tag);
+        this._report({
+            hitType: 'event',
+            eventCategory: 'tags',
+            eventAction: 'default-tag-added',
+            eventLabel: tag
+        });
     }
 }

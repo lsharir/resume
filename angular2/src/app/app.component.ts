@@ -1,5 +1,5 @@
 import { Component, EventEmitter } from '@angular/core';
-import { RevealService, UtilitiesService, IndexService } from './services';
+import { RevealService, UtilitiesService, IndexService, AnalyticsService } from './services';
 
 @Component({
 	selector: 'app-root',
@@ -22,7 +22,8 @@ export class AppComponent {
 	constructor(
 		private utils: UtilitiesService,
 		private indexService: IndexService,
-		private reveal: RevealService
+		private reveal: RevealService,
+		private analytics: AnalyticsService
 	) {
 		/* Importing the raw data that the resume consists from */
 		this.contactMethods = this.utils.importContactMethods();
@@ -43,6 +44,10 @@ export class AppComponent {
 		};
 
 		this.animationSequence();
+	}
+
+	ngOnInit() {
+		this.analytics.pageView();
 	}
 
 	animationSequence() {

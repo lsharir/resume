@@ -21,16 +21,14 @@ export class RevealService {
         steps.forEach((step) => {
             let duration, count, stepFn = angular.noop;
 
-            if (step.constructor.name === 'Function') {
-                stepFn = step;
-                duration = 0;
-                count = 0;
-            }
-
-            if (step.constructor.name === 'WaitAndIncrement') {
+            if (step instanceof WaitAndIncrement) {
                 stepFn = (passedCount) => this._incEmitStepFn(passedCount);
                 duration = step.duration;
                 count = step.count;
+            } else if (typeof step === 'function') {
+                stepFn = step;
+                duration = 0;
+                count = 0;
             }
 
             this.$timeout(stepFn, absoluteDuration += duration, true, count);
@@ -70,7 +68,9 @@ export class RevealService {
     }
 }
 
-function WaitAndIncrement(duration, count) {
-    this.duration = duration;
-    this.count = Number.isInteger(count) ? count : 0;
+class WaitAndIncrement {
+    constructor(duration, count) {
+        this.duration = duration;
+        this.count = Number.isInteger(count) ? count : 0;
+    }
 }

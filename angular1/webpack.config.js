@@ -24,7 +24,7 @@ module.exports = (function makeWebpackConfig() {
 
     // For production we include the Google Analytics Script
     if (isProd) {
-        config.entry.ga = './src/ga.js';
+        config.entry.ga = './../shared/scripts/ga.js';
     }
 
     config.resolve = {

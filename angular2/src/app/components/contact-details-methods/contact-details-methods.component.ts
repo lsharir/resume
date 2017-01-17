@@ -28,7 +28,7 @@ export class ContactDetailsMethodsComponent {
     contactToggle(contactMethod) {
         contactMethod.toggled = !contactMethod.toggled;
         if (contactMethod.toggled) {
-            this.analyticsService.contactToggled();
+            this.analyticsService.contactToggled(contactMethod);
         }
         this.updateContactMethodSelectionStatus();
     }
