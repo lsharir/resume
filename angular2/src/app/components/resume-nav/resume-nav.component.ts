@@ -19,30 +19,30 @@ export class ResumeNavComponent {
         this._sourceCode = this.utils.importSourceCodeLink();
 
         /** Setting the desktop variable to false when user is on mobile*/
-		this.desktop = this.utils.isAppRunningOnDesktop();
+        this.desktop = this.utils.isAppRunningOnDesktop();
 
         /** Setting the angular switch url */
         this._ng1Url = this.utils.importAngularJSUrl();
 
     }
 
-	printDocument() {
-		window.print();
-	}
-    
+    printDocument() {
+        window.print();
+    }
+
     switchAngular() {
         if (!this.loadingNg1) {
             this.navigateOut.emit();
-        
+
             setTimeout(() => {
                 window.location.href = this._ng1Url;
             }, 3000);
         }
-        
+
         this.loadingNg1 = true;
-	}
+    }
 
     showCode() {
-		window.open(this._sourceCode);
+        window.open(this._sourceCode);
     }
 }

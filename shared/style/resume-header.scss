@@ -18,7 +18,14 @@
 .resume-header-intro {
     font-style: italic;
     margin: 1rem;
-    font-size: 1rem;
+    font-size: $header-size;
     text-align: center;
     color: $color-secondary;
+
+    @media (max-width: $media-query-iphone) {
+        & {
+            font-size: $header-size-smaller;
+            margin: 0.5rem;
+        }
+    }
 }

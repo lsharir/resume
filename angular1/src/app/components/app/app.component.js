@@ -50,7 +50,6 @@ class AppCtrl {
 
 	animationSequence() {
 		let globalsAvailabilityChecker = angular.noop,
-			globalsAdditionalWait = 0,
 			exampleTag = { active : true , text : 'AngularJS' },
 			animate = angular.noop;
 
@@ -58,10 +57,7 @@ class AppCtrl {
 
 		animate = () => {
 			this.reveal.execute([
-				() => {
-					globalsAdditionalWait = Math.max(0, (1000 - (Date.now() - this.$window.loaderStart)));
-				},
-				this.reveal.waitAndIncrement(globalsAdditionalWait, 0),
+				this.reveal.waitAndIncrement(300, 0),
 				() => {
 					this.$window.flipLoader();
 				},
@@ -79,7 +75,7 @@ class AppCtrl {
 		}
 
 		globalsAvailabilityChecker = this.$interval(() => {
-			if (this.$window.loaderStart && this.$window.flipLoader) {
+			if (this.$window.flipLoader) {
 				this.$interval.cancel(globalsAvailabilityChecker);
 				animate();
 			}

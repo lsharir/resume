@@ -5,6 +5,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    margin: 0.5rem 0 0.0625rem 0;
 
     .subject-years {
         font-size: $hint-size;
@@ -13,20 +14,38 @@
     }
 
     .subject-title {
-        margin-top: 0.5rem;
         font-size: $header-size;
         font-weight: 700;
+
+        @media (max-width: $media-query-iphone) {
+            & {
+                font-size: $header-size-smaller;
+            }
+        }
     }
 }
 
 .subject-description-wrapper {
     margin-bottom: 0.25rem;
     font-size: $subtext-size;
+
+    @media (max-width: $media-query-iphone) {
+        & {
+            font-size: $subtext-size-smaller;
+        }
+    }
 }
 
 .subject-links-wrapper {
     margin: 0.5rem 0;
     font-size: $subtext-size;
+
+    @media (max-width: $media-query-iphone) {
+        & {
+            font-size: $subtext-size-smaller;
+        }
+    }
+
     a.subject-link {
         margin: 0.25rem;
         color: $color-secondary;

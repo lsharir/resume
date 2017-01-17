@@ -20,20 +20,29 @@ $tag-colors: $tag-bg-0, $tag-bg-1, $tag-bg-2, $tag-bg-3;
 $font-primary: 'Open Sans';
 $lato: 'Lato';
 
+$media-query-iphone: 24rem;
+$media-query-better-phones: 37.5rem;
+
 $duration-short: 0.2s;
 $duration-shorter: 0.1s;
 
 $category-title-font-size: 1.5rem;
+$category-title-font-size-smaller: 1rem;
 
 $subtext-size: 1rem;
+$subtext-size-smaller: 0.75rem;
+
 $hint-size: 0.75rem;
+
 $header-size: 1rem;
+$header-size-smaller: 0.875rem;
 
 // Animations related constants, should match animations.ts config
 // All manual checks are to ensure animations fluidity
 // ########################
 $maximal-category-title-height: 2.0625rem; // This is checked manually
-$category-title-margin: 0.5rem 0;
+$category-title-margin: 0.75rem 0 0.5rem 0;
+$category-title-margin-smaller: 0.5rem 0 0.25rem 0;
 
 $maximal-subject-height: 14.5rem; // This is checked manually
 

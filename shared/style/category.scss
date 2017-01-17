@@ -5,6 +5,13 @@
     text-transform: uppercase;
     font-weight: 300;
     margin: $category-title-margin;
+
+    @media (max-width: $media-query-iphone) {
+        & {
+            font-size: $category-title-font-size-smaller;
+            margin: $category-title-margin-smaller
+        }
+    }
 }
 
 .category-title-animation {

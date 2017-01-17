@@ -35,7 +35,7 @@ module.exports = (function makeWebpackConfig() {
     };
 
     config.output = {
-        path: __dirname + '/dist',
+        path: __dirname + '/../dist/ng1',
         publicPath: isProd ? '/' : 'http://localhost:8080/',
         filename: isProd ? '[name].[hash].js' : '[name].bundle.js',
         chunkFilename: isProd ? '[name].[hash].js' : '[name].bundle.js'
@@ -99,14 +99,14 @@ module.exports = (function makeWebpackConfig() {
                 }
             }),
             new CopyWebpackPlugin([{
-                from: __dirname + '/src/public'
+                from: __dirname + '/../shared/public'
             }])
         )
     }
 
     config.devServer = {
         inline: true,
-        contentBase: './src/public',
+        contentBase: './../shared/public',
         stats: 'minimal',
         noInfo: false,
         hot: true,

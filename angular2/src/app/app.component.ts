@@ -42,7 +42,6 @@ export class AppComponent {
 
 	animationSequence() {
 		let globalsAvailabilityChecker,
-			globalsAdditionalWait = 0,
 			exampleTag = { active : true , text : 'Angular2' },
 			animate;
 
@@ -51,10 +50,7 @@ export class AppComponent {
 
 		animate = () => {
 			this.reveal.execute([
-				() => {
-					globalsAdditionalWait = Math.max(0, (1000 - (Date.now() - window['loaderStart'])));
-				},
-				this.reveal.waitAndIncrement(globalsAdditionalWait, 0),
+				this.reveal.waitAndIncrement(300, 0),
 				() => {
 					window['flipLoader']();
 				},
@@ -72,11 +68,11 @@ export class AppComponent {
 		}
 
 		globalsAvailabilityChecker = setInterval(() => {
-			if (window['loaderStart'] && window['flipLoader']) {
+			if (window['flipLoader']) {
 				clearInterval(globalsAvailabilityChecker);
 				animate();
 			}
-		}, 100, 0, false);
+		}, 100, 0);
 	}
 
 	changeKeywords(keywords) {

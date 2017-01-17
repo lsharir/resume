@@ -12,7 +12,7 @@ export class ResumeSearchComponent implements OnInit {
 	public userLiveTag = '';
 	public userCreatedTags = [];
 
-	@Output('keywords') keywordsEmitter: EventEmitter<any> = new EventEmitter(); 
+	@Output('keywords') keywordsEmitter: EventEmitter<any> = new EventEmitter();
 
 	/* Private properties that handles our debounced analytics function */
 	private debouncedAnalyticsDuration = 1000;
@@ -21,7 +21,7 @@ export class ResumeSearchComponent implements OnInit {
 	constructor(
 		private analyticsService: AnalyticsService,
 		private utils: UtilitiesService
-	) {}
+	) { }
 
 	ngOnInit() {
 		this.focusOnInput();
@@ -29,7 +29,7 @@ export class ResumeSearchComponent implements OnInit {
 
 	updateKeywords() {
 		let keywords = this.utils.getKeywords(this.userLiveTag, this.userCreatedTags, this.exampleTags);
-		this.keywordsEmitter.emit({ keywords : keywords });
+		this.keywordsEmitter.emit({ keywords: keywords });
 	}
 
 	userLiveTagChange(value) {
@@ -50,9 +50,9 @@ export class ResumeSearchComponent implements OnInit {
 	}
 
 	focusOnInput() {
-        //TODO replace this
-        document.getElementById('search').focus();
-    }
+		//TODO replace this
+		document.getElementById('search').focus();
+	}
 
 	toggleExampleTag(tag) {
 		tag.active = !tag.active;
@@ -60,25 +60,25 @@ export class ResumeSearchComponent implements OnInit {
 		if (tag.active) {
 			this.analyticsService.addExampleTag(tag.text);
 		}
-		
+
 		this.updateKeywords();
 	}
 
-    inputKeyDown(e) {
-        // let Return/Enter key generate a new tag
+	inputKeyDown(e) {
+		// let Return/Enter key generate a new tag
 		if (e.keyCode === 13) {
 			this.addTag(this.userLiveTag);
 			this.userLiveTag = '';
 			this.updateKeywords();
 		}
 
-        // let Backspace when input is empty remove previous tag
+		// let Backspace when input is empty remove previous tag
 		if (e.keyCode === 8 && this.userLiveTag.length === 0) {
 			this.removeSelectedTag(this.userCreatedTags.length - 1);
 		}
 	}
 
-    addTag(tag) {
+	addTag(tag) {
 		if (!this.utils.validateTag(tag) || !this.utils.originalTag(this.userCreatedTags, tag)) {
 			return;
 		}
@@ -89,13 +89,13 @@ export class ResumeSearchComponent implements OnInit {
 		this.analyticsService.addTag(tag);
 	}
 
-    removeSelectedTag(index) {
+	removeSelectedTag(index) {
 		this.userCreatedTags.splice(index, 1);
 		this.updateKeywords();
 	}
 
-    /* Avoid this piece of code, a custom debounced function for this particular use */
-	debouncedAnalytics () {
+	/* Avoid this piece of code, a custom debounced function for this particular use */
+	debouncedAnalytics() {
 		/* Status 1 occurs when our $timeout exists and has timed out
 		 * So whenever it does not exist or hasn't reached its end we re-create it */
 		if (!this.debouncedAnalyticsRunCount(1)) {
@@ -112,10 +112,10 @@ export class ResumeSearchComponent implements OnInit {
 	debouncedAnalyticsRunCount(runCount) {
 		/** runCount === 0 when timeout is still running, runCount === 1 when it's done */
 		return this.debouncedAnalyticsRunning
-				&& this.debouncedAnalyticsRunning.runCount === runCount;
+			&& this.debouncedAnalyticsRunning.runCount === runCount;
 	}
 
-    get inputWidth() { // This monster calculates the length of the input element so it breaks line properly
-        return 14.5 *  this.userLiveTag.length + 'px';
-    }
+	get inputWidth() { // This monster calculates the length of the input element so it breaks line properly
+		return 14.5 * this.userLiveTag.length + 'px';
+	}
 }

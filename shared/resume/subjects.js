@@ -5,152 +5,48 @@ module.exports = (function () {
 
     subjects.push({
         type: 1,
-        start: 2015,
+        start: 2016,
         end: 2016,
-        title: 'Trax Image Recognition',
+        title: 'Trax Image Recognition - Team Leader',
         description: [
-            'Junior web developer (8 months)',
-            'Team leader (4 months)',
-            'Developed and lead development of:',
-            'Photoshop-like tool for monitoring and improving image stitching systems',
-            'Browser that exposes collected data to customers'
+            'Developed and led 2 people while creating:',
+            'Photoshop-like tool for monitoring and improving image stitching algorithms',
+            'Retail data browser for clients to keep track of their regions, stores and products'
+        ],
+        tags: ['web', 'work', 'image', 'vision', 'big', 'data', 'angular', 'angularjs', 'angular1']
+    });
+
+    subjects.push({
+        type: 1,
+        start: 2015,
+        end: 2015,
+        title: 'Trax Image Recognition - Junior',
+        description: [
+            'Developed visual data monitoring tools, specifically:',
+            'Flexible pan and zoom tool for images with layered data on top',
+            'Various methods to create new data, layered on images'
         ],
         tags: ['web', 'work', 'image', 'vision', 'big', 'data', 'angular', 'angularjs', 'angular1']
     });
 
     subjects.push({
         type: 2,
-        start: 2010,
-        end: 2015,
-        title: 'Technion - Israel Institute of Technology',
+        start: 2016,
+        end: 2017,
+        title: 'Transponder',
         description: [
-            'B.Sc. in Physics and Mathematics',
-            'Grade average 80, 2 semesters with honors'
+            'Data management platform - Angular 2 application, Node web servers, Redis websocket server, mongodb databases, additional node detection and mailing services'
         ],
-        tags: ['technion', 'physics', 'math', 'mathematics', 'honors', 'degree', 'graduate']
+        tags: ['web', 'angular2', 'node', 'redis', 'mongodb', 'server', 'full' ,'stack']
     });
 
     subjects.push({
         type: 2,
-        start: 2012,
-        end: 2013,
-        title: 'Carnegie Mellon University',
-        description: [
-            'Physics, mathematics and computer science as an exchange student',
-            'Special topics: Cross Platform Mobile Web Apps, General Relativity'
-        ],
-        tags: ['cmu', 'carnegie', 'mellon', 'cs', 'computer', 'science','web', 'physics', 'math', 'mathematics', 'exchange']
-    });
-
-    subjects.push({
-        type: 2,
-        start: 2007,
-        end: 2008,
-        title: 'Ben Gurion University',
-        description: [
-            'Participated in courses for IAF\'s pilot training program'
-        ],
-        tags: ['iaf', 'flight', 'aviation', 'military', 'army', 'meteorology']
-    });
-
-    subjects.push({
-        type: 2,
-        start: 2004,
-        end: 2007,
-        title: 'Ben Zvi High School',
-        description: [
-            'Graduated with honors; majored in physics, mathematics, computer science, chemistry and english'
-        ],
-        tags: ['high', 'school', 'honors', 'physics', 'math', 'chemistry']
-    });
-
- 
-    subjects.push({
-        type: 2,
-        start: 2002,
-        end: 2005,
-        title: 'Bar Ilan University',
-        description: [
-            'Participated in talented youth program in mathematics - graduated high school math there',
-            'Selected courses of B.Sc. in Mathematics'
-        ],
-        tags: ['high', 'school', 'honors', 'physics', 'math', 'chemistry']
-    });   
-
-
-    subjects.push({
-        type: 3,
-        start: 2013,
-        end: thisYear,
-        title: 'Web Development',
-        description: [
-            'HTML5, JavaScript (ES6), CSS3, TypeScript',
-            'Frameworks: AngularJS, Angular2, jQuery + jQuery UI',
-            'NodeJS, MongoDB, Socket.IO, Redis, Webpack, Gulp',
-            'Experience with a variety of libraries and APIs, selected few: MongooseJS, Firebase, Babylon.js, pre3d.js'
-        ],
-        tags: ['nodejs', 'angular', 'framework', 'web', 'javascript', 'typescript', 'experience']
-    });
-
-    subjects.push({
-        type: 4,
-        start: 2007,
-        end: 2008,
-        title: 'Israeli Air Force',
-        description: [
-            'Participated in the first year of pilots\' training program'
-        ],
-        tags: ['aviation', 'military', 'flight', 'pilot']
-    });
-
-    subjects.push({
-        type: 4,
-        start: 2008,
-        end: 2010,
-        title: 'Infantry - Nahal Brigade\'s Elite Unit',
-        description: [
-            'Went through "Orev Nahal" (Crow missile recon.) unit course',
-            'Served in Nahal\'s reconnaissance battalion war room'
-        ],
-        tags: ['combat', 'infantry', 'communication', 'radio']
-    });
-
-    subjects.push({
-        type: 5,
-        start: 2014,
-        end: 2015,
-        title: 'Technion\'s athletic team member',
-        description: [
-            'As a sprinter - still training sprints until this day'
-        ],
-        tags: ['sport', 'sport', 'running', 'sprint', 'runner']
-    });
-
-    subjects.push({
-        type: 5,
-        title: 'Aviation enthusiast',
-        description: [
-            'Assemble and fly remote control models of both helicopters and airplanes'
-        ],
-        tags: ['aviation', 'flight', 'rc', 'plane', 'helicopter']
-    });
-
-    subjects.push({
-        type: 5,
-        title: 'Film enthusiast',
-        description: [
-            'Video recording and editing of nonprofessional short films (Adobe Premiere, After Effects)'
-        ],
-        tags: ['film', 'video', 'design', 'art', 'edit']
-    });
-
-    subjects.push({
-        type: 6,
         start: 2014,
         end: 2014,
         title: 'hawkytalky',
         description: [
-            'a small web application to manage immediate communication and information sharing between co-workers for Hawk Aviation LTD (a company my father is partner in)'
+            'a small web application to manage immediate communication and information sharing between co-workers for Hawk Aviation LTD'
         ],
         links: [
             { title: 'hawkytalky', href: 'http://hawkytalky.com' }
@@ -159,7 +55,7 @@ module.exports = (function () {
     });
 
     subjects.push({
-        type: 6,
+        type: 2,
         start: 2014,
         end: 2014,
         title: 'Percolation',
@@ -174,26 +70,141 @@ module.exports = (function () {
     });
 
     subjects.push({
-        type: 6,
-        start: 2016,
-        end: 2016,
-        title: 'Transponder',
-        description: [
-            'Data management platform - Angular 2 application, Node web servers, Redis websocket server, mongodb databases, additional node detection and mailing services'
-        ],
-        tags: ['web', 'angular2', 'node', 'redis', 'mongodb', 'server', 'full' ,'stack']
-    });
-
-    subjects.push({
-        type: 6,
+        type: 2,
         start: 2013,
         end: 2016,
         title: 'Miscellaneous',
         description: [
-            'I build small web apps on my free time to solve simple life problems. Such as:',
-            'Lettuce Mix: a tool to curate playlists from event\'s participants\' suggestions, along with a voting system to play songs according to popularity'
+            'I enjoy building small web apps on my free time to solve simple life problems.',
+            'Lettuce Mix: a tool to curate live playlists from event\'s participants\' suggestions, along with a voting system to play the crowd\'s popular song choice'
         ],
         tags: ['web', 'music', 'youtube']
+    });
+
+    subjects.push({
+        type: 3,
+        start: 2010,
+        end: 2015,
+        title: 'Technion - Israel Institute of Technology',
+        description: [
+            'B.Sc. in Physics and Mathematics',
+            '2 semesters with honors, Grade average 80'
+        ],
+        tags: ['technion', 'physics', 'math', 'mathematics', 'honors', 'degree', 'graduate']
+    });
+
+    subjects.push({
+        type: 3,
+        start: 2012,
+        end: 2013,
+        title: 'Carnegie Mellon University',
+        description: [
+            'Physics, mathematics and computer science as an exchange student',
+            'Special topics: Cross Platform Mobile Web Apps, General Relativity'
+        ],
+        tags: ['cmu', 'carnegie', 'mellon', 'cs', 'computer', 'science','web', 'physics', 'math', 'mathematics', 'exchange']
+    });
+
+    subjects.push({
+        type: 3,
+        start: 2007,
+        end: 2008,
+        title: 'Ben Gurion University',
+        description: [
+            'Participated in courses for IAF\'s pilot training program'
+        ],
+        tags: ['iaf', 'flight', 'aviation', 'military', 'army', 'meteorology']
+    });
+
+    subjects.push({
+        type: 3,
+        start: 2004,
+        end: 2007,
+        title: 'Ben Zvi High School',
+        description: [
+            'Graduated with honors; majored in physics, mathematics, computer science, chemistry and english'
+        ],
+        tags: ['high', 'school', 'honors', 'physics', 'math', 'chemistry']
+    });
+
+ 
+    subjects.push({
+        type: 3,
+        start: 2002,
+        end: 2005,
+        title: 'Bar Ilan University',
+        description: [
+            'Participated in talented youth program in mathematics - graduated high school math there',
+            'Selected courses of B.Sc. in Mathematics'
+        ],
+        tags: ['high', 'school', 'honors', 'physics', 'math', 'chemistry']
+    });   
+
+
+    subjects.push({
+        type: 4,
+        start: 2013,
+        end: thisYear,
+        title: 'Web Development',
+        description: [
+            'HTML5, JavaScript (ES6), CSS3, TypeScript',
+            'Frameworks: AngularJS, Angular2, jQuery + jQuery UI',
+            'NodeJS, MongoDB, Socket.IO, Redis, Webpack, Gulp',
+            'Experience with a variety of libraries and APIs, selected few: MongooseJS, Firebase, Babylon.js, pre3d.js, d3.js'
+        ],
+        tags: ['nodejs', 'angular', 'framework', 'web', 'javascript', 'typescript', 'experience']
+    });
+
+    subjects.push({
+        type: 5,
+        start: 2007,
+        end: 2008,
+        title: 'Israeli Air Force',
+        description: [
+            'Participated in the first year of pilots\' training program'
+        ],
+        tags: ['aviation', 'military', 'flight', 'pilot']
+    });
+
+    subjects.push({
+        type: 5,
+        start: 2008,
+        end: 2010,
+        title: 'Infantry - Nahal Brigade\'s Elite Unit',
+        description: [
+            'Went through "Orev Nahal" (Crow missile recon.) unit course',
+            'Served in Nahal\'s reconnaissance battalion war room'
+        ],
+        tags: ['combat', 'infantry', 'communication', 'radio']
+    });
+
+    subjects.push({
+        type: 6,
+        start: 2014,
+        end: 2015,
+        title: 'Technion\'s athletic team member',
+        description: [
+            'As a sprinter - still training sprints until this day'
+        ],
+        tags: ['sport', 'sport', 'running', 'sprint', 'runner']
+    });
+
+    subjects.push({
+        type: 6,
+        title: 'Aviation enthusiast',
+        description: [
+            'Assemble and fly remote control models of both helicopters and airplanes'
+        ],
+        tags: ['aviation', 'flight', 'rc', 'plane', 'helicopter']
+    });
+
+    subjects.push({
+        type: 6,
+        title: 'Film enthusiast',
+        description: [
+            'Video recording and editing of nonprofessional short films (Adobe Premiere, After Effects)'
+        ],
+        tags: ['film', 'video', 'design', 'art', 'edit']
     });
 
     return subjects;
