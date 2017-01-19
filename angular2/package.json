@@ -1,15 +1,13 @@
 {
-  "name": "resume",
+  "name": "angular2-resume",
   "version": "1.0.0",
-  "license": "MIT",
-  "angular-cli": {},
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --prod",
-    "lint": "tslint \"src/**/*.ts\""
+    "start": "webpack-dev-server --config ./webpack.config.js --progress --colors",
+    "build": "rimraf ../dist/ng2 && NODE_ENV=production webpack --bail --progress --profile",
+    "prod": "NODE_ENV=production npm run start"
   },
   "private": true,
+  "author": "Liran Sharir",
   "dependencies": {
     "@angular/common": "2.4.2",
     "@angular/compiler": "2.4.2",
@@ -21,17 +19,30 @@
     "@angular/router": "3.4.2",
     "core-js": "2.4.1",
     "rxjs": "5.0.1",
-    "ts-helpers": "^1.1.1",
+    "ts-helpers": "^1.1.2",
     "web-animations-js": "^2.2.2",
     "zone.js": "0.7.4"
   },
   "devDependencies": {
-    "@angular/compiler-cli": "2.4.2",
-    "@types/node": "^6.0.45",
-    "angular-cli": "1.0.0-beta.25.5",
-    "codelyzer": "~2.0.0-beta.1",
-    "ts-node": "1.2.1",
-    "tslint": "^4.0.2",
-    "typescript": "~2.0.3"
+    "@types/core-js": "0.9.35",
+    "@types/node": "6.0.48",
+    "angular2-template-loader": "0.5.0",
+    "autoprefixer": "^6.0.3",
+    "awesome-typescript-loader": "^3.0.0-beta.18",
+    "css-loader": "^0.23.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "html-webpack-plugin": "^2.7.1",
+    "node-libs-browser": "^1.0.0",
+    "node-sass": "^3.10.1",
+    "path": "^0.12.7",
+    "postcss-loader": "^0.9.1",
+    "raw-loader": "^0.5.1",
+    "rimraf": "^2.5.1",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.0",
+    "typescript": "^2.1.5",
+    "webpack": "1.14.0",
+    "webpack-dev-server": "1.16.2"
   }
 }

@@ -17,8 +17,8 @@ module.exports = (function makeWebpackConfig() {
 
     config.entry = {
         loader: '../shared/scripts/loader.js',
-        polyfills: './src/polyfills.js',
-        app: './src/app/app.module.js'
+        polyfills: './src/polyfills.ts',
+        main: './src/main.ts'
     };
 
     // For production we include the Google Analytics Script
@@ -27,7 +27,7 @@ module.exports = (function makeWebpackConfig() {
     }
 
     config.resolve = {
-        extensions: ['', '.js'],
+        extensions: ['', '.ts', '.js'],
         root : [
             path.resolve('./src'),
             path.resolve('../shared')
@@ -35,10 +35,10 @@ module.exports = (function makeWebpackConfig() {
     };
 
     config.output = {
-        path: __dirname + '/../dist/ng1',
-        publicPath: isProd ? '/' : 'http://localhost:8080/',
+        path: __dirname + '/../dist/ng2',
+        publicPath: isProd ? '/' : 'http://localhost:4200/',
         filename: isProd ? '[name].[hash].js' : '[name].bundle.js',
-        chunkFilename: isProd ? '[name].[hash].js' : '[name].bundle.js'
+        chunkFilename: isProd ? '[name].[hash].chunk.js' : '[name].bundle.chunk.js'
     };
 
     if (isProd) {
@@ -51,12 +51,17 @@ module.exports = (function makeWebpackConfig() {
         preLoaders: [],
         loaders: [
             {
-                test: /\.js$/,
-                loader: 'babel',
-                exclude: [/node_modules/, /shared/]
+                test: /\.ts$/,
+                exclude: /node_modules/,
+                loaders: ['awesome-typescript-loader', 'angular2-template-loader']
             },
             {
                 test: /\.scss$/,
+                exclude: /styles\.scss$/,
+                loader: "raw!postcss!sass"
+            },
+            {
+                test: /styles\.scss$/,
                 loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap!postcss-loader!sass')
             },
             {
@@ -86,7 +91,7 @@ module.exports = (function makeWebpackConfig() {
             favicon: '../shared/public/favicon.ico',
             imports: {
                 style: fileAsString(path.resolve(__dirname, '../shared/inlined/style.css')),
-                ng1Code: fileAsString(path.resolve(__dirname, '../shared/inlined/ng1-code.js')),
+                ng2Code: fileAsString(path.resolve(__dirname, '../shared/inlined/ng2-code.js')),
                 loader: fileAsString(path.resolve(__dirname, '../shared/inlined/inlined-loader-functions.js'))
             }
         }),
@@ -96,17 +101,19 @@ module.exports = (function makeWebpackConfig() {
                 'ENV': JSON.stringify(isProd ? 'production' : 'development')
             }
         })
-    );
+    )
 
     if (isProd) {
         config.plugins.push(
             new webpack.optimize.CommonsChunkPlugin({
-                name: ['app', 'polyfills']
+                name: ['main', 'polyfills']
             }),
             new webpack.NoErrorsPlugin(),
             new webpack.optimize.DedupePlugin(),
             new webpack.optimize.UglifyJsPlugin({
-                mangle: false,
+                mangle: {
+                    keep_fnames: true
+                },
                 compressor: {
                     warnings: false
                 }
@@ -116,7 +123,7 @@ module.exports = (function makeWebpackConfig() {
 
     config.devServer = {
         inline: true,
-        port: 8080,
+        port: 4200,
         contentBase: './../shared/public',
         stats: 'minimal',
         noInfo: false,

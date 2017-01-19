@@ -1,0 +1,71 @@
+html {
+    background: #fff;
+}
+
+body {
+    transition: margin 0.3s ease-in-out;
+    -webkit-transition: margin 0.3s ease-in-out;
+    perspective: 1800px;
+    -webkit-perspective: 1800px;
+    perspective-origin: 50% 5%;
+    -webkit-perspective-origin: 50% 5%;
+    padding: 0;
+}
+
+body.no-margin {
+    margin: 0;
+}
+
+#app {
+    will-change: opacity;
+    transition: opacity 0.3s ease-in-out;
+}
+
+#app.app-concealed {
+    opacity: 0;
+}
+
+#loader {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    height: 150vh;
+    margin: 0 auto;
+    overflow: hidden;
+    background: rgba(0,0,0,0.75);
+    color: white;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-origin: 50% 50% -5px;
+    -webkit-transform-origin: 50% 50% -5px;
+    font-size: 1rem;
+}
+
+@media (max-width: 50rem) {
+    #loader {
+        font-size: 0.825rem;
+    }
+}
+
+@media (max-width: 37.5rem) {
+    #loader {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 28rem) {
+    #loader {
+        font-size: 0.5rem;
+    }
+}
+
+#loader > #code-block {
+    font-family: Monaco, Menlo, Consolas, "Droid Sans Mono", "Inconsolata", "Courier New", monospace;
+    white-space: pre;
+    display: block;
+    padding: 0.5rem;
+}

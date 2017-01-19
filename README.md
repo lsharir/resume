@@ -40,8 +40,7 @@ Additional information in the ```shared\README.md```
 ## Build tools
 For the AngularJS application I configured a webpack build.
 
-For the Angular2, I tried using angular-cli (due to the simplistic nature of this app).
-But think I prefer configuring a webpack build in the future.
+For the Angular2, I initialized the application using angular-cli. But reconfigured the project with webpack later due to angular-cli current limitations.
 
 
 [ng2]: http://angular.io

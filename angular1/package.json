@@ -2,9 +2,9 @@
   "name": "angular1-resume",
   "version": "1.0.0",
   "scripts": {
-    "build": "rimraf ../dist/ng1 && webpack --bail --progress --profile",
-    "server": "webpack-dev-server --config ./webpack.config.js --progress",
-    "start": "npm run server"
+    "build": "rimraf ../dist/ng1 && NODE_ENV=production webpack --bail --progress --profile",
+    "start": "webpack-dev-server --config ./webpack.config.js --progress",
+    "prod": "NODE_ENV=production npm run start"
   },
   "private": true,
   "author": "Liran Sharir",
@@ -21,21 +21,19 @@
     "babel-core": "^6.2.1",
     "babel-loader": "^6.2.0",
     "babel-preset-es2015": "^6.1.18",
-    "copy-webpack-plugin": "^3.0.1",
     "css-loader": "^0.23.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.7.1",
     "node-libs-browser": "^1.0.0",
     "node-sass": "^3.10.1",
-    "null-loader": "^0.1.1",
     "path": "^0.12.7",
     "postcss-loader": "^0.9.1",
     "raw-loader": "^0.5.1",
     "rimraf": "^2.5.1",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.0",
-    "webpack": "1.12.13",
-    "webpack-dev-server": "1.14.1"
+    "webpack": "1.14.0",
+    "webpack-dev-server": "1.16.2"
   }
 }
