@@ -1,18 +1,15 @@
 <div class="resume-nav-container">
-    <i class="material-icons button-icon"
-        ng-click="$ctrl.showCode()">code</i>
-    
-    <span class="switch-angular">
-        <span class="switch-button"
-            ng-class="{ 'active': !$ctrl.loadingNg2 }">AngularJS</span>
-        <span class="switch-button" 
-            ng-click="$ctrl.switchAngular()"
-            ng-class="{ 'flashing' : $ctrl.loadingNg2 }">Angular2</span>
-    </span>
+    <span class="resume-nav-button" 
+        ng-click="$ctrl.showCode()">Code</span>
+    <span class="resume-nav-button"
+        ng-if="$ctrl.desktop"
+        ng-click="$ctrl.printDocument()">Print</span>
 
     <span class="stretch"></span>
 
-    <i class="material-icons button-icon"
-        ng-if="$ctrl.desktop"
-        ng-click="$ctrl.printDocument()">print</i>
+    <span class="resume-nav-button"
+        ng-class="{ 'active': !$ctrl.loadingNg2 }">AngularJS</span>
+    <span class="resume-nav-button" 
+        ng-click="$ctrl.switchAngular()"
+        ng-class="{ 'flashing' : $ctrl.loadingNg2 }">Angular2</span>
 </div>

@@ -1,0 +1,169 @@
+<!doctype html>
+<html ng-app="resume" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Liran Sharir</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+    <style>
+        html {
+            background: #fff;
+        }
+
+        body {
+            transition: margin 0.3s ease-in-out;
+            -webkit-transition: margin 0.3s ease-in-out;
+            perspective: 1800px;
+            -webkit-perspective: 1800px;
+            perspective-origin: 50% 5%;
+            -webkit-perspective-origin: 50% 5%;
+            padding: 0;
+        }
+
+        body.no-margin {
+            margin: 0;
+        }
+
+        #loader {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 10;
+            height: 150vh;
+            margin: 0 auto;
+            overflow: hidden;
+            background: rgba(0,0,0,0.75);
+            color: white;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            transform-origin: 50% 50% -5px;
+            -webkit-transform-origin: 50% 50% -5px;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 50rem) {
+            #loader {
+                font-size: 0.825rem;
+            }
+        }
+
+        @media (max-width: 37.5rem) {
+            #loader {
+                font-size: 0.7rem;
+            }
+        }
+
+        @media (max-width: 28rem) {
+            #loader {
+                font-size: 0.5rem;
+            }
+        }
+
+        #loader > #code-block {
+            font-family: Monaco, Menlo, Consolas, "Droid Sans Mono", "Inconsolata", "Courier New", monospace;
+            white-space: pre;
+            display: block;
+            padding: 0.5rem;
+        }
+    </style>
+<script>
+
+        function getPreloadBS() {
+            return [
+                '\n\nI cannot find the website for you.',
+                '\n\nThere appears to be some sort of an error :\\',
+                '\n\nI don\'t want to sound rude, but...',
+                '\nI\'m a machine, you\'re a human being,',
+                ' your kind is more prone to make mistakes',
+                '\nNot that I\'m suggesting anything, but you probably messed up',
+                '\n\nEither the url, or your browser is outdated.\nYou should try and reset your machine.',
+                '\n\nActually',
+                '\n\nWoops! I just found the files!\n',
+                '\nSorry about that, just hit refresh'
+            ];
+        }
+
+        function startLoader(loader, app, codeBlock) {
+            var preloadInterval,
+                typewriter = { remainingCode: '' },
+                preloadIndex = 0,
+                preloadBS = getPreloadBS();
+
+            function typewriteCode(code, duration, clear) {
+                var pace = code.length / duration;
+                // clear previous running interval
+                clearInterval(typewriter.interval);
+
+                if (clear) {
+                    codeBlock.innerHTML = '';
+                } else {
+                    codeBlock.innerHTML += typewriter.remainingCode;
+                }
+
+                typewriter.remainingCode = code;
+                typewriter.charsDebt = 0;
+                typewriter.previousUpdate = Date.now();
+
+                typewriter.interval = setInterval(function () {
+                    var charsToType = (Date.now() - typewriter.previousUpdate) * pace + typewriter.charsDebt,
+                        integerCharsToType = Math.floor(charsToType),
+                        stringToAppend = typewriter.remainingCode.substr(0, integerCharsToType);
+
+                    // updating the previous update timestamp
+                    typewriter.previousUpdate = Date.now();
+                    // slice out and leave the rest of the code
+                    typewriter.remainingCode = typewriter.remainingCode.slice(integerCharsToType);
+                    // leave the remainder of the chars taken
+                    typewriter.charsDebt = charsToType - integerCharsToType;
+
+                    codeBlock.innerHTML += stringToAppend;
+
+                    // substr takes our only the remaining part of the string, while slice returns '' if we sliced beyond the edge
+                    if (typewriter.remainingCode.length === 0) {
+                        clearInterval(typewriter.interval);
+                    }
+                }, 20);
+            }
+
+            preloadInterval = setInterval(function () {
+                typewriteCode(preloadBS[preloadIndex++], 1000, false);
+
+                if (preloadIndex >= preloadBS.length) {
+                    clearInterval(preloadInterval);
+                }
+            }, 2000);
+        }
+
+        //DOMContentLoaded was acting too weird on some browsers
+        function getElementsASAP() {
+            var loader, app, codeBlock, areWeThereYet;
+
+            areWeThereYet = setInterval(function () {
+                loader = document.getElementById('loader');
+                codeBlock = document.getElementById('code-block');
+                if (loader && codeBlock && window['getPreloadBS']) {
+                    clearInterval(areWeThereYet);
+                    startLoader(loader, app, codeBlock);
+                }
+            }, 25);
+        }
+
+        getElementsASAP();
+    </script>
+</head>
+
+<!-- ###### actual content ###### -->
+
+<body class="no-margin">
+    <div id="loader" class="print-never">
+        <code id="code-block">Please hold</code>
+    </div>
+</body>
+
+<!-- ###### actual content ###### -->
+
+</html>

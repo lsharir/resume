@@ -16,9 +16,9 @@ $search-container-size: $tag-margin-top-bottom;
 
     .search-placeholder {
         position: absolute;
-        right: 0;
-        top: 0;
-        margin: (2*$tag-margin-top-bottom + 2*$tag-margin-left-right);
+        right: 0.5rem;
+        top: 50%;
+        transform: translate3d(0, -50%, 0);
         color: #aaa;
     }
 
@@ -45,6 +45,7 @@ $search-container-size: $tag-margin-top-bottom;
 }
 
 input[type="text"].search {
+    @include tag-font-sizing();
     border: none;
     box-shadow: none;
     background: transparent;

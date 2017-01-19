@@ -1,18 +1,16 @@
 <div class="resume-nav-container">
-    <i class="material-icons button-icon"
-        (click)="showCode()">code</i>
+    <span class="resume-nav-button"
+        (click)="showCode()">Code</span>
+    <span class="resume-nav-button"
+        *ngIf="desktop"
+        (click)="printDocument()">Print</span>
     
-    <span class="switch-angular">
-        <span class="switch-button" 
-            (click)="switchAngular()"
-            [class.flashing]="loadingNg1">AngularJS</span>
-        <span class="switch-button"
-            [class.active]="!loadingNg1">Angular2</span>
-    </span>
 
     <span class="stretch"></span>
 
-    <i class="material-icons button-icon"
-        *ngIf="desktop"
-        (click)="printDocument()">print</i>
+    <span class="resume-nav-button" 
+        (click)="switchAngular()"
+        [class.flashing]="loadingNg1">AngularJS</span>
+    <span class="resume-nav-button"
+        [class.active]="!loadingNg1">Angular2</span>
 </div>

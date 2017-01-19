@@ -4,15 +4,23 @@
     text-align: center;
     font-weight: 400;
     font-family: $lato;
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    margin-top: 2rem;
-}
+    font-size: 4rem;
+    line-height: 0.75;
+    margin: 1.5rem 0 1rem 0;
 
-@media (max-width: 37.5rem) {
-  .resume-header-name {
-    font-size: 2rem;
-  }
+    @media (max-width: $media-query-better-phones) {
+        & {
+            font-size: 2.75rem;
+            margin: 1.25rem 0 0.75rem 0;
+        }
+    }
+
+    @media (max-width: $media-query-iphone) {
+        & {
+            font-size: 2rem;
+            margin: 1rem 0 0.5rem 0;
+        }
+    }
 }
 
 .resume-header-intro {
@@ -22,10 +30,17 @@
     text-align: center;
     color: $color-secondary;
 
+    @media (max-width: $media-query-better-phones) {
+        & {
+            font-size: 0.75rem;
+            margin: 0.75rem 0;
+        }
+    }
+
     @media (max-width: $media-query-iphone) {
         & {
-            font-size: $header-size-smaller;
-            margin: 0.5rem;
+            font-size: 0.5rem;
+            margin: 0.5rem 0;
         }
     }
 }
