@@ -11,14 +11,15 @@ export class ContactDetailsMethodsComponent {
 }
 
 class ContactDetailsMethodsController {
-    constructor(AnalyticsService) {
-        this.AnalyticsService = AnalyticsService;
+    constructor(AnalyticsService, $document) {
+        this.analytics = AnalyticsService;
+        this.$document = $document;
     }
 
     contactToggle(contactMethod) {
 		contactMethod.toggled = !contactMethod.toggled;
 		if (contactMethod.toggled) {
-            this.AnalyticsService.contactToggled(contactMethod);
+            this.analytics.contactToggled(contactMethod);
 		}
 	}
 

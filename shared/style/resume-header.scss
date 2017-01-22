@@ -3,7 +3,7 @@
 .resume-header-name {
     text-align: center;
     font-weight: 400;
-    font-family: $lato;
+    font-family: $font-family;
     font-size: 4rem;
     line-height: 0.75;
     margin: 1.5rem 0 1rem 0;
@@ -24,22 +24,29 @@
 }
 
 .resume-header-intro {
-    font-style: italic;
-    margin: 1rem;
-    font-size: $header-size;
+    font-weight: 300;
+    margin: 1rem 0;
+    font-size: 1.25rem;
     text-align: center;
+    display: flex;
+    justify-content: center;
     color: $color-secondary;
+
+    & > span {
+        white-space: nowrap;
+        margin: 0 0.5rem;
+    }
 
     @media (max-width: $media-query-better-phones) {
         & {
-            font-size: 0.75rem;
+            font-size: 1rem;
             margin: 0.75rem 0;
         }
     }
 
     @media (max-width: $media-query-iphone) {
         & {
-            font-size: 0.5rem;
+            font-size: 0.7rem;
             margin: 0.5rem 0;
         }
     }

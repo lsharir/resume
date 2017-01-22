@@ -1,2 +1,8 @@
 @import '../../shared/style/app.scss';
 @import './app/config/animations.scss';
+
+$url: "../../shared/public/ng1.jpg";
+
+.resume-image-ng1 {
+    background-image: url($url);
+}

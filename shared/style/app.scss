@@ -8,7 +8,7 @@ html {
 
 body {
     margin: 1rem;
-    font-family: $font-primary;
+    font-family: $font-family;
     color: $color-primary;
 }
 
@@ -51,8 +51,14 @@ body {
 /* Media query particular for narrow screens
     for devices with narrow screens (600px with font-size: 16px) */
 
-@media (max-width: 37.5rem) {
+@media (max-width: $media-query-better-phones) {
   .document {
     padding: 1rem;
+  }
+}
+
+@media (max-width: $media-query-iphone) {
+  .document {
+    padding: 0.75rem;
   }
 }

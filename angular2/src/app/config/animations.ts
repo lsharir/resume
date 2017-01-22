@@ -7,11 +7,11 @@ const ANIMATION_CONFIG = {
     WIDTH_TRANSITION: '1s ease-in-out',
     MARGIN_TRANSITION: '1s ease-in-out',
     SUBJECT: { /** setting these values manually ensures the fluidity of the animation */
-        MAX_HEIGHT: '14.5rem'
+        MAX_HEIGHT: '9rem'
     },
     CATEGORY: { /** setting these values manually ensures the fluidity of the animation */
         MAX_HEIGHT: '2.0625rem',
-        MARGIN: '0.5rem 0'
+        MARGIN: '0.75rem 0'
     },
     CONTACT_DATA: {
         MAX_HEIGHT: '1.375rem',
@@ -81,14 +81,14 @@ export const CATEGORY_ANIMATION = {
             group([
                 animate(ANIMATION_CONFIG.FADE_TRANSITION_IN, style({ opacity: 1})),
                 animate(ANIMATION_CONFIG.HEIGHT_TRANSITION, style({ 'max-height': ANIMATION_CONFIG.CATEGORY.MAX_HEIGHT })),
-                animate(ANIMATION_CONFIG.HEIGHT_TRANSITION, style({ margin: ANIMATION_CONFIG.CATEGORY.MARGIN }))
+                animate(ANIMATION_CONFIG.MARGIN_TRANSITION, style({ margin: ANIMATION_CONFIG.CATEGORY.MARGIN }))
             ])
         ]),
         transition('* => void', [
             group([
                 animate(ANIMATION_CONFIG.FADE_TRANSITION_OUT, style({ opacity: 0 })),
                 animate(ANIMATION_CONFIG.HEIGHT_TRANSITION, style({ 'max-height': 0 })),
-                animate(ANIMATION_CONFIG.HEIGHT_TRANSITION, style({ margin: 0 }))
+                animate(ANIMATION_CONFIG.MARGIN_TRANSITION, style({ margin: 0 }))
             ])
         ])
     ])

@@ -1,10 +1,22 @@
 module.exports = (function() {
-    return {
+    var config = {
         sourceCode: 'https://github.com/lsharir/resume',
-        ng1Dev: 'http://localhost:8080',
-        ng2Dev: 'http://localhost:4200',
         ng1: 'http://ng1.lsharir.com',
         ng2: 'http://ng2.lsharir.com',
-        exampleTags: ['2016','email']
+        exampleTags: ['2016','email'],
+        social: {
+            linkedin: 'http://www.linkedin.com/in/lsharir',
+            googlePlus: 'http://plus.google.com/u/0/+LiranSharir',
+            facebook: 'http://facebook.com/lsharir'
+        }
     }
+
+    if (process.env.ENV !== 'production') {
+        config = Object.assign(config, {
+            ng1: 'http://localhost:8080',
+            ng2: 'http://localhost:4200'
+        });
+    }
+
+    return config;
 })();

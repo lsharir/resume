@@ -11,7 +11,7 @@ module.exports = (function () {
         description: [
             'Developed and led 2 people while creating:',
             'Photoshop-like tool for monitoring and improving image stitching algorithms',
-            'Retail data browser for clients to keep track of their regions, stores and products'
+            'Retail data browser to monitor client\'s regions, stores and products'
         ],
         tags: ['web', 'work', 'image', 'vision', 'big', 'data', 'angular', 'angularjs', 'angular1']
     });
@@ -44,9 +44,9 @@ module.exports = (function () {
         type: 2,
         start: 2014,
         end: 2014,
-        title: 'hawkytalky',
+        title: 'Hawkytalky',
         description: [
-            'a small web application to manage immediate communication and information sharing between co-workers for Hawk Aviation LTD'
+            'A web application that manages information flow between co-workers (for Hawk Aviation LTD)'
         ],
         links: [
             { title: 'hawkytalky', href: 'http://hawkytalky.com' }
@@ -75,8 +75,8 @@ module.exports = (function () {
         end: 2016,
         title: 'Miscellaneous',
         description: [
-            'I enjoy building small web apps on my free time to solve simple life problems.',
-            'Lettuce Mix: a tool to curate live playlists from event\'s participants\' suggestions, along with a voting system to play the crowd\'s popular song choice'
+            'I enjoy implementing simple ideas to solve every day problems',
+            'Lettuce Mix: a websockes application that curates live playlists, a voting system allows the crowd to determine their unified choice'
         ],
         tags: ['web', 'music', 'youtube']
     });
@@ -147,7 +147,7 @@ module.exports = (function () {
         type: 6,
         start: 2014,
         end: 2015,
-        title: 'Technion\'s athletic team member',
+        title: 'Technion\'s athletic team',
         description: [
             'As a sprinter - still training sprints until this day'
         ],

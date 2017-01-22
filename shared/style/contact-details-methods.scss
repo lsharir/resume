@@ -37,10 +37,70 @@
     .contact-data {
         margin: 1rem;
         will-change: max-height, max-width, opacity, margin;
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
         white-space: nowrap;
         max-width: $maximal-contact-data-width;
         max-height: $maximal-contact-data-height;
 
+        & > a, & > a:visited {
+            text-decoration: none;
+            color: $md-grey-idle;
+
+            &:hover {
+                color: $md-grey-hover;
+            }
+        }
+
+        .contact-copy {
+            padding: 0.75rem;
+            position: relative;
+            font-size: 1.25rem;
+            transition: color $duration-short ease-out;
+            color: $md-grey-idle;
+
+            &:hover {
+                color: $md-grey-hover;
+            }
+
+            &:active {
+                color: $md-grey-active;
+            }
+
+            &::after, &::before {
+                font-family: $font-console;
+                position: absolute;
+                bottom: 100%;
+                left: 50%;
+                transform: translate(-50%,0);
+                font-size: 0.75rem;
+                color: white;
+                padding: 0.5rem;
+                border-radius: 0.25rem;
+                background: rgba(0,0,0,0.5);
+                display: none;
+            }
+
+            &::before {
+                content: "Copied!";
+            }
+
+            &::after {
+                content: "Ctrl + C";
+            }
+
+            &.copied {
+                &:before {
+                    display: block;
+                }
+            }
+
+            &.error {
+                &:after {
+                    display: block;
+                }
+            }
+        }
     }
 }

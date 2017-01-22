@@ -9,8 +9,11 @@
     @media (max-width: $media-query-iphone) {
         & {
             font-size: $category-title-font-size-smaller;
-            margin: $category-title-margin-smaller
         }
+    }
+
+    @media print {
+        margin : $category-title-margin-print;
     }
 }
 

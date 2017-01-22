@@ -12,6 +12,9 @@
     <span 
         class="contact-data contact-data-animation"
         ng-repeat="contactMethod in $ctrl.contactMethods | filter : $ctrl.contactMethodFilter as contactResults track by $id(contactMethod)">
-        {{:: contactMethod.data }}
+        <a ng-attr-id="{{ 'contact-method-' + $id }}" data-ng-href="{{:: contactMethod.href }}">{{:: contactMethod.data }}</a>
+        <i init-clipboard
+            ng-attr-data-clipboard-target="{{ '#contact-method-' + $id }}"
+            class="material-icons contact-copy">content_copy</i>
     </span>
 </div>

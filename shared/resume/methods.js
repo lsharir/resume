@@ -3,12 +3,14 @@ module.exports = (function () {
 
     methods.push({
         icon: 'phone',
-        data: '+972-545222302'
+        data: '+972-545222302',
+        href: 'tel:+972545222302'
     });
 
     methods.push({
         icon: 'email',
-        data: 'Lsharir@gmail.com'
+        data: 'Lsharir@gmail.com',
+        href: 'mailto:lsharir@gmail.com?subject=Code For Us'
     });
 
     return methods;

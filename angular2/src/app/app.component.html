@@ -22,15 +22,23 @@
     </resume-no-results>
 
     <category 
-        [revealOrder]="3"
+        [revealOrder]="5"
         [category]="category" 
         [subjects]="data.subjectsByType[category.type]" 
         *ngFor="let category of data.categories">
     </category>
+
+    <avatar
+        [revealOrder]="3"></avatar>
 
     <contact-details-methods
         [revealOrder]="4"
         [contactMethodsChangeEmitter]="filterResumeContactMethodsEmitter"
         [contactMethods]="contactMethods">
     </contact-details-methods>
+
+    <resume-footer
+        class="print-never"
+        [revealOrder]="5">
+    </resume-footer>
 </div>

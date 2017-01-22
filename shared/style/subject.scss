@@ -5,7 +5,6 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin: 0.5rem 0 0.0625rem 0;
 
     .subject-years {
         font-size: $hint-size;
@@ -14,7 +13,7 @@
     }
 
     .subject-title {
-        font-size: $header-size;
+        font-size: 1.25rem;
         font-weight: 700;
 
         @media (max-width: $media-query-iphone) {
@@ -26,13 +25,17 @@
 }
 
 .subject-description-wrapper {
-    margin-bottom: 0.25rem;
+    margin: 0.5rem 0;
     font-size: $subtext-size;
 
     @media (max-width: $media-query-iphone) {
         & {
             font-size: $subtext-size-smaller;
         }
+    }
+
+    @media print {
+        margin: 0.25rem 0;
     }
 }
 

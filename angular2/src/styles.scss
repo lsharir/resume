@@ -1,3 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import '../../shared/style/app.scss';
 @import './app/config/reveal.scss';
+
+$url: "../../shared/public/ng2.jpg";
+
+.resume-image-ng2 {
+    background-image: url($url);
+}

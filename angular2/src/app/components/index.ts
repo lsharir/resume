@@ -7,6 +7,8 @@ import { ContactDetailsMethodsComponent } from './contact-details-methods/contac
 import { ResumeHeaderComponent } from './resume-header/resume-header.component';
 import { ResumeNoResultsComponent } from './resume-no-results/resume-no-results.component';
 import { ResumeNavComponent } from './resume-nav/resume-nav.component';
+import { ResumeFooterComponent } from './resume-footer/resume-footer.component';
+import { AvatarComponent } from './avatar/avatar.component';
 
 export const COMPONENTS = [
     PrintContactDetailsComponent,
@@ -17,5 +19,7 @@ export const COMPONENTS = [
     ContactDetailsMethodsComponent,
     ResumeHeaderComponent,
     ResumeNoResultsComponent,
-    ResumeNavComponent
+    ResumeNavComponent,
+    ResumeFooterComponent,
+    AvatarComponent
 ]

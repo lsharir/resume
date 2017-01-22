@@ -1,0 +1,32 @@
+@import '_shared';
+
+.resume-image-wrapper {
+    text-align: center;
+    margin: 1rem;
+}
+
+.resume-image {
+    display: inline-block;
+    margin: auto;
+    background-size: 100% 100%;
+    width: $avatar-size;
+    height: $avatar-size;
+    border-radius: $avatar-size/2;
+    overflow: hidden;
+
+    @media (max-width: $media-query-better-phones) {
+        & {
+            width: $avatar-small-size;
+            height: $avatar-small-size;
+            border-radius: $avatar-small-size/2;
+        }
+    }
+
+    @media (max-width: $media-query-iphone) {
+        & {
+            width: $avatar-small-iphone-size;
+            height: $avatar-small-iphone-size;
+            border-radius: $avatar-small-iphone-size/2;
+        }
+    }
+}

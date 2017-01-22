@@ -15,7 +15,11 @@ Utilities.prototype.isAppRunningOnDesktop = function() {
             || navigator.userAgent.match(/Windows Phone/i))
 };
 
-Utilities.prototype.importContactMethods = function() {
+Utilities.prototype.importSocialLinks = function() {
+    return this.config.social;
+};
+
+Utilities.prototype.importContactMethods = function () {
     return require('../resume/methods.js');
 };
 

@@ -132,7 +132,7 @@
                     opacity 1s cubic-bezier(1,0,.5,.5) 2s;
     }
 
-    &.ng-leave {
+    &.ng-leave-prepare, &.ng-leave {
         transition: max-height 1s ease-in-out, 
                     margin 1s ease-in-out,
                     opacity 0.25s ease-in-out;

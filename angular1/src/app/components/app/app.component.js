@@ -53,7 +53,7 @@ class AppCtrl {
 
 	animationSequence() {
 		let globalsAvailabilityChecker = angular.noop,
-			exampleTag = { active : true , text : 'AngularJS' },
+			exampleTag = { active : false , text : 'AngularJS' },
 			animate = angular.noop;
 
 		this.exampleTags.unshift(exampleTag);
@@ -63,12 +63,18 @@ class AppCtrl {
 				this.reveal.waitAndIncrement(300, 0),
 				() => {
 					this.$window.flipLoader();
+					this.changeKeywords(['UNDEFINED']);
 				},
 				this.reveal.waitAndIncrement(100, 1),
 				this.reveal.waitAndIncrement(600, 1),
 				this.reveal.waitAndIncrement(300, 1),
 				this.reveal.waitAndIncrement(300, 1),
-				this.reveal.waitAndIncrement(1000, 0),
+				this.reveal.waitAndIncrement(3000, 1),
+				() => {
+					exampleTag.active = true;
+					this.changeKeywords(['angularjs']);
+				},
+				this.reveal.waitAndIncrement(2000, 0),
 				() => {
 					exampleTag.active = false;
 					this.changeKeywords([]);
@@ -97,7 +103,7 @@ class AppCtrl {
 				this.reveal.waitAndIncrement(300, -1),
 				this.reveal.waitAndIncrement(300, -1),
 				this.reveal.waitAndIncrement(300, -1),
-				this.reveal.waitAndIncrement(300, -1),
+				this.reveal.waitAndIncrement(300, -2),
 				this.reveal.waitAndIncrement(300, 0),
 				() => {
 					this.$window.location.href = this.ng2Url;

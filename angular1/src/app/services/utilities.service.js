@@ -17,6 +17,10 @@ export class UtilitiesService {
         return this.utilsModule.importSourceCodeLink();
     }
 
+    importSocialLinks() {
+        return this.utilsModule.importSocialLinks();
+    }
+
     importAngular2Url() {
         return this.utilsModule.importAngular2Url();
     }

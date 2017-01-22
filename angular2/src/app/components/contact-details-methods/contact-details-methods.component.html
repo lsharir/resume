@@ -13,7 +13,9 @@
             [@inOut]="'in'"
             *ngIf="contactMethod.toggled || contactMethod.filtered"
             class="contact-data">
-            {{ contactMethod.data }}
+            <a [attr.id]="'contact-method-' + contactMethod.icon" [href]="contactMethod.href">{{ contactMethod.data }}</a>
+            <i initClipboard [attr.data-clipboard-target]="'#contact-method-' + contactMethod.icon"
+                class="material-icons contact-copy">content_copy</i>
         </span>
     </template>
 </div>

@@ -52,11 +52,11 @@ export class AppComponent {
 
 	animationSequence() {
 		let globalsAvailabilityChecker,
-			exampleTag = { active : true , text : 'Angular2' },
+			exampleTag = { active : false , text : 'Angular2' },
 			animate;
 
 		this.exampleTags.unshift(exampleTag);
-		this.changeKeywords(['angular2']);
+		this.changeKeywords(['UNDEFINED']);
 
 		animate = () => {
 			this.reveal.execute([
@@ -68,7 +68,12 @@ export class AppComponent {
 				this.reveal.waitAndIncrement(600, 1),
 				this.reveal.waitAndIncrement(300, 1),
 				this.reveal.waitAndIncrement(300, 1),
-				this.reveal.waitAndIncrement(1000, 0),
+				this.reveal.waitAndIncrement(3000, 1),
+				() => {
+					exampleTag.active = true;
+					this.changeKeywords(['angular2']);
+				},
+				this.reveal.waitAndIncrement(2000, 0),
 				() => {
 					exampleTag.active = false;
 					this.changeKeywords([]);
@@ -108,7 +113,7 @@ export class AppComponent {
 				this.reveal.waitAndIncrement(300, -1),
 				this.reveal.waitAndIncrement(300, -1),
 				this.reveal.waitAndIncrement(300, -1),
-				this.reveal.waitAndIncrement(300, -1),
+				this.reveal.waitAndIncrement(300, -2),
 				this.reveal.waitAndIncrement(300, 0),
 				() => {
 					window.location.href = this._ng1Url;

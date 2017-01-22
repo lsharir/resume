@@ -15,9 +15,14 @@ import { ContactDetailsMethodsComponent } from './components/contact-details-met
 import { ResumeHeaderComponent } from './components/resume-header/resume-header.component';
 import { ResumeNoResultsComponent } from './components/resume-no-results/resume-no-results.component';
 import { ResumeNavComponent } from './components/resume-nav/resume-nav.component';
+import { ResumeFooterComponent } from './components/resume-footer/resume-footer.component';
+import { AvatarComponent } from './components/avatar/avatar.component';
 
 /** Directives */
-import { RevealOrderDirective } from './directives/reveal-order.directive';
+import { 
+	RevealOrderDirective,
+	InitClipboardDirective
+} from './directives';
 
 /** Services and Filters */
 import { subjectYears } from './filters/subjectYears.filter.js';
@@ -49,7 +54,10 @@ angular.module(MODULE_NAME, [
 	.component('printContactDetails', new PrintContactDetailsComponent)
 	.component('contactDetailsMethods', new ContactDetailsMethodsComponent)
 	.component('resumeNav', new ResumeNavComponent)
+	.component('resumeFooter', new ResumeFooterComponent)
+	.component('avatar', new AvatarComponent)
 	.directive('revealOrder', () => new RevealOrderDirective)
+	.directive('initClipboard', () => new InitClipboardDirective)
 	.filter('subjectYears', subjectYears)
 	.service('IndexService', IndexService)
 	.service('UtilitiesService', UtilitiesService)

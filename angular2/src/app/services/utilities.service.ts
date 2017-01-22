@@ -15,6 +15,10 @@ export class UtilitiesService {
         return this.utilsModule.filterResume(resume, contactMethods, tags);
     }
 
+    importSocialLinks() {
+        return this.utilsModule.importSocialLinks();
+    }
+
     /** import the sourceCode link */
     importSourceCodeLink() {
         return this.utilsModule.importSourceCodeLink();

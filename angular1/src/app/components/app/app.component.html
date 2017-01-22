@@ -18,14 +18,22 @@
     <resume-no-results no-results="!$ctrl.data.resultsFound"></resume-no-results>
 
     <category 
-        reveal-order="3"
+        reveal-order="5"
         category="category" 
         subjects="$ctrl.data.subjectsByType[category.type]" 
         ng-repeat="category in $ctrl.data.categories track by $id(category)">
     </category>
 
+
+    <avatar reveal-order="3"></avatar>
+
     <contact-details-methods 
         reveal-order="4"
         contact-methods="$ctrl.contactMethods">
     </contact-details-methods>
+
+    <resume-footer
+        reveal-order="5"
+        class="print-never">
+    </resume-footer>
 </div>
