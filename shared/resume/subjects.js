@@ -9,9 +9,9 @@ module.exports = (function () {
         end: 2016,
         title: 'Trax Image Recognition - Team Leader',
         description: [
-            'Developed and led 2 people while creating:',
-            'Photoshop-like tool for monitoring and improving image stitching algorithms',
-            'Retail data browser to monitor client\'s regions, stores and products'
+            'Developed with and Led 2 people to create:',
+            'A Photoshop-like tool for analyzing and improvement of image stitching algorithms',
+            'A Retail data browser to resolve client\'s needs of monitoring their regions, stores and products'
         ],
         tags: ['web', 'work', 'image', 'vision', 'big', 'data', 'angular', 'angularjs', 'angular1']
     });
@@ -20,11 +20,11 @@ module.exports = (function () {
         type: 1,
         start: 2015,
         end: 2015,
-        title: 'Trax Image Recognition - Junior',
+        title: 'Trax Image Recognition - Junior Dev',
         description: [
             'Developed visual data monitoring tools, specifically:',
             'Flexible pan and zoom tool for images with layered data on top',
-            'Various methods to create new data, layered on images'
+            'Various methods to create data, layered on images'
         ],
         tags: ['web', 'work', 'image', 'vision', 'big', 'data', 'angular', 'angularjs', 'angular1']
     });
@@ -35,9 +35,10 @@ module.exports = (function () {
         end: 2017,
         title: 'Transponder',
         description: [
-            'Data management platform - Angular 2 application, Node web servers, Redis websocket server, mongodb databases, additional node detection and mailing services'
+            'A solution I invented for assessing interorganizational data flows, which provide automation and straightforward interfacing to events',
+            'Angular 2 application, Node web servers, Redis websocket server, mongodb databases, additional node detection, mailing services'
         ],
-        tags: ['web', 'angular2', 'node', 'redis', 'mongodb', 'server', 'full' ,'stack']
+        tags: ['web', 'invent', 'angular2', 'node', 'redis', 'mongodb', 'server', 'full' ,'stack']
     });
 
     subjects.push({
@@ -46,7 +47,8 @@ module.exports = (function () {
         end: 2014,
         title: 'Hawkytalky',
         description: [
-            'A web application that manages information flow between co-workers (for Hawk Aviation LTD)'
+            'A solution I created for monitoring interorganizational data flows (for Hawk Aviation LTD)',
+            'Web application, Node web servers, websockets, mongodb database'
         ],
         links: [
             { title: 'hawkytalky', href: 'http://hawkytalky.com' }
@@ -60,7 +62,7 @@ module.exports = (function () {
         end: 2014,
         title: 'Percolation',
         description: [
-            'Web app that provides a set of tools to simulate 3d and 2d physical models of percolations through lattices'
+            'A WebGL/Web application that assists students to analyze and learn theories of percolation by rendering 3D or 2D physical models of lattices'
         ],
         links: [
             { title: 'percolation', href: 'http://phony1.technion.ac.il/~lsharir' },
@@ -73,10 +75,12 @@ module.exports = (function () {
         type: 2,
         start: 2013,
         end: 2016,
-        title: 'Miscellaneous',
+        title: 'Side Projects',
         description: [
-            'I enjoy implementing simple ideas to solve every day problems',
-            'Lettuce Mix: a websockes application that curates live playlists, a voting system allows the crowd to determine their unified choice'
+            'Resolving every day problems by using web applications I design and create',
+            'Lettuce Mix - a websockets application that curates live playlists, a voting system allows the crowd to determine their unified choices',
+            'Film Name Translator - solves the problem of connecting between movie titles that are not translated literally',
+            'Bills App - minimal transactions solution for a group\'s debts settlement'
         ],
         tags: ['web', 'music', 'youtube']
     });
@@ -87,7 +91,7 @@ module.exports = (function () {
         end: 2015,
         title: 'Technion - Israel Institute of Technology',
         description: [
-            'B.Sc. in Physics and Mathematics',
+            'Bachelor of Science in Physics and Mathematics',
             '2 semesters with honors, Grade average 80'
         ],
         tags: ['technion', 'physics', 'math', 'mathematics', 'honors', 'degree', 'graduate']
@@ -99,8 +103,8 @@ module.exports = (function () {
         end: 2013,
         title: 'Carnegie Mellon University',
         description: [
-            'Physics, mathematics and computer science as an exchange student',
-            'Special topics: Cross Platform Mobile Web Apps, General Relativity'
+            'Physics, Mathematics and Computer Science as an exchange student',
+            'Special topics: General Relativity and Cross Platform Mobile Web Apps'
         ],
         tags: ['cmu', 'carnegie', 'mellon', 'cs', 'computer', 'science','web', 'physics', 'math', 'mathematics', 'exchange']
     });
@@ -110,12 +114,27 @@ module.exports = (function () {
         type: 4,
         start: 2013,
         end: thisYear,
-        title: 'Web Development',
+        title: 'Front End Web Development',
         description: [
-            'HTML5, JavaScript (ES6), CSS3, TypeScript',
+            'Front End is my great passion, very motivated to create smooth and animated visuals',
+            'Environments: HTML5, JavaScript, TypeScript, CSS3, WebGL',
             'Frameworks: AngularJS, Angular2, jQuery + jQuery UI',
-            'NodeJS, MongoDB, Socket.IO, Redis, Webpack, Gulp',
-            'Experience with a variety of libraries and APIs, selected few: MongooseJS, Firebase, Babylon.js, pre3d.js, d3.js'
+            'Builds: Webpack, Gulp',
+            'Misc: BabylonJS, Pre3D, D3.js, RxJS, Lodash and infinitely many other libraries'
+        ],
+        tags: ['nodejs', 'angular', 'framework', 'web', 'javascript', 'typescript', 'experience']
+    });
+
+    subjects.push({
+        type: 4,
+        start: 2013,
+        end: thisYear,
+        title: 'Back End Web Development',
+        description: [
+            'Back end excites me the most because of how great it feels to manipulate data streams',
+            'Environments: NodeJS, MongoDB, WebSockets, Workers, Firebase',
+            'Libraries: ExpressJS, MongooseJS, Socket.IO, Async, Crypto',
+            'Misc: NodeMailer, Lodash, Passport, Bluebird and many other libraries',
         ],
         tags: ['nodejs', 'angular', 'framework', 'web', 'javascript', 'typescript', 'experience']
     });
@@ -137,10 +156,21 @@ module.exports = (function () {
         end: 2010,
         title: 'Infantry - Nahal Brigade\'s Elite Unit',
         description: [
-            'Went through "Orev Nahal" (Crow missile recon.) unit course',
-            'Served in Nahal\'s reconnaissance battalion war room'
+            'Participated in "Orev Nahal" (recon) unit course',
+            'Served in Nahal\'s recon battalion war room'
         ],
         tags: ['combat', 'infantry', 'communication', 'radio']
+    });
+
+    subjects.push({
+        type: 5,
+        start: 2010,
+        end: 2016,
+        title: 'Infantry - Paratroopers Brigade',
+        description: [
+            'Trained as a combat soldier in a Paratroopers reserve\'s unit'
+        ],
+        tags: ['combat', 'infantry', 'parachute', 'paratrooper']
     });
 
     subjects.push({
@@ -149,7 +179,7 @@ module.exports = (function () {
         end: 2015,
         title: 'Technion\'s athletic team',
         description: [
-            'As a sprinter - still training sprints until this day'
+            'As a sprinter - still passionate about interval training until this day'
         ],
         tags: ['sport', 'sport', 'running', 'sprint', 'runner']
     });
@@ -158,7 +188,7 @@ module.exports = (function () {
         type: 6,
         title: 'Aviation enthusiast',
         description: [
-            'Assemble and fly remote control models of both helicopters and airplanes'
+            'Assemble and fly remote controlled scale models of helicopters and airplanes'
         ],
         tags: ['aviation', 'flight', 'rc', 'plane', 'helicopter']
     });

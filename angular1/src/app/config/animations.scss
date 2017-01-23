@@ -30,7 +30,9 @@
     display: flex;
     flex-direction: column;
     will-change: max-height, opacity;
-    box-sizing:border-box;
+    box-sizing: border-box;
+    transition: max-height 1s ease-in-out,
+                opacity 1s cubic-bezier(1,0,.5,.5);
     max-height: $maximal-subject-height;
 
     &.ng-enter-prepare, &.ng-move-prepare, &.ng-enter, &.ng-move {

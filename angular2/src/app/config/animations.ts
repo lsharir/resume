@@ -7,7 +7,7 @@ const ANIMATION_CONFIG = {
     WIDTH_TRANSITION: '1s ease-in-out',
     MARGIN_TRANSITION: '1s ease-in-out',
     SUBJECT: { /** setting these values manually ensures the fluidity of the animation */
-        MAX_HEIGHT: '9rem'
+        MAX_HEIGHT: '17rem'
     },
     CATEGORY: { /** setting these values manually ensures the fluidity of the animation */
         MAX_HEIGHT: '2.0625rem',

@@ -20,3 +20,12 @@
 .category-title-animation {
     will-change: opacity, max-height, margin;
 }
+
+.subject {
+    letter-spacing: -0.005rem;
+    line-height: 1.45rem;
+
+    @media (max-width: $media-query-iphone) {
+        line-height: 1.15rem;
+    }
+}

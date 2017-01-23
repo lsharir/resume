@@ -40,7 +40,7 @@
 }
 
 .subject-links-wrapper {
-    margin: 0.5rem 0;
+    margin: 0 0 1rem 0;
     font-size: $subtext-size;
 
     @media (max-width: $media-query-iphone) {
@@ -50,7 +50,7 @@
     }
 
     a.subject-link {
-        margin: 0.25rem;
+        margin-right: 0.25rem;
         color: $color-secondary;
     }
 }
