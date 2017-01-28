@@ -9,14 +9,14 @@ module.exports = (function () {
 
     categories.push({
         type: 2,
-        title: 'Notable Projects',
+        title: 'Ventures',
         tags: ['project', 'projects', 'work', 'experience', ,'application', 'applications']
     });
 
     categories.push({
         type: 3,
-        title: 'Education',
-        tags: ['education', 'school', 'university', 'universities', 'college', 'academics', 'academia']
+        title: 'Academia',
+        tags: ['education', 'journal', 'publication', 'school', 'university', 'universities', 'college', 'academics', 'academia']
     });
 
     categories.push({

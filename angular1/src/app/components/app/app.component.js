@@ -74,7 +74,7 @@ class AppCtrl {
 					exampleTag.active = true;
 					this.changeKeywords(['angularjs']);
 				},
-				this.reveal.waitAndIncrement(2000, 0),
+				this.reveal.waitAndIncrement(1300, 0),
 				() => {
 					exampleTag.active = false;
 					this.changeKeywords([]);

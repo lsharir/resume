@@ -17,7 +17,10 @@
                 <span class="fake-tag" fake-tag-bg ng-if="$search.userLiveTag.length !== 0" ng-bind="$search.userLiveTag"></span>
         </span>
     </div>
-    <span class="search-placeholder material-icons" ng-if="$search.userLiveTag.length === 0 && $search.userCreatedTags.length === 0">search</span>
+    <span class="search-placeholder" ng-if="$search.userLiveTag.length === 0 && $search.userCreatedTags.length === 0">
+        <span>Enter keywords, years or anything else</span>
+        <span class="material-icons">search</span>
+    </span>
 </div>
 
 <div class="tags-wrapper tags-examples print-never">
