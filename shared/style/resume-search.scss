@@ -16,15 +16,11 @@ $search-container-size: $tag-margin-top-bottom;
 
     .search-placeholder {
         position: absolute;
-        right: 0.75rem;
-        left: 1rem;
+        right: 0.5rem;
         top: 50%;
         transform: translate3d(0, -50%, 0);
         color: #333;
         opacity: 0.2;
-        display: flex;
-        justify-content: space-between;
-        line-height: 1.4;
         pointer-events: none;
     }
 
