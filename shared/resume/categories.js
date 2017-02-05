@@ -2,27 +2,33 @@ module.exports = (function () {
     var categories = [];
 
     categories.push({
+        type: 'stack',
+        title: 'Full Stack Web Development',
+        tags: ['web', 'skills', 'skill', 'knowledge', 'experience', 'html', 'angular', 'tech', 'technologies', 'javascript']
+    });
+
+    categories.push({
         type: 1,
-        title: 'Work',
+        title: 'Experience',
         tags: ['work', 'experience', 'job', 'jobs', 'company', 'companies', 'employment']
     });
 
     categories.push({
         type: 2,
-        title: 'Ventures',
+        title: 'Independent Projects',
         tags: ['project', 'projects', 'work', 'experience', ,'application', 'applications']
     });
 
     categories.push({
-        type: 3,
-        title: 'Academia',
-        tags: ['education', 'journal', 'publication', 'school', 'university', 'universities', 'college', 'academics', 'academia']
+        type: 'publications',
+        title: 'Publications',
+        tags: ['journal', 'publication', 'university', 'universities', 'college', 'academics', 'academia']
     });
 
     categories.push({
-        type: 4,
-        title: 'Skillset',
-        tags: ['web', 'skills', 'skill', 'knowledge', 'experience', 'html', 'angular', 'tech', 'technologies', 'javascript', 'framework']
+        type: 3,
+        title: 'Education',
+        tags: ['education', 'journal', 'publication', 'school', 'university', 'universities', 'college', 'academics', 'academia']
     });
 
 

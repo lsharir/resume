@@ -72,7 +72,7 @@ module.exports = (function () {
     });
 
     subjects.push({
-        type: 3,
+        type: 'publications',
         start: 2017,
         end: 2017,
         title: 'Published Article - The European Physical Journal',
@@ -109,13 +109,13 @@ module.exports = (function () {
 
 
     subjects.push({
-        type: 4,
+        type: 'stack',
         start: 2013,
         end: thisYear,
-        title: 'Front End Web Development',
+        title: 'Front End',
         description: [
-            'Front end development is my great passion, very motivated to create smooth and animated visuals',
-            'Environments: HTML5, JavaScript, TypeScript, CSS3, WebGL',
+            'Front end development is my great passion, capable of creating and scale any desired product.',
+            'Environments: HTML5, JavaScript, TypeScript, CSS3, WebGL, SVG',
             'Frameworks: AngularJS, Angular2, jQuery + jQuery UI',
             'Builds: Webpack, Gulp',
             'Misc: BabylonJS, Pre3D, D3.js, RxJS, Lodash and infinitely many other libraries'
@@ -124,12 +124,12 @@ module.exports = (function () {
     });
 
     subjects.push({
-        type: 4,
+        type: 'stack',
         start: 2013,
         end: thisYear,
-        title: 'Back End Web Development',
+        title: 'Back End',
         description: [
-            'Back end interests me because of how great it is to accurately manipulate data streams',
+            'Back end sparks my interests when I need to create powerful tools and algorithms to control and manipulate data',
             'Environments: NodeJS, MongoDB, WebSockets, Workers, Firebase',
             'Libraries: ExpressJS, MongooseJS, Socket.IO, Async, Crypto',
             'Misc: Node-Mailer, Lodash, Passport, Bluebird and many other libraries',
@@ -140,17 +140,6 @@ module.exports = (function () {
     subjects.push({
         type: 5,
         start: 2007,
-        end: 2008,
-        title: 'Israeli Air Force',
-        description: [
-            'Participated in the first year of pilots\' training program.'
-        ],
-        tags: ['aviation', 'military', 'flight', 'pilot']
-    });
-
-    subjects.push({
-        type: 5,
-        start: 2008,
         end: 2010,
         title: 'Infantry - Nahal Brigade\'s Elite Unit',
         description: [
